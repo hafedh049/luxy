@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luxy/three_d_modeling.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,6 +11,10 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      theme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      home: const ThreeDModeling(),
+    );
   }
 }
