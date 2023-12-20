@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luxy/utils/globals.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ThreeDModeling extends StatefulWidget {
@@ -12,13 +13,21 @@ class _ThreeDModelingState extends State<ThreeDModeling> {
   final WebViewController _webViewController = WebViewController()
     ..enableZoom(false)
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setBackgroundColor(transparent)
-    ..loadRequest(uri);
+    ..setBackgroundColor(transparent);
+
+  @override
+  void dispose() {
+    _webViewController.clearCache();
+    _webViewController.clearLocalStorage();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: WebViewWidget(controller: controller),
+    return Scaffold(
+      body: WebViewWidget(
+        controller: _webViewController..loadRequest(),
+      ),
     );
   }
 }
