@@ -11,9 +11,10 @@ class ThreeDModeling extends StatefulWidget {
 
 class _ThreeDModelingState extends State<ThreeDModeling> {
   final WebViewController _webViewController = WebViewController()
-    ..enableZoom(false)
+      /* ..enableZoom(false)
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setBackgroundColor(transparent);
+    ..setBackgroundColor(transparent);*/
+      ;
 
   @override
   void dispose() {
@@ -28,7 +29,7 @@ class _ThreeDModelingState extends State<ThreeDModeling> {
       body: WebViewWidget(
         controller: _webViewController
           ..loadRequest(
-            Uri.http("https://app.vectary.com/p/71YmSSOh9Q2wT7qGbku5xs"),
+            Uri.parse("https://app.vectary.com/p/71YmSSOh9Q2wT7qGbku5xs"),
           ),
       ),
     );
