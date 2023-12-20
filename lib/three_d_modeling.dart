@@ -26,7 +26,10 @@ class _ThreeDModelingState extends State<ThreeDModeling> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: WebViewWidget(
-        controller: _webViewController..loadRequest(),
+        controller: _webViewController
+          ..loadRequest(
+            Uri.http("https://app.vectary.com/p/71YmSSOh9Q2wT7qGbku5xs"),
+          ),
       ),
     );
   }
