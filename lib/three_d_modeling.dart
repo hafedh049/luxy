@@ -11,10 +11,9 @@ class ThreeDModeling extends StatefulWidget {
 
 class _ThreeDModelingState extends State<ThreeDModeling> {
   final WebViewController _webViewController = WebViewController()
-      /* ..enableZoom(false)
+    ..enableZoom(false)
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setBackgroundColor(transparent);*/
-      ;
+    ..setBackgroundColor(transparent);
 
   @override
   void dispose() {
