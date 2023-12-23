@@ -1,3 +1,4 @@
 import 'package:flutter/material.dart';
 
-Color transparent = Colors.transparent;
+const Color transparent = Colors.transparent;
+const Color pink = Color.fromARGB(255, , g, b);
