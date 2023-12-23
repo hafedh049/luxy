@@ -6,3 +6,5 @@ const Color dark = Color.fromARGB(255, 23, 26, 33);
 const Color darkPink = Color.fromARGB(255, 89, 42, 52);
 const Color white = Color.fromARGB(255, 255, 255, 255);
 const Color whiteGrey = Color.fromARGB(255, 243, 243, 234);
+const Color darkGrey = Color.fromARGB(255, 57, 57, 57);
+const Color black = Color.fromARGB(255, 15, 15, 15);
