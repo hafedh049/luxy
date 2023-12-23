@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luxy/utils/globals.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,7 +12,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark),
       debugShowCheckedModeBanner: false,
       home: const Scaffold(),
     );
