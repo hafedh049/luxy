@@ -10,6 +10,16 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: PageView.builder(
+              itemBuilder: (context, index) => Comuln,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
