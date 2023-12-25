@@ -94,8 +94,9 @@ class _ProfileState extends State<Profile> {
                     toggleSize: 15,
                     value: !user!.get("dark_mode"),
                     borderRadius: 5,
-                    padding: 8,
+                    padding: 4,
                     showOnOff: true,
+                    activeColor: pink,,
                     onToggle: (bool value) {
                       user!.put("dark_mode", !user!.get("dark_mode"));
                       setS(() {});
