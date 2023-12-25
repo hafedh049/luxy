@@ -70,7 +70,7 @@ class _OnboardingState extends State<Onboarding> {
                             dotBorder: DotBorder(
                               padding: 2,
                               width: 2,
-                              color: Colors.indigo,
+                              color: pink
                             ),
                          ),
                          dotDecoration: DotDecoration(
@@ -80,14 +80,13 @@ class _OnboardingState extends State<Onboarding> {
                             dotBorder: DotBorder(
                               padding: 2,
                               width: 2,
-                              color: Colors.grey,
+                              color: grey
                             ),
-                            borderRadius: BorderRadius.only(
+                            borderRadius:const  BorderRadius.only(
                                 topLeft: Radius.circular(2),
                                 topRight: Radius.circular(16),
                                 bottomLeft: Radius.circular(16),
                                 bottomRight: Radius.circular(2)),
-                           borderRadius: BorderRadius.circular(16),
                            verticalOffset: 0,
                          ),
                          spacing: 6.0,
