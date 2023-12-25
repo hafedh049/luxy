@@ -14,6 +14,7 @@ Future<bool> load() async {
     }
     return true;
   } catch (e) {
+    showToast(e.toString());
     return false;
   }
 }

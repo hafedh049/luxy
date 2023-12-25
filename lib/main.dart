@@ -17,10 +17,11 @@ class Main extends StatelessWidget {
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark),
       debugShowCheckedModeBanner: false,
       home: FutureBuilder<bool>(
-          future: load(),
-          builder: (context, snapshot) {
-            return const Onboarding();
-          }),
+        future: load(),
+        builder: (context, snapshot) {
+          return const Onboarding();
+        },
+      ),
     );
   }
 }
