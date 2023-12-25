@@ -6,6 +6,8 @@ import 'package:hive/hive.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../models/product_model.dart';
+
 Future<bool> load() async {
   try {
     Hive.init((await getApplicationDocumentsDirectory()).path);
@@ -22,19 +24,6 @@ Future<bool> load() async {
   }
 }
 
-void showToast(String message) {
-  Fluttertoast.showToast(
-    msg: message,
-    backgroundColor: pink.withOpacity(.6),
-    fontSize: 16,
-    gravity: ToastGravity.SNACKBAR,
-    toastLength: Toast.LENGTH_LONG,
-    textColor: white,
-  );
-}
+void showToast(String message) => Fluttertoast.showToast(msg: message, backgroundColor: pink.withOpacity(.6), fontSize: 16, gravity: ToastGravity.SNACKBAR, toastLength: Toast.LENGTH_LONG, textColor: white);
 
-
-Future<List<>> loadProducts()async{
-
-  return json.decode(await rootBundle.loadString("assets/jsons/products.json"),);
-}
+Future<List<ProductModel>> loadProducts() async => json.decode(await rootBundle.loadString("assets/jsons/products.json")).map((dynamic product) => ProductModel.fromJson(product)).toList();
