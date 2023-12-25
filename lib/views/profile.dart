@@ -19,14 +19,17 @@ class _ProfileState extends State<Profile> {
       ),
       body: GestureDetector(
         onTap: () {},
-        child: Row(
+        child: const Row(
           children: <Widget>[
             CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/me.png")),
-            const SizedBox(width: 20),
+            SizedBox(width: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: <Widget>[],
+              children: <Widget>[
+                Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                Text("Following 23", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+              ],
             )
           ],
         ),
