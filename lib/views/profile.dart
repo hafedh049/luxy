@@ -121,9 +121,9 @@ class _ProfileState extends State<Profile> {
               onTap: () {},
               child: const Row(
                 children: <Widget>[
-                  Icon(FontAwesome.shield_solid, size: 15, color: white),
+                  Icon(FontAwesome.cart_shopping_solid, size: 15, color: white),
                   SizedBox(width: 20),
-                  Text("Security", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Text("Manage my orders", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
                   Spacer(),
                   Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
                 ],
@@ -133,9 +133,9 @@ class _ProfileState extends State<Profile> {
               onTap: () {},
               child: const Row(
                 children: <Widget>[
-                  Icon(FontAwesome.shield_solid, size: 15, color: white),
+                  Icon(FontAwesome.bell, size: 15, color: white),
                   SizedBox(width: 20),
-                  Text("Security", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Text("Order history", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
                   Spacer(),
                   Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
                 ],
@@ -145,9 +145,47 @@ class _ProfileState extends State<Profile> {
               onTap: () {},
               child: const Row(
                 children: <Widget>[
-                  Icon(FontAwesome.shield_solid, size: 15, color: white),
+                  Icon(FontAwesome.location_arrow_solid, size: 15, color: white),
                   SizedBox(width: 20),
-                  Text("Security", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Text("Manage shipping address", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Spacer(),
+                  Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+                ],
+              ),
+            ),
+            const Text("Services", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () {},
+              child: const Row(
+                children: <Widget>[
+                  Icon(FontAwesome.cart_shopping_solid, size: 15, color: white),
+                  SizedBox(width: 20),
+                  Text("Privacy policy", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Spacer(),
+                  Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const Row(
+                children: <Widget>[
+                  Icon(FontAwesome.bell, size: 15, color: white),
+                  SizedBox(width: 20),
+                  Text("Order history", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Spacer(),
+                  Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const Row(
+                children: <Widget>[
+                  Icon(FontAwesome.location_arrow_solid, size: 15, color: white),
+                  SizedBox(width: 20),
+                  Text("Manage shipping address", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
                   Spacer(),
                   Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
                 ],
