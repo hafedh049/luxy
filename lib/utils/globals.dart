@@ -10,4 +10,4 @@ const Color grey = Color.fromARGB(255, 91, 91, 91);
 const Color black = Color.fromARGB(255, 15, 15, 15);
 const Color greyKeyboard = Color.fromARGB(255, 31, 34, 43);
 
-late final Box user;
+Box? user;

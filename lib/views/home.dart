@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
         child: PageView.builder(
           itemCount: _pages.length,
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (BuildContext context, int index) => Expanded(child: _pages[index]),
+          itemBuilder: (BuildContext context, int index) => _pages[index],
         ),
       ),
     );

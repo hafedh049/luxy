@@ -33,13 +33,13 @@ class _ProfileState extends State<Profile> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500)),
-                  Text("Following 23", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Text("Following 23", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
                 ],
               ),
             ],
           ),
         ),
-        const Text("Settings", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+        const Text("Settings", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {},
@@ -90,10 +90,10 @@ class _ProfileState extends State<Profile> {
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
                   return Switch(
-                    value: user.get("dark_mode"),
-                    onChanged: (bool value) => user.put("dark_mode", !user.get("dark_mode")),
+                    value: user!.get("dark_mode"),
+                    onChanged: (bool value) => user!.put("dark_mode", !user!.get("dark_mode")),
                     activeColor: pink,
-                    inactiveThumbColor: grey,
+                    inactiveThumbColor: white,
                     inactiveTrackColor: white,
                   );
                 },
@@ -113,7 +113,7 @@ class _ProfileState extends State<Profile> {
             ],
           ),
         ),
-        const Text("Orders", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+        const Text("Orders", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {},
@@ -151,7 +151,7 @@ class _ProfileState extends State<Profile> {
             ],
           ),
         ),
-        const Text("Services", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+        const Text("Services", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {},
