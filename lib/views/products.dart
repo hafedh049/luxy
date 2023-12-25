@@ -65,7 +65,7 @@ class _ProductsState extends State<Products> {
                   final List<ProductModel> products = snapshot.data!;
                   return GridView.builder(
                     itemCount: products.length,
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
                     itemBuilder: (BuildContext context, int index) => Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
