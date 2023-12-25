@@ -58,6 +58,7 @@ class _ProductsState extends State<Products> {
           builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data!.isNotEmpty) {
+                final List<ProductModel> products = snapshot.data!;
                 return GridView.builder(
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
                   itemBuilder: (BuildContext context, int index) => Column(
@@ -75,6 +76,7 @@ class _ProductsState extends State<Products> {
                         ),
                       ),
                       const SizedBox(height: 10),
+                      Text(products[index].productName, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))
                     ],
                   ),
                 );
