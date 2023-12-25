@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/models/product_model.dart';
@@ -64,7 +65,7 @@ class _ProductsState extends State<Products> {
                   final List<ProductModel> products = snapshot.data!;
                   return GridView.builder(
                     itemCount: products.length,
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
                     itemBuilder: (BuildContext context, int index) => Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -75,7 +76,7 @@ class _ProductsState extends State<Products> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))],
-                            image: DecorationImage(image: )
+                            image: DecorationImage(image: CachedNetworkImageProvider(products[index].pictureUrl), fit: BoxFit.cover),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
