@@ -77,7 +77,7 @@ class _ProductsState extends State<Products> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))],
-                            image: DecorationImage(image: CachedNetworkImageProvider(products[index].pictureUrl), fit: BoxFit.cover),
+                            image: const DecorationImage(image: AssetImage("assets/pictures/me.jpeg"), fit: BoxFit.cover),
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
