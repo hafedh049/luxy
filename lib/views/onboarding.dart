@@ -20,6 +20,8 @@ class _OnboardingState extends State<Onboarding> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         const Layvy(),
+        const SizedBox(height: 40),
+        Text("Welcome To Layvy", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500)),
       ],
     ),
   ];
