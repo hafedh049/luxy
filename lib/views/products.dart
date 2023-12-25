@@ -12,6 +12,8 @@ class Products extends StatefulWidget {
 class _ProductsState extends State<Products> {
   final TextEditingController _searchController = TextEditingController();
 
+  final List<String> _labels = <String>[];
+
   @override
   void dispose() {
     _searchController.dispose();
@@ -38,7 +40,11 @@ class _ProductsState extends State<Products> {
         ),
         const SizedBox(height: 20),
         Wrap(
-          children: <Widget>[],
+          children: <Widget>[
+            Chip(
+              label: Text(),
+            ),
+          ],
         ),
       ],
     );
