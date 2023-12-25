@@ -3,8 +3,8 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 
 class Layvy extends StatelessWidget {
-  const Layvy({super.key});
-
+  const Layvy({super.key, this.fontSize = 25});
+  final double fontSize;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,10 +18,7 @@ class Layvy extends StatelessWidget {
             Text("La", style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w500, color: pink)),
           ],
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[],
-        )
+        Text("yvy", style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w500, color: white)),
       ],
     );
   }

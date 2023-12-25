@@ -18,10 +18,10 @@ class _OnboardingState extends State<Onboarding> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Positioned.fill(
-            child: PageView.builder(
-              itemBuilder: (context, index) => Comuln,
-            ),
+          Positioned.fill(child: PageView.builder(itemBuilder: (context, index) => _onboardings[index])),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[],
           ),
         ],
       ),
