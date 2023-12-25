@@ -1,4 +1,6 @@
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -107,11 +109,11 @@ class _ProfileState extends State<Profile> {
                       setS(() {});
                     },
                   );*/
-                      CustomAnimatedToggleSwitch(
-                    current: current,
-                    spacing: 36.0,
-                    values: [false, true],
-                    animationDuration: const Duration(milliseconds: 350),
+                      CustomAnimatedToggleSwitch<bool>(
+                    current: user!.get("dark_mode"),
+                    spacing: 10,
+                    values: const <bool>[false, true],
+                    animationDuration: 500.ms,
                     animationCurve: Curves.bounceOut,
                     iconBuilder: (context, local, global) => const SizedBox(),
                     onTap: (_) => setState(() => current = !current),
