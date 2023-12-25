@@ -16,12 +16,8 @@ class _ProfileState extends State<Profile> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("Profile", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500)),
-          ],
-        ),
+        const SizedBox(height: 20),
+        const Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[Text("Profile", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500))]),
         GestureDetector(
           onTap: () {},
           child: const Row(
@@ -39,6 +35,7 @@ class _ProfileState extends State<Profile> {
             ],
           ),
         ),
+        const SizedBox(height: 10),
         const Text("Settings", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
         const SizedBox(height: 10),
         GestureDetector(
@@ -89,12 +86,15 @@ class _ProfileState extends State<Profile> {
               const Spacer(),
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
-                  return Switch(
-                    value: user!.get("dark_mode"),
-                    onChanged: (bool value) => user!.put("dark_mode", !user!.get("dark_mode")),
-                    activeColor: pink,
-                    inactiveThumbColor: white,
-                    inactiveTrackColor: white,
+                  return SizedBox(
+                    height: 20,
+                    child: Switch(
+                      value: user!.get("dark_mode"),
+                      onChanged: (bool value) => user!.put("dark_mode", !user!.get("dark_mode")),
+                      activeColor: pink,
+                      inactiveThumbColor: white,
+                      inactiveTrackColor: white,
+                    ),
                   );
                 },
               ),
@@ -113,6 +113,7 @@ class _ProfileState extends State<Profile> {
             ],
           ),
         ),
+        const SizedBox(height: 10),
         const Text("Orders", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
         const SizedBox(height: 10),
         GestureDetector(
@@ -151,6 +152,7 @@ class _ProfileState extends State<Profile> {
             ],
           ),
         ),
+        const SizedBox(height: 10),
         const Text("Services", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
         const SizedBox(height: 10),
         GestureDetector(
