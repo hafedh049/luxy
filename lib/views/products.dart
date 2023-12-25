@@ -75,6 +75,7 @@ class _ProductsState extends State<Products> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))],
+                            image: DecorationImage(image: )
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

@@ -23,6 +23,7 @@ dependencies:
   fluttertoast: ^8.2.4
   lottie: ^2.7.0
   animated_toggle_switch: ^0.8.0
+  cached_network_image: ^3.3.0
 
 dev_dependencies:
   flutter_test:
