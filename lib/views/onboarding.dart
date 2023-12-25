@@ -47,7 +47,7 @@ class _OnboardingState extends State<Onboarding> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(height: 20),
-        Flexible(child: Text("Get started now and\nexperience a new way\nto shop", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500))),
+        Flexible(child: Text("Get started now and\nexperience a new way\nto shop", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500), textAlign: TextAlign.center)),
       ],
     ),
   ];
@@ -116,13 +116,17 @@ class _OnboardingState extends State<Onboarding> {
                 ),
                 const SizedBox(height: 30),
                 GestureDetector(
-                  onTap: () => _onboardingController.nextPage(duration: 500.ms, curve: Curves.linear),
+                  onTap: () {
+                    if (_activeIndex < _onboardings.length - 1) {
+                      _onboardingController.nextPage(duration: 500.ms, curve: Curves.linear);
+                    } else {}
+                  },
                   child: Container(
                     width: MediaQuery.sizeOf(context).width,
                     height: 60,
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
+                    decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(25)),
                     child: StatefulBuilder(
                       key: _buttonKey,
                       builder: (BuildContext context, void Function(void Function()) _) {
