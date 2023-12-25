@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luxy/utils/globals.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {
@@ -21,6 +22,7 @@ class _OnboardingState extends State<Onboarding> {
     _onboardingController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,17 +30,30 @@ class _OnboardingState extends State<Onboarding> {
         padding: const EdgeInsets.all(16),
         child: Stack(
           children: <Widget>[
-            Positioned.fill(child: PageView.builder(controller: _onboardingController, itemBuilder: (BuildContext context,int index) => Center(child: _onboardings[index],),),),
+            Positioned.fill(
+              child: PageView.builder(
+                controller: _onboardingController,
+                itemBuilder: (BuildContext context, int index) => Center(
+                  child: _onboardings[index],
+                ),
+              ),
+            ),
             Column(
-              children: <Widget>[const Spacer(),
+              children: <Widget>[
+                const Spacer(),
                 AnimatedSmoothIndicator(
-                  activeIndex: ,
+                  activeIndex: 0,
                   count: _onboardings.length,
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  width: Med,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),),
+                  width: MediaQuery.sizeOf(context).width,
+                  height: 60,
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: Text("NEXT", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500)),
+                ),
               ],
             ),
           ],
