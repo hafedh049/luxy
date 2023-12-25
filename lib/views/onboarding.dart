@@ -15,13 +15,15 @@ class _OnboardingState extends State<Onboarding> {
   final PageController _onboardingController = PageController();
   final GlobalKey<State> _buttonKey = GlobalKey<State>();
   final List<Widget> _onboardings = <Widget>[
-    Column(
+    const Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const Layvy(),
-        const SizedBox(height: 40),
-        Text("Welcome To Layvy", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500)),
+        Layvy(),
+        SizedBox(height: 40),
+        Text("Welcome To Layvy", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500)),
+        SizedBox(height: 20),
+        Text("Your E-Commerce\nHub", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500)),
       ],
     ),
   ];

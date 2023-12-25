@@ -3,7 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 
 class Layvy extends StatelessWidget {
-  const Layvy({super.key, this.fontSize = 25});
+  const Layvy({super.key, this.fontSize = 35});
   final double fontSize;
   @override
   Widget build(BuildContext context) {
