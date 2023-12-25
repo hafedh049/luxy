@@ -68,11 +68,11 @@ class _OnboardingState extends State<Onboarding> {
                     height: 60,
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
                     child: StatefulBuilder(
                       key: _buttonKey,
                       builder: (BuildContext context, void Function(void Function()) _) {
-                        return Text(_activeIndex < 3 ? "NEXT" : "GET STARTED", style: const TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500));
+                        return Text(_activeIndex < _onboardings.length - 1 ? "NEXT" : "GET STARTED", style: const TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500));
                       },
                     ),
                   ),
