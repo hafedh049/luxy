@@ -12,11 +12,11 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: dark,
-      leading: IconButton(
-        onPressed: () {},
-        icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: pink),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: dark,
+        centerTitle: true,
+        title: const Text("Profile", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500)),
       ),
     );
   }
