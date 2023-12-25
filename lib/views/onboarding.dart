@@ -28,6 +28,8 @@ class _OnboardingState extends State<Onboarding> {
     ),
   ];
 
+  int _activeIndex = 0;
+
   @override
   void dispose() {
     _onboardingController.dispose();
@@ -36,7 +38,6 @@ class _OnboardingState extends State<Onboarding> {
 
   @override
   Widget build(BuildContext context) {
-    print(1);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -55,7 +56,7 @@ class _OnboardingState extends State<Onboarding> {
               children: <Widget>[
                 const Spacer(),
                 AnimatedSmoothIndicator(
-                  activeIndex: _onboardingController.page!.toInt(),
+                  activeIndex: _activeIndex,
                   count: _onboardings.length,
                   duration: 500.ms,
                 ),
@@ -71,7 +72,7 @@ class _OnboardingState extends State<Onboarding> {
                     child: StatefulBuilder(
                       key: _buttonKey,
                       builder: (BuildContext context, void Function(void Function()) _) {
-                        return Text(_onboardingController.page!.toInt() < 3 ? "NEXT" : "GET STARTED", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500));
+                        return Text(_activeIndex < 3 ? "NEXT" : "GET STARTED", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500));
                       },
                     ),
                   ),
