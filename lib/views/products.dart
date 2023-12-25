@@ -33,16 +33,19 @@ class _ProductsState extends State<Products> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBox(height: 30),
-        TextField(
-          controller: _searchController,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: "Search",
-            prefixIcon: const Icon(Bootstrap.search, size: 15, color: white),
-            contentPadding: const EdgeInsets.all(16),
-            suffixIcon: IconButton(
-              onPressed: () => _searchController.clear(),
-              icon: const Icon(Bootstrap.x_diamond, size: 15, color: white),
+        Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(width: .5, color: white)),
+          child: TextField(
+            controller: _searchController,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: "Search",
+              prefixIcon: const Icon(Bootstrap.search, size: 15, color: white),
+              contentPadding: const EdgeInsets.all(16),
+              suffixIcon: IconButton(
+                onPressed: () => _searchController.clear(),
+                icon: const Icon(Bootstrap.x_diamond, size: 15, color: white),
+              ),
             ),
           ),
         ),
