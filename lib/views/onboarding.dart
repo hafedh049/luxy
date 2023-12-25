@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -18,10 +19,15 @@ class _OnboardingState extends State<Onboarding> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Positioned.fill(child: PageView.builder(itemBuilder: (context, index) => _onboardings[index])),
+          Positioned.fill(child: PageView.builder(itemBuilder: (context, index) => _onboardings[index],),),
           Column(
             mainAxisSize: MainAxisSize.min,
-            children: <Widget>[],
+            children: <Widget>[
+              AnimatedSmoothIndicator(
+                activeIndex: ,
+                count: _onboardings.length,
+              ),
+            ],
           ),
         ],
       ),
