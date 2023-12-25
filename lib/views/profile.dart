@@ -113,7 +113,7 @@ class _ProfileState extends State<Profile> {
           onTap: () {},
           child: const Row(
             children: <Widget>[
-              Icon(FontAwesome.shield_solid, size: 15, color: white),
+              Icon(Bootstrap.shield, size: 15, color: white),
               SizedBox(width: 20),
               Text("Security", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
               Spacer(),
@@ -128,7 +128,7 @@ class _ProfileState extends State<Profile> {
           onTap: () {},
           child: const Row(
             children: <Widget>[
-              Icon(FontAwesome.cart_shopping_solid, size: 15, color: white),
+              Icon(Bootstrap.cart, size: 15, color: white),
               SizedBox(width: 20),
               Text("Manage my orders", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
               Spacer(),
@@ -152,7 +152,7 @@ class _ProfileState extends State<Profile> {
           onTap: () {},
           child: const Row(
             children: <Widget>[
-              Icon(FontAwesome.location_arrow_solid, size: 15, color: white),
+              Icon(Bootstrap.pin_map, size: 15, color: white),
               SizedBox(width: 20),
               Text("Manage shipping address", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
               Spacer(),
@@ -167,7 +167,7 @@ class _ProfileState extends State<Profile> {
           onTap: () {},
           child: const Row(
             children: <Widget>[
-              Icon(FontAwesome.lock_solid, size: 15, color: white),
+              Icon(Bootstrap.lock, size: 15, color: white),
               SizedBox(width: 20),
               Text("Privacy policy", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
               Spacer(),
