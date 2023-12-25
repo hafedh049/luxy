@@ -90,8 +90,8 @@ class _ProfileState extends State<Profile> {
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
                   return Switch(
-                    value: user.get("dark_theme"),
-                    onChanged: (bool value) => user.put("dark_theme", !user.get("dark_theme")),
+                    value: user.get("dark_mode"),
+                    onChanged: (bool value) => user.put("dark_mode", !user.get("dark_mode")),
                     activeColor: pink,
                     inactiveThumbColor: grey,
                     inactiveTrackColor: white,

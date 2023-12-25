@@ -103,14 +103,14 @@ class _OnboardingState extends State<Onboarding> {
                         dotDecoration: const DotDecoration(
                           width: 24,
                           height: 12,
-                          color: grey,
-                          dotBorder: DotBorder(padding: 2, width: 2, color: grey),
+                          color: white,
+                          dotBorder: DotBorder(padding: 2, width: 2, color: white),
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(2), topRight: Radius.circular(16), bottomLeft: Radius.circular(16), bottomRight: Radius.circular(2)),
                           verticalOffset: 0,
                         ),
                         spacing: 6.0,
                         activeColorOverride: (int index) => pink,
-                        inActiveColorOverride: (int index) => grey,
+                        inActiveColorOverride: (int index) => white,
                       ),
                     );
                   },
