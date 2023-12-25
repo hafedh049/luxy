@@ -21,10 +21,13 @@ class _ProfileState extends State<Profile> {
         onTap: () {},
         child: Row(
           children: <Widget>[
-            CircleAvatar(
-              radius: 15,
-              backgroundImage: AssetImage("assets/test.png"),
-            ),
+            CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/me.png")),
+            const SizedBox(width: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[],
+            )
           ],
         ),
       ),
