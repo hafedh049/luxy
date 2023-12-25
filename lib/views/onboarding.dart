@@ -8,6 +8,11 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
+  final List<Widget> _onboardings = <Widget>[
+    Column(
+      children: <Widget>[],
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
