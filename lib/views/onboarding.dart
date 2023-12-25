@@ -52,7 +52,12 @@ class _OnboardingState extends State<Onboarding> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                  child: const Text("NEXT", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500)),
+                  child: StatefulBuilder(
+                    key: null,
+                    builder: (BuildContext context, void Function(void Function()) _) {
+                      return const Text("NEXT", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500));
+                    },
+                  ),
                 ),
               ],
             ),
