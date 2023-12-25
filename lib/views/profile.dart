@@ -38,7 +38,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         const SizedBox(height: 10),
-        const Text("Settings", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text("SETTINGS", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {},
@@ -120,7 +120,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         const SizedBox(height: 10),
-        const Text("Orders", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text("ORDERS", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {},
@@ -159,7 +159,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         const SizedBox(height: 10),
-        const Text("Services", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text("SERVICES", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {},
