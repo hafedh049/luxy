@@ -23,8 +23,13 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView.builder(
-        itemBuilder: (BuildContext context, int index) => _pages[index],
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: PageView.builder(
+          itemCount: _pages.length,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (BuildContext context, int index) => _pages[index],
+        ),
       ),
     );
   }
