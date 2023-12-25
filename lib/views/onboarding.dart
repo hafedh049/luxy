@@ -55,7 +55,15 @@ class _OnboardingState extends State<Onboarding> {
             Column(
               children: <Widget>[
                 const Spacer(),
-                AnimatedSmoothIndicator(activeIndex: _activeIndex, count: _onboardings.length, duration: 500.ms, effect: Effect),
+                AnimatedSmoothIndicator(
+                  activeIndex: _activeIndex,
+                  count: _onboardings.length,
+                  duration: 500.ms,
+                  effect: CustomizableEffect(
+                    dotDecoration: dotDecoration,
+                    activeDotDecoration: activeDotDecoration,
+                  ),
+                ),
                 const SizedBox(height: 30),
                 GestureDetector(
                   onTap: () => _onboardingController.nextPage(duration: 500.ms, curve: Curves.linear),
