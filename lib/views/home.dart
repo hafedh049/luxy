@@ -42,11 +42,11 @@ class _HomeState extends State<Home> {
         iconSize: 24,
         tabBackgroundColor: pink.withOpacity(.1),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        tabs: <GButton>[
-          const GButton(icon: FontAwesome.house_chimney_solid, text: 'Home'),
-          const GButton(icon: FontAwesome.foursquare_brand, text: 'Likes'),
-          const GButton(icon: FontAwesome.shop_solid, text: 'Search'),
-          const GButton(icon: FontAwesome.person_rifle_solid, text: 'Profile'),
+        tabs: const <GButton>[
+          GButton(icon: FontAwesome.house_chimney_solid, text: 'Home'),
+          GButton(icon: FontAwesome.foursquare_brand, text: 'Products'),
+          GButton(icon: FontAwesome.shop_solid, text: 'Shop'),
+          GButton(icon: FontAwesome.person_rifle_solid, text: 'Profile'),
         ],
       ),
       body: Padding(
