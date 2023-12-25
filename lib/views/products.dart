@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:luxy/utils/globals.dart';
 
 class Products extends StatefulWidget {
   const Products({super.key});
@@ -16,6 +18,9 @@ class _ProductsState extends State<Products> {
         TextField(
           decoration: InputDecoration(
             border: InputBorder.none,
+            hintText: "Search",
+            prefixIcon: Icon(Bootstrap.search, size: 15, color: white),
+            contentPadding: EdgeInsets.all(16),
           ),
         ),
         const SizedBox(height: 20),
