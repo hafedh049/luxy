@@ -96,7 +96,9 @@ class _ProfileState extends State<Profile> {
                     borderRadius: 5,
                     padding: 4,
                     showOnOff: true,
-                    activeColor: pink,,
+                    activeColor: pink,
+                    inactiveIcon: const Icon(FontAwesome.sun_solid, size: 15, color: white),
+                    activeIcon: const Icon(FontAwesome.moon_solid, size: 15, color: white),
                     onToggle: (bool value) {
                       user!.put("dark_mode", !user!.get("dark_mode"));
                       setS(() {});
