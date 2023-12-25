@@ -36,7 +36,7 @@ class _OnboardingState extends State<Onboarding> {
               child: PageView.builder(
                 controller: _onboardingController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (int value) {},
+                onPageChanged: (int value) => _buttonKey.currentState!.setState(() {}),
                 itemBuilder: (BuildContext context, int index) => Center(child: _onboardings[index]),
               ),
             ),
@@ -49,17 +49,20 @@ class _OnboardingState extends State<Onboarding> {
                   duration: 500.ms,
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: 60,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                  child: StatefulBuilder(
-                    key: _buttonKey,
-                    builder: (BuildContext context, void Function(void Function()) _) {
-                      return Text(_onboardingController.page!.toInt() < 3 ? "NEXT" : "GET STARTED", style:const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500));
-                    },
+                GestureDetector(
+                  onTap: () => _onboardingController.nextPage(duration: 500.ms, curve: Curves.linear),
+                  child: Container(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: 60,
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    child: StatefulBuilder(
+                      key: _buttonKey,
+                      builder: (BuildContext context, void Function(void Function()) _) {
+                        return Text(_onboardingController.page!.toInt() < 3 ? "NEXT" : "GET STARTED", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500));
+                      },
+                    ),
                   ),
                 ),
               ],
