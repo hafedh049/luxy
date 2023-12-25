@@ -72,7 +72,11 @@ class _ProductsState extends State<Products> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Container(Chip(label: ,),),
+                            Chip(
+                              label: Row(
+                                children: <Widget>[],
+                              ),
+                            ),
                           ],
                         ),
                       ),
