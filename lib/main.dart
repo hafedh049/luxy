@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/utils/methods.dart';
 import 'package:luxy/views/onboarding.dart';
 
 Future<void> main() async {
@@ -12,11 +13,14 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(1);
     return MaterialApp(
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark),
       debugShowCheckedModeBanner: false,
-      home: const Onboarding(),
+      home: FutureBuilder<bool>(
+          future: load(),
+          builder: (context, snapshot) {
+            return const Onboarding();
+          }),
     );
   }
 }
