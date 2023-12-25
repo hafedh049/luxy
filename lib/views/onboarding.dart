@@ -24,19 +24,25 @@ class _OnboardingState extends State<Onboarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Positioned.fill(child: PageView.builder(controller: _onboardingController, itemBuilder: (context, index) => _onboardings[index],),),
-          Column(
-            children: <Widget>[const Spacer(),
-              AnimatedSmoothIndicator(
-                activeIndex: ,
-                count: _onboardings.length,
-              ),
-              const SizedBox(height: 10),
-            ],
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Stack(
+          children: <Widget>[
+            Positioned.fill(child: PageView.builder(controller: _onboardingController, itemBuilder: (BuildContext context,int index) => Center(child: _onboardings[index],),),),
+            Column(
+              children: <Widget>[const Spacer(),
+                AnimatedSmoothIndicator(
+                  activeIndex: ,
+                  count: _onboardings.length,
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  width: Med,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
