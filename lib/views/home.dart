@@ -43,10 +43,10 @@ class _HomeState extends State<Home> {
         tabBackgroundColor: pink.withOpacity(.1),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         tabs: <GButton>[
-          GButton(icon: FontAwesome., text: 'Home'),
-          GButton(icon: LineIcons.heart_o, text: 'Likes'),
-          GButton(icon: LineIcons.search, text: 'Search'),
-          GButton(icon: LineIcons.user, text: 'Profile'),
+          const GButton(icon: FontAwesome.house_chimney_solid, text: 'Home'),
+          const GButton(icon: FontAwesome.foursquare_brand, text: 'Likes'),
+          const GButton(icon: FontAwesome.shop_solid, text: 'Search'),
+          const GButton(icon: FontAwesome.person_rifle_solid, text: 'Profile'),
         ],
       ),
       body: Padding(
