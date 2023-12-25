@@ -3,6 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/models/product_model.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/views/loading_screen.dart';
+import 'package:luxy/views/red_screen.dart';
 
 class Products extends StatefulWidget {
   const Products({super.key});
@@ -47,9 +48,7 @@ class _ProductsState extends State<Products> {
           runAlignment: WrapAlignment.start,
           spacing: 10,
           runSpacing: 10,
-          children: <Widget>[
-            for (final String label in _labels) Chip(label: Text(label, style: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500))),
-          ],
+          children: <Widget>[for (final String label in _labels) Chip(label: Text(label, style: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)))],
         ),
         const SizedBox(height: 20),
         const Text("FEATURED PRODUCTS", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
@@ -58,23 +57,30 @@ class _ProductsState extends State<Products> {
           future: null,
           builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
             if (snapshot.hasData) {
-              return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
-                itemBuilder: (BuildContext context, int index) => Container(
-                  height: 200,
-                  width: 200,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))]),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[],
+              if (snapshot.data!.isNotEmpty) {
+                return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                  itemBuilder: (BuildContext context, int index) => Container(
+                    height: 200,
+                    width: 200,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))]),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[],
+                    ),
                   ),
-                ),
-              );
+                );
+              } else {
+                return const Center(
+                  child: Text(data),
+                );
+              }
             } else if (snapshot.connectionState == ConnectionState.waiting) {
               return const LoadingScreen();
             }
+            return RedScreenOfDeath(error: snapshot.error.toString());
           },
         ),
       ],
