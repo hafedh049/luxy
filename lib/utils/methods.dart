@@ -26,4 +26,4 @@ Future<bool> load() async {
 
 void showToast(String message) => Fluttertoast.showToast(msg: message, backgroundColor: pink.withOpacity(.6), fontSize: 16, gravity: ToastGravity.SNACKBAR, toastLength: Toast.LENGTH_LONG, textColor: white);
 
-Future<List<ProductModel>> loadProducts() async => json.decode(await rootBundle.loadString("assets/jsons/products.json")).map((dynamic product) => ProductModel.fromJson(product)).toList();
+Future<List<ProductModel>> loadProducts() async => json.decode(await rootBundle.loadString("assets/jsons/products.json")).map((dynamic product) => ProductModel.fromJson(product)).toList().cast<ProductModel>();
