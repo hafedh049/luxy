@@ -60,7 +60,7 @@ class _OnboardingState extends State<Onboarding> {
                   count: _onboardings.length,
                   duration: 500.ms,
                   effect: CustomizableEffect(
-                    dotDecoration: dotDecoration,
+                    dotDecoration: DotDecoration(borderRadius: ),
                     activeDotDecoration: activeDotDecoration,
                   ),
                 ),
