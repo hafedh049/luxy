@@ -16,8 +16,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final PageController _pageController = PageController();
   final List<Widget> _pages = <Widget>[
-    const Profile(),
     const Products(),
+    const Profile(),
   ];
 
   @override
@@ -54,6 +54,7 @@ class _HomeState extends State<Home> {
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: PageView.builder(
+            controller: _pageController,
             itemCount: _pages.length,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) => _pages[index],
