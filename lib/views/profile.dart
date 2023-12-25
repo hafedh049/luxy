@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -113,19 +114,14 @@ class _ProfileState extends State<Profile> {
                     inactiveBgColor: Colors.grey,
                     inactiveFgColor: Colors.white,
                     totalSwitches: 2,
-                    icons: [
-                      FontAwesomeIcons.lightbulb,
-                      FontAwesomeIcons.solidLightbulb,
-                    ],
+                    icons: const <IconData>[FontAwesome.sun_solid, FontAwesome.moon_solid],
                     iconSize: 30.0,
-                    activeBgColors: [
-                      [Colors.black45, Colors.black26],
-                      [Colors.yellow, Colors.orange]
-                    ],
-                    animate: true, // with just animate set to true, default curve = Curves.easeIn
+
+                    animate: true,
                     curve: Curves.bounceInOut, // animate must be set to true when using custom curve
-                    onToggle: (index) {
-                      print('switched to: $index');
+                    onToggle: (int? value) {
+                      user!.put("dark_mode", !user!.get("dark_mode"));
+                      setS(() {});
                     },
                   );
                 },
