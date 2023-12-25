@@ -59,10 +59,42 @@ class _OnboardingState extends State<Onboarding> {
                   activeIndex: _activeIndex,
                   count: _onboardings.length,
                   duration: 500.ms,
-                  effect: CustomizableEffect(
-                    dotDecoration: DotDecoration(borderRadius: ),
-                    activeDotDecoration: activeDotDecoration,
-                  ),
+                  effect:  CustomizableEffect(
+                         activeDotDecoration: DotDecoration(
+                           width: 32,
+                           height: 12,
+                           color: Colors.indigo,
+                           rotationAngle: 180,
+                           verticalOffset: -10,
+                           borderRadius: BorderRadius.circular(24),
+                            dotBorder: DotBorder(
+                              padding: 2,
+                              width: 2,
+                              color: Colors.indigo,
+                            ),
+                         ),
+                         dotDecoration: DotDecoration(
+                           width: 24,
+                           height: 12,
+                           color: Colors.grey,
+                            dotBorder: DotBorder(
+                              padding: 2,
+                              width: 2,
+                              color: Colors.grey,
+                            ),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(2),
+                                topRight: Radius.circular(16),
+                                bottomLeft: Radius.circular(16),
+                                bottomRight: Radius.circular(2)),
+                           borderRadius: BorderRadius.circular(16),
+                           verticalOffset: 0,
+                         ),
+                         spacing: 6.0,
+                          activeColorOverride: (i) => colors[i],
+                         inActiveColorOverride: (i) => colors[i],
+                       ),
+                     ),
                 ),
                 const SizedBox(height: 30),
                 GestureDetector(
