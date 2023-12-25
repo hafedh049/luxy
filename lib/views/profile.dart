@@ -87,32 +87,19 @@ class _ProfileState extends State<Profile> {
               const Spacer(),
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
-                  return SizedBox(
-                    height: 20,
-                    child: FlutterSwitch(
-                      width: 60,
-                      height: 40,
-                      valueFontSize: 15,
-                      toggleSize: 45,
-                      value: !user!.get("dark_mode"),
-                      borderRadius: 30.0,
-                      padding: 8.0,
-                      showOnOff: true,
-                      onToggle: (bool value) {
-                        user!.put("dark_mode", !user!.get("dark_mode"));
-                        setS(() {});
-                      },
-                    ),
-                    /*child: Switch(
-                      value: user!.get("dark_mode"),
-                      onChanged: (bool value) {
-                        user!.put("dark_mode", !user!.get("dark_mode"));
-                        setS(() {});
-                      },
-                      activeColor: pink,
-                      inactiveThumbColor: white,
-                      inactiveTrackColor: white,
-                    ),*/
+                  return FlutterSwitch(
+                    width: 80,
+                    height: 30,
+                    valueFontSize: 12,
+                    toggleSize: 15,
+                    value: !user!.get("dark_mode"),
+                    borderRadius: 5,
+                    padding: 8,
+                    showOnOff: true,
+                    onToggle: (bool value) {
+                      user!.put("dark_mode", !user!.get("dark_mode"));
+                      setS(() {});
+                    },
                   );
                 },
               ),
