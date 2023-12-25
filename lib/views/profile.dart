@@ -96,7 +96,6 @@ class _ProfileState extends State<Profile> {
                         onChanged: (bool value) => user.put("dark_theme", !user.get("dark_theme")),
                         activeColor: pink,
                         inactiveThumbColor: grey,
-                        activeTrackColor: grey,
                         inactiveTrackColor: white,
                       );
                     },
@@ -108,9 +107,47 @@ class _ProfileState extends State<Profile> {
               onTap: () {},
               child: const Row(
                 children: <Widget>[
-                  Icon(FontAwesome.user, size: 15, color: white),
+                  Icon(FontAwesome.shield_solid, size: 15, color: white),
                   SizedBox(width: 20),
-                  Text("Edit Profile", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Text("Security", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Spacer(),
+                  Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+                ],
+              ),
+            ),
+            const Text("Orders", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () {},
+              child: const Row(
+                children: <Widget>[
+                  Icon(FontAwesome.shield_solid, size: 15, color: white),
+                  SizedBox(width: 20),
+                  Text("Security", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Spacer(),
+                  Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const Row(
+                children: <Widget>[
+                  Icon(FontAwesome.shield_solid, size: 15, color: white),
+                  SizedBox(width: 20),
+                  Text("Security", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Spacer(),
+                  Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const Row(
+                children: <Widget>[
+                  Icon(FontAwesome.shield_solid, size: 15, color: white),
+                  SizedBox(width: 20),
+                  Text("Security", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
                   Spacer(),
                   Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
                 ],
