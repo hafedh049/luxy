@@ -40,12 +40,16 @@ class _ProductsState extends State<Products> {
         ),
         const SizedBox(height: 20),
         Wrap(
+          alignment: WrapAlignment.start,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          runAlignment: WrapAlignment.start,
+          spacing: 10,
+          runSpacing: 10,
           children: <Widget>[
-            Chip(
-              label: Text(),
-            ),
+            for (final String label in _labels) Chip(label: Text(label, style: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500))),
           ],
         ),
+        const SizedBox(height: 20),
       ],
     );
   }
