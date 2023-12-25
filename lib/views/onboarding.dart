@@ -46,11 +46,8 @@ class _OnboardingState extends State<Onboarding> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Layvy(),
-        SizedBox(height: 40),
-        Text("Welcome To Layvy", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500)),
         SizedBox(height: 20),
-        Text("Your E-Commerce\nHub", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500)),
+        Flexible(child: Text("Get started now and\nexperience a new way\nto shop", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500))),
       ],
     ),
   ];
