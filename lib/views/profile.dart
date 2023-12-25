@@ -83,17 +83,17 @@ class _ProfileState extends State<Profile> {
             ),
             GestureDetector(
               onTap: () {},
-              child: const Row(
+              child: Row(
                 children: <Widget>[
-                  Icon(FontAwesome.eye, size: 15, color: white),
-                  SizedBox(width: 20),
-                  Text("Dark Mode", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
-                  Spacer(),
+                  const Icon(FontAwesome.eye, size: 15, color: white),
+                  const SizedBox(width: 20),
+                  const Text("Dark Mode", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  const Spacer(),
                   StatefulBuilder(
-                      stream: null,
-                      builder: (context, snapshot) {
-                        return Switch(value: value, onChanged: onChanged);
-                      }),
+                    builder: (BuildContext context, void Function(void Function()) setS) {
+                      return Switch(value: user.get("dark_theme"), onChanged: onChanged);
+                    },
+                  ),
                 ],
               ),
             ),
