@@ -19,7 +19,7 @@ class Products extends StatefulWidget {
 class _ProductsState extends State<Products> {
   final TextEditingController _searchController = TextEditingController();
 
-  final List<String> _labels = <String>[];
+  final List<String> _labels = <String>["Products"];
 
   @override
   void dispose() {
@@ -73,43 +73,41 @@ class _ProductsState extends State<Products> {
                     itemBuilder: (BuildContext context, int index) => Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Flexible(
-                          child: Container(
-                            height: 150,
-                            width: 150,
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))],
-                              image: const DecorationImage(image: AssetImage("assets/pictures/me.jpeg"), fit: BoxFit.cover),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                if (Random().nextBool())
-                                  Chip(
-                                    backgroundColor: pink,
-                                    elevation: 8,
-                                    padding: const EdgeInsets.all(4),
-                                    shadowColor: pink.withOpacity(.3),
-                                    avatar: const Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
-                                    label: const Text(" MOST SELLED", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
-                                  ),
-                                const Spacer(),
+                        Container(
+                          height: 150,
+                          width: 150,
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))],
+                            image: const DecorationImage(image: AssetImage("assets/pictures/me.jpeg"), fit: BoxFit.cover),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              if (Random().nextBool())
                                 Chip(
                                   backgroundColor: pink,
                                   elevation: 8,
                                   padding: const EdgeInsets.all(4),
                                   shadowColor: pink.withOpacity(.3),
-                                  label: Text(products[index].productPrice, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                                  avatar: const Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
+                                  label: const Text(" MOST SELLED", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
                                 ),
-                              ],
-                            ),
+                              const Spacer(),
+                              Chip(
+                                backgroundColor: pink,
+                                elevation: 8,
+                                padding: const EdgeInsets.all(4),
+                                shadowColor: pink.withOpacity(.3),
+                                label: Text(products[index].productPrice, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Text(products[index].productName, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))
+                        Flexible(child: Text(products[index].productName, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)))
                       ],
                     ),
                   );
