@@ -70,7 +70,7 @@ class _ProductsState extends State<Products> {
                 builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data!.isNotEmpty) {
-                      final List<ProductModel> products = snapshot.data!;
+                      final List<ProductModel> products = snapshot.data!.where((ProductModel element) => element.productName.startsWith(_searchController.text.trim())).toList();
                       return GridView.builder(
                         shrinkWrap: true,
                         padding: EdgeInsets.zero,
