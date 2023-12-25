@@ -59,6 +59,7 @@ class _OnboardingState extends State<Onboarding> {
                   activeIndex: _activeIndex,
                   count: _onboardings.length,
                   duration: 500.ms,
+                  effect: const WormEffect(dotHeight: 8, dotWidth: 16, radius: 5, type: WormType.thinUnderground),
                 ),
                 const SizedBox(height: 10),
                 GestureDetector(
