@@ -81,6 +81,13 @@ class _ProductsState extends State<Products> {
                               label: const Text(" Most Selled", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                             ),
                             const Spacer(),
+                            Chip(
+                              backgroundColor: pink,
+                              elevation: 8,
+                              padding: const EdgeInsets.all(4),
+                              shadowColor: pink.withOpacity(.3),
+                              label: Text(products[index].productPrice, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                            ),
                           ],
                         ),
                       ),

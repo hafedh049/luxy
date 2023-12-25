@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/products.dart';
 import 'package:luxy/views/profile.dart';
 
 class Home extends StatefulWidget {
@@ -16,6 +17,7 @@ class _HomeState extends State<Home> {
   final PageController _pageController = PageController();
   final List<Widget> _pages = <Widget>[
     const Profile(),
+    const Products(),
   ];
 
   @override
@@ -30,6 +32,7 @@ class _HomeState extends State<Home> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         bottomNavigationBar: GNav(
+          onTabChange: (int value) => _pageController.jumpToPage(value % 2),
           rippleColor: grey,
           haptic: true,
           tabBorderRadius: 15,
