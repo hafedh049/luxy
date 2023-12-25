@@ -54,7 +54,16 @@ class _ProductsState extends State<Products> {
         const SizedBox(height: 20),
         GridView.builder(
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
-          itemBuilder: itemBuilder,
+          itemBuilder: (BuildContext context, int index) => Container(
+            height: 200,
+            width: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: <BoxShadow>[
+                BoxShadow(),
+              ],
+            ),
+          ),
         ),
       ],
     );
