@@ -14,7 +14,6 @@ class RedScreenOfDeath extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             SizedBox(width: MediaQuery.sizeOf(context).width * .6, child: Lottie.asset("assets/lotties/error.json")),
-            const SizedBox(height: 20),
             Flexible(child: Text(error, style: const TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500))),
           ],
         ),
