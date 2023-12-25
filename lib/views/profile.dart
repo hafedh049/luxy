@@ -90,7 +90,10 @@ class _ProfileState extends State<Profile> {
                     height: 20,
                     child: Switch(
                       value: user!.get("dark_mode"),
-                      onChanged: (bool value) => setS(() => user!.put("dark_mode", !user!.get("dark_mode"))),
+                      onChanged: (bool value) {
+                        user!.put("dark_mode", !user!.get("dark_mode"));
+                        setS(() {});
+                      },
                       activeColor: pink,
                       inactiveThumbColor: white,
                       inactiveTrackColor: white,
