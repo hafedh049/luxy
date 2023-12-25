@@ -22,9 +22,9 @@ class _OnboardingState extends State<Onboarding> {
       children: <Widget>[
         Layvy(),
         SizedBox(height: 40),
-        Text("Welcome To Layvy", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500)),
+        Flexible(child: Text("Welcome To Layvy", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500))),
         SizedBox(height: 20),
-        Text("Your E-Commerce\nHub", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500), textAlign: TextAlign.center),
+        Flexible(child: Text("Your E-Commerce\nHub", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500), textAlign: TextAlign.center)),
       ],
     ),
     const Column(
@@ -32,18 +32,14 @@ class _OnboardingState extends State<Onboarding> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(height: 20),
-        Text("Find exciting shopping events watch and interact with sellers", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500), textAlign: TextAlign.center),
+        Flexible(child: Text("Find exciting\nshopping events watch\nand interact with sellers", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500), textAlign: TextAlign.center)),
       ],
     ),
     const Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Layvy(),
-        SizedBox(height: 40),
-        Text("Welcome To Layvy", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500)),
-        SizedBox(height: 20),
-        Text("Your E-Commerce\nHub", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500)),
+        Flexible(child: Text("Shop for products you\nlove while you are watching", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500), textAlign: TextAlign.center)),
       ],
     ),
     const Column(
