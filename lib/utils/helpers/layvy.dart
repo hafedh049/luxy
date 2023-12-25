@@ -8,13 +8,14 @@ class Layvy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Icon(FontAwesome.wifi_solid, size: fontSize, color: pink),
+            Icon(FontAwesome.wifi_solid, size: fontSize - 15, color: pink),
             Text("La", style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w500, color: pink)),
           ],
         ),
