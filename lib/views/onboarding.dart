@@ -9,24 +9,31 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
+  final PageController _onboardingController = PageController();
   final List<Widget> _onboardings = <Widget>[
     Column(
       children: <Widget>[],
     ),
   ];
+
+  @override
+  void dispose() {
+    _onboardingController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Positioned.fill(child: PageView.builder(itemBuilder: (context, index) => _onboardings[index],),),
+          Positioned.fill(child: PageView.builder(controller: _onboardingController, itemBuilder: (context, index) => _onboardings[index],),),
           Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
+            children: <Widget>[const Spacer(),
               AnimatedSmoothIndicator(
                 activeIndex: ,
                 count: _onboardings.length,
               ),
+              const SizedBox(height: 10),
             ],
           ),
         ],
