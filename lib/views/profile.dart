@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -89,72 +88,21 @@ class _ProfileState extends State<Profile> {
               const Spacer(),
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
-                  return /*ToggleSwitch(
-                    customIcons: const <Icon>[
-                      Icon(FontAwesome.sun_solid, size: 15, color: white),
-                      Icon(FontAwesome.moon_solid, size: 15, color: white),
-                    ],
-                    customHeights: const <double>[30, 30],
-                    initialLabelIndex: user!.get("dark_mode") ? 1 : 0,
-                    cornerRadius: 15,
-                    activeFgColor: white,
-                    inactiveBgColor: white,
-                    inactiveFgColor: white,
-                    totalSwitches: 2,
-                    iconSize: 30.0,
-                    animate: true,
-                    curve: Curves.bounceInOut,
-                    onToggle: (int? value) {
-                      user!.put("dark_mode", !user!.get("dark_mode"));
-                      setS(() {});
-                    },
-                  );*/
-                      CustomAnimatedToggleSwitch<bool>(
+                  return CustomAnimatedToggleSwitch<bool>(
                     current: user!.get("dark_mode"),
                     spacing: 10,
                     values: const <bool>[false, true],
                     animationDuration: 500.ms,
                     animationCurve: Curves.bounceOut,
                     iconBuilder: (context, local, global) => const SizedBox(),
-                    onTap: (_) => setState(() => current = !current),
                     iconsTappable: false,
-                    onChanged: (b) => setState(() => current = b),
-                    height: height,
-                    padding: const EdgeInsets.all(borderWidth),
-                    indicatorSize: const Size.square(height - 2 * borderWidth),
-                    foregroundIndicatorBuilder: (context, global) {
-                      final color = Color.lerp(red, green, global.position)!;
-                      // You can replace the Containers with DecoratedBox/SizedBox/Center
-                      // for slightly better performance
-                      return Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                        child: Container(
-                            width: innerIndicatorSize * 0.4 + global.position * innerIndicatorSize * 0.6,
-                            height: innerIndicatorSize,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: color,
-                            )),
-                      );
+                    onChanged: (b) {
+                      user!.put("dark_mode", !user!.get("dark_mode"));
+                      setS(() {});
                     },
-                    wrapperBuilder: (context, global, child) {
-                      final color = Color.lerp(red, green, global.position)!;
-                      return DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: color,
-                          borderRadius: BorderRadius.circular(50.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: color.withOpacity(0.7),
-                              blurRadius: 12.0,
-                              offset: const Offset(0.0, 8.0),
-                            ),
-                          ],
-                        ),
-                        child: child,
-                      );
-                    },
+                    height: 30,
+                    padding: const EdgeInsets.all(4),
+                    //indicatorSize: const Size.square(height - 2 * borderWidth),
                   );
                 },
               ),
