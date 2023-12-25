@@ -90,13 +90,13 @@ class _ProfileState extends State<Profile> {
                   return FlutterSwitch(
                     width: 80,
                     height: 30,
-                    valueFontSize: 12,
-                    toggleSize: 15,
                     value: !user!.get("dark_mode"),
                     borderRadius: 5,
                     padding: 4,
                     showOnOff: true,
                     activeColor: pink,
+                    activeText: "",
+                    inactiveText: "",
                     inactiveIcon: const Icon(FontAwesome.sun_solid, size: 15, color: white),
                     activeIcon: const Icon(FontAwesome.moon_solid, size: 15, color: white),
                     onToggle: (bool value) {
