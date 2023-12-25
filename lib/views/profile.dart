@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 
 class Profile extends StatefulWidget {
@@ -17,6 +16,17 @@ class _ProfileState extends State<Profile> {
         backgroundColor: dark,
         centerTitle: true,
         title: const Text("Profile", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500)),
+      ),
+      body: GestureDetector(
+        onTap: () {},
+        child: Row(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 15,
+              backgroundImage: AssetImage("assets/test.png"),
+            ),
+          ],
+        ),
       ),
     );
   }
