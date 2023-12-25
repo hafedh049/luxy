@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:luxy/views/profile.dart';
 
 class Home extends StatefulWidget {
@@ -23,6 +24,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: GNav(
+        tabs: <GButton>[],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: PageView.builder(
