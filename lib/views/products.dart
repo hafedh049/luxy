@@ -80,6 +80,7 @@ class _ProductsState extends State<Products> {
                             image: DecorationImage(image: CachedNetworkImageProvider(products[index].pictureUrl), fit: BoxFit.cover),
                           ),
                           child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Chip(
