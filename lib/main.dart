@@ -12,6 +12,7 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(1);
     return MaterialApp(
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark),
       debugShowCheckedModeBanner: false,
