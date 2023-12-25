@@ -6,6 +6,7 @@ import 'package:luxy/views/onboarding.dart';
 import 'package:luxy/views/red_screen.dart';
 
 Future<void> main() async {
+  ErrorWidget.builder = (FlutterErrorDetails details) => RedScreenOfDeath(error: details.exception.toString());
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const Main());
 }
@@ -29,7 +30,9 @@ class Main extends StatelessWidget {
             }
           } else if (snapshot.connectionState == ConnectionState.waiting) {
             return const LoadingScreen();
-          } else {}
+          } else {
+            return RedScreenOfDeath(error: snapshot.error.toString());
+          }
         },
       ),
     );
