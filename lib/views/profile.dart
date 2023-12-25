@@ -17,22 +17,33 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         title: const Text("Profile", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500)),
       ),
-      body: GestureDetector(
-        onTap: () {},
-        child: const Row(
-          children: <Widget>[
-            CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/me.png")),
-            SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          GestureDetector(
+            onTap: () {},
+            child: const Row(
               children: <Widget>[
-                Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500)),
-                Text("Following 23", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/me.png")),
+                SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                    Text("Following 23", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  ],
+                ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+          const Text("Settings", style: TextStyle(color: grey, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+          const SizedBox(height: 10),
+          Row(
+            children: <Widget>[],
+          ),
+        ],
       ),
     );
   }
