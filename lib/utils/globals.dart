@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 const Color transparent = Colors.transparent;
 const Color pink = Color.fromARGB(255, 255, 77, 103);
@@ -8,3 +9,5 @@ const Color white = Color.fromARGB(255, 255, 255, 255);
 const Color grey = Color.fromARGB(255, 57, 57, 57);
 const Color black = Color.fromARGB(255, 15, 15, 15);
 const Color greyKeyboard = Color.fromARGB(255, 31, 34, 43);
+
+late final Box user;

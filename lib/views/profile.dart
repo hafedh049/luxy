@@ -89,7 +89,11 @@ class _ProfileState extends State<Profile> {
                   SizedBox(width: 20),
                   Text("Dark Mode", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
                   Spacer(),
-                  Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+                  StatefulBuilder(
+                      stream: null,
+                      builder: (context, snapshot) {
+                        return Switch(value: value, onChanged: onChanged);
+                      }),
                 ],
               ),
             ),
