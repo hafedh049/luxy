@@ -63,6 +63,7 @@ class _ProductsState extends State<Products> {
                 if (snapshot.data!.isNotEmpty) {
                   final List<ProductModel> products = snapshot.data!;
                   return GridView.builder(
+                    itemCount: products.length,
                     gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
                     itemBuilder: (BuildContext context, int index) => Column(
                       mainAxisSize: MainAxisSize.min,
@@ -71,7 +72,10 @@ class _ProductsState extends State<Products> {
                           height: 200,
                           width: 200,
                           padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))]),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))],
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -81,7 +85,7 @@ class _ProductsState extends State<Products> {
                                 padding: const EdgeInsets.all(4),
                                 shadowColor: pink.withOpacity(.3),
                                 avatar: const Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
-                                label: const Text(" Most Selled", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                                label: const Text(" MOST SELLED", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
                               ),
                               const Spacer(),
                               Chip(
