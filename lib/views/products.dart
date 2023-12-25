@@ -69,13 +69,14 @@ class _ProductsState extends State<Products> {
                     shrinkWrap: true,
                     padding: EdgeInsets.zero,
                     itemCount: products.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: .7),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: .85),
                     itemBuilder: (BuildContext context, int index) => Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Flexible(
                           child: Container(
-                            height: 200,
+                            height: 150,
+                            width: 150,
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
