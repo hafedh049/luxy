@@ -106,19 +106,16 @@ class _ProfileState extends State<Profile> {
                     },
                   )*/
                       ToggleSwitch(
-                    minWidth: 90.0,
-                    minHeight: 70.0,
-                    initialLabelIndex: 0,
-                    cornerRadius: 20.0,
-                    activeFgColor: Colors.white,
-                    inactiveBgColor: Colors.grey,
-                    inactiveFgColor: Colors.white,
+                    initialLabelIndex: user!.get("dark_mode") ? 1 : 0,
+                    cornerRadius: 15,
+                    activeFgColor: white,
+                    inactiveBgColor: white,
+                    inactiveFgColor: white,
                     totalSwitches: 2,
                     icons: const <IconData>[FontAwesome.sun_solid, FontAwesome.moon_solid],
                     iconSize: 30.0,
-
                     animate: true,
-                    curve: Curves.bounceInOut, // animate must be set to true when using custom curve
+                    curve: Curves.bounceInOut,
                     onToggle: (int? value) {
                       user!.put("dark_mode", !user!.get("dark_mode"));
                       setS(() {});
