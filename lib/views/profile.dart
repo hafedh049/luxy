@@ -161,7 +161,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         const SizedBox(height: 10),
-        const Text("Services", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.bold)),
+        const Text("Services", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {},
