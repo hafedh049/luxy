@@ -60,22 +60,26 @@ class _ProductsState extends State<Products> {
               if (snapshot.data!.isNotEmpty) {
                 return GridView.builder(
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
-                  itemBuilder: (BuildContext context, int index) => Container(
-                    height: 200,
-                    width: 200,
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))]),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[],
-                    ),
+                  itemBuilder: (BuildContext context, int index) => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        height: 200,
+                        width: 200,
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))]),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
                   ),
                 );
               } else {
-                return const Center(
-                  child: Text(data),
-                );
+                return const Center(child: Text("NO PRODUCTS YET", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500, letterSpacing: 2)));
               }
             } else if (snapshot.connectionState == ConnectionState.waiting) {
               return const LoadingScreen();
