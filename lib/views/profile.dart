@@ -92,6 +92,7 @@ class _ProfileState extends State<Profile> {
                     current: user!.get("dark_mode"),
                     first: false,
                     second: true,
+                    customIconBuilder: (context, local, global) => Icon(local.value ? Bootstrap.moon : Bootstrap.sun, size: 15, color: white),
                     animationDuration: 500.ms,
                     animationCurve: Curves.bounceOut,
                     onChanged: (b) {
