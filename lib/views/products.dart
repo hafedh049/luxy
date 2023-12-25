@@ -53,57 +53,59 @@ class _ProductsState extends State<Products> {
         const SizedBox(height: 20),
         const Text("FEATURED PRODUCTS", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 20),
-        FutureBuilder<List<ProductModel>>(
-          future: null,
-          builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
-            if (snapshot.hasData) {
-              if (snapshot.data!.isNotEmpty) {
-                final List<ProductModel> products = snapshot.data!;
-                return GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
-                  itemBuilder: (BuildContext context, int index) => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-                        height: 200,
-                        width: 200,
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))]),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Chip(
-                              backgroundColor: pink,
-                              elevation: 8,
-                              padding: const EdgeInsets.all(4),
-                              shadowColor: pink.withOpacity(.3),
-                              avatar: const Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
-                              label: const Text(" Most Selled", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
-                            ),
-                            const Spacer(),
-                            Chip(
-                              backgroundColor: pink,
-                              elevation: 8,
-                              padding: const EdgeInsets.all(4),
-                              shadowColor: pink.withOpacity(.3),
-                              label: Text(products[index].productPrice, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
-                            ),
-                          ],
+        Expanded(
+          child: FutureBuilder<List<ProductModel>>(
+            future: null,
+            builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data!.isNotEmpty) {
+                  final List<ProductModel> products = snapshot.data!;
+                  return GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                    itemBuilder: (BuildContext context, int index) => Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Container(
+                          height: 200,
+                          width: 200,
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))]),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Chip(
+                                backgroundColor: pink,
+                                elevation: 8,
+                                padding: const EdgeInsets.all(4),
+                                shadowColor: pink.withOpacity(.3),
+                                avatar: const Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
+                                label: const Text(" Most Selled", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                              ),
+                              const Spacer(),
+                              Chip(
+                                backgroundColor: pink,
+                                elevation: 8,
+                                padding: const EdgeInsets.all(4),
+                                shadowColor: pink.withOpacity(.3),
+                                label: Text(products[index].productPrice, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(products[index].productName, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))
-                    ],
-                  ),
-                );
-              } else {
-                return const Center(child: Text("NO PRODUCTS YET", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500, letterSpacing: 2)));
+                        const SizedBox(height: 10),
+                        Text(products[index].productName, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))
+                      ],
+                    ),
+                  );
+                } else {
+                  return const Center(child: Text("NO PRODUCTS YET", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500, letterSpacing: 2)));
+                }
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return const LoadingScreen();
               }
-            } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return const LoadingScreen();
-            }
-            return RedScreenOfDeath(error: snapshot.error.toString());
-          },
+              return RedScreenOfDeath(error: snapshot.error.toString());
+            },
+          ),
         ),
       ],
     );
