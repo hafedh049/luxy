@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         tabs: const <GButton>[
           GButton(icon: FontAwesome.house_chimney_solid, text: 'Home'),
-          GButton(icon: FontAwesome.foursquare_brand, text: 'Products'),
+          GButton(icon: Bootstrap.grid, text: 'Products'),
           GButton(icon: FontAwesome.shop_solid, text: 'Shop'),
           GButton(icon: FontAwesome.person_rifle_solid, text: 'Profile'),
         ],
