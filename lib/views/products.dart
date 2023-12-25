@@ -52,6 +52,10 @@ class _ProductsState extends State<Products> {
         const SizedBox(height: 20),
         const Text("FEATURED PRODUCTS", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 20),
+        GridView.builder(
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
+          itemBuilder: itemBuilder,
+        ),
       ],
     );
   }
