@@ -18,7 +18,7 @@ class Main extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: FutureBuilder<bool>(
         future: load(),
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           return const Onboarding();
         },
       ),
