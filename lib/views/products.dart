@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/models/product_model.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/utils/methods.dart';
 import 'package:luxy/views/loading_screen.dart';
 import 'package:luxy/views/red_screen.dart';
 
@@ -26,6 +27,7 @@ class _ProductsState extends State<Products> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBox(height: 30),
         TextField(
@@ -55,7 +57,7 @@ class _ProductsState extends State<Products> {
         const SizedBox(height: 20),
         Expanded(
           child: FutureBuilder<List<ProductModel>>(
-            future: null,
+            future: loadProducts(),
             builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data!.isNotEmpty) {
