@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -88,24 +87,8 @@ class _ProfileState extends State<Profile> {
               const Spacer(),
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
-                  return /*FlutterSwitch(
-                    width: 80,
-                    height: 30,
-                    value: !user!.get("dark_mode"),
-                    borderRadius: 5,
-                    padding: 4,
-                    showOnOff: true,
-                    activeColor: pink,
-                    activeText: "",
-                    inactiveText: "",
-                    inactiveIcon: const Icon(FontAwesome.sun_solid, size: 15, color: white),
-                    activeIcon: const Icon(FontAwesome.moon_solid, size: 15, color: white),
-                    onToggle: (bool value) {
-                      user!.put("dark_mode", !user!.get("dark_mode"));
-                      setS(() {});
-                    },
-                  )*/
-                      ToggleSwitch(
+                  return ToggleSwitch(
+                    customHeights: const <double>[30, 30],
                     initialLabelIndex: user!.get("dark_mode") ? 1 : 0,
                     cornerRadius: 15,
                     activeFgColor: white,
