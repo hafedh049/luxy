@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/utils/helpers/layvy.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {
@@ -15,7 +16,11 @@ class _OnboardingState extends State<Onboarding> {
   final GlobalKey<State> _buttonKey = GlobalKey<State>();
   final List<Widget> _onboardings = <Widget>[
     Column(
-      children: <Widget>[],
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        const Layvy(),
+      ],
     ),
   ];
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/onboarding.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,7 @@ class Main extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark),
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(),
+      home: const Onboarding(),
     );
   }
 }
