@@ -87,7 +87,28 @@ class _ProfileState extends State<Profile> {
               const Spacer(),
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
-                  return ToggleSwitch(
+                  return /*FlutterSwitch(
+                    width: 80,
+                    height: 30,
+                    value: !user!.get("dark_mode"),
+                    borderRadius: 5,
+                    padding: 4,
+                    showOnOff: true,
+                    activeColor: pink,
+                    activeText: "",
+                    inactiveText: "",
+                    inactiveIcon: const Icon(FontAwesome.sun_solid, size: 15, color: white),
+                    activeIcon: const Icon(FontAwesome.moon_solid, size: 15, color: white),
+                    onToggle: (bool value) {
+                      user!.put("dark_mode", !user!.get("dark_mode"));
+                      setS(() {});
+                    },
+                  )*/
+                      ToggleSwitch(
+                    customIcons: const <Icon>[
+                      Icon(FontAwesome.sun_solid, size: 15, color: white),
+                      Icon(FontAwesome.moon_solid, size: 15, color: white),
+                    ],
                     customHeights: const <double>[30, 30],
                     initialLabelIndex: user!.get("dark_mode") ? 1 : 0,
                     cornerRadius: 15,
@@ -95,7 +116,6 @@ class _ProfileState extends State<Profile> {
                     inactiveBgColor: white,
                     inactiveFgColor: white,
                     totalSwitches: 2,
-                    icons: const <IconData>[FontAwesome.sun_solid, FontAwesome.moon_solid],
                     iconSize: 30.0,
                     animate: true,
                     curve: Curves.bounceInOut,
