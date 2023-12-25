@@ -71,7 +71,7 @@ class _ProfileState extends State<Profile> {
               onTap: () {},
               child: const Row(
                 children: <Widget>[
-                  Icon(FontAwesome.user, size: 15, color: white),
+                  Icon(Bootstrap.translate, size: 15, color: white),
                   SizedBox(width: 20),
                   Text("Language", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
                   Spacer(),
@@ -85,9 +85,9 @@ class _ProfileState extends State<Profile> {
               onTap: () {},
               child: const Row(
                 children: <Widget>[
-                  Icon(FontAwesome.user, size: 15, color: white),
+                  Icon(FontAwesome.eye, size: 15, color: white),
                   SizedBox(width: 20),
-                  Text("Edit Profile", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+                  Text("Dark Mode", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
                   Spacer(),
                   Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
                 ],
