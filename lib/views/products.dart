@@ -73,12 +73,9 @@ class _ProductsState extends State<Products> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Chip(
-                              label: const Row(
-                                children: <Widget>[
-                                  Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
-                                  Text(" Most Baught", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
-                                ],
-                              ),
+                              backgroundColor: pink,
+                              avatar: const Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
+                              label: const Text(" Most Baught", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                             ),
                           ],
                         ),
