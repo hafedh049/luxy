@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -43,8 +44,9 @@ class _OnboardingState extends State<Onboarding> {
               children: <Widget>[
                 const Spacer(),
                 AnimatedSmoothIndicator(
-                  activeIndex: 0,
+                  activeIndex: _onboardingController.page!.toInt(),
                   count: _onboardings.length,
+                  duration: 500.ms,
                 ),
                 const SizedBox(height: 10),
                 Container(
@@ -56,7 +58,7 @@ class _OnboardingState extends State<Onboarding> {
                   child: StatefulBuilder(
                     key: _buttonKey,
                     builder: (BuildContext context, void Function(void Function()) _) {
-                      return const Text("NEXT", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500));
+                      return Text(_onboardingController.page!.toInt() < 3 ? "NEXT" : "GET STARTED", style:const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500));
                     },
                   ),
                 ),
