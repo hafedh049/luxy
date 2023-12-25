@@ -88,21 +88,17 @@ class _ProfileState extends State<Profile> {
               const Spacer(),
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
-                  return CustomAnimatedToggleSwitch<bool>(
+                  return AnimatedToggleSwitch<bool>.dual(
                     current: user!.get("dark_mode"),
-                    spacing: 10,
-                    values: const <bool>[false, true],
+                    first: false,
+                    second: true,
                     animationDuration: 500.ms,
                     animationCurve: Curves.bounceOut,
-                    iconBuilder: (context, local, global) => const SizedBox(),
-                    iconsTappable: false,
                     onChanged: (b) {
                       user!.put("dark_mode", !user!.get("dark_mode"));
                       setS(() {});
                     },
                     height: 30,
-                    padding: const EdgeInsets.all(4),
-                    //indicatorSize: const Size.square(height - 2 * borderWidth),
                   );
                 },
               ),
