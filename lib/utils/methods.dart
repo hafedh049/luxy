@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import 'package:luxy/utils/globals.dart';
@@ -28,4 +31,10 @@ void showToast(String message) {
     toastLength: Toast.LENGTH_LONG,
     textColor: white,
   );
+}
+
+
+Future<List<>> loadProducts()async{
+
+  return json.decode(await rootBundle.loadString("assets/jsons/products.json"),);
 }
