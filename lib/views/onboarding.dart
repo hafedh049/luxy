@@ -33,9 +33,9 @@ class _OnboardingState extends State<Onboarding> {
             Positioned.fill(
               child: PageView.builder(
                 controller: _onboardingController,
-                itemBuilder: (BuildContext context, int index) => Center(
-                  child: _onboardings[index],
-                ),
+                physics: const NeverScrollableScrollPhysics(),
+                onPageChanged: (int value) {},
+                itemBuilder: (BuildContext context, int index) => Center(child: _onboardings[index]),
               ),
             ),
             Column(
@@ -52,7 +52,7 @@ class _OnboardingState extends State<Onboarding> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                  child: Text("NEXT", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500)),
+                  child: const Text("NEXT", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500)),
                 ),
               ],
             ),
