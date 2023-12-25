@@ -26,32 +26,35 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: GNav(
-        rippleColor: grey,
-        haptic: true,
-        tabBorderRadius: 15,
-        curve: Curves.easeOutExpo,
-        duration: 500.ms,
-        gap: 8,
-        color: grey,
-        activeColor: pink,
-        iconSize: 20,
-        tabBackgroundColor: transparent,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        tabs: const <GButton>[
-          GButton(icon: FontAwesome.house_chimney_solid, text: 'Home'),
-          GButton(icon: Bootstrap.grid, text: 'Products'),
-          GButton(icon: FontAwesome.shop_solid, text: 'Shop'),
-          GButton(icon: FontAwesome.person_rifle_solid, text: 'Profile'),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: PageView.builder(
-          itemCount: _pages.length,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (BuildContext context, int index) => _pages[index],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        bottomNavigationBar: GNav(
+          rippleColor: grey,
+          haptic: true,
+          tabBorderRadius: 15,
+          curve: Curves.easeOutExpo,
+          duration: 500.ms,
+          gap: 8,
+          color: grey,
+          activeColor: pink,
+          iconSize: 20,
+          tabBackgroundColor: transparent,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          tabs: const <GButton>[
+            GButton(icon: FontAwesome.house_chimney_solid, text: 'Home'),
+            GButton(icon: Bootstrap.grid, text: 'Products'),
+            GButton(icon: FontAwesome.shop_solid, text: 'Shop'),
+            GButton(icon: FontAwesome.person_rifle_solid, text: 'Profile'),
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: PageView.builder(
+            itemCount: _pages.length,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) => _pages[index],
+          ),
         ),
       ),
     );

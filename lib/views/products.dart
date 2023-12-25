@@ -11,21 +11,35 @@ class Products extends StatefulWidget {
 
 class _ProductsState extends State<Products> {
   final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const SizedBox(height: 30),
         TextField(
+          controller: _searchController,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: "Search",
-            prefixIcon: Icon(Bootstrap.search, size: 15, color: white),
-            contentPadding: EdgeInsets.all(16),
-            suffixIcon: IconButton(onPressed: ()=>, icon: Icon(Bootstrap.x_diamond, size: 15, color: white)),
+            prefixIcon: const Icon(Bootstrap.search, size: 15, color: white),
+            contentPadding: const EdgeInsets.all(16),
+            suffixIcon: IconButton(
+              onPressed: () => _searchController.clear(),
+              icon: const Icon(Bootstrap.x_diamond, size: 15, color: white),
+            ),
           ),
         ),
         const SizedBox(height: 20),
+        Wrap(
+          children: <Widget>[],
+        ),
       ],
     );
   }
