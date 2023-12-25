@@ -64,13 +64,15 @@ class _ProductsState extends State<Products> {
                 if (snapshot.data!.isNotEmpty) {
                   final List<ProductModel> products = snapshot.data!;
                   return GridView.builder(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
                     itemCount: products.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
                     itemBuilder: (BuildContext context, int index) => Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Container(
-                          width: 200,
+                          height: 200,
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
