@@ -14,6 +14,7 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   final PageController _onboardingController = PageController();
   final GlobalKey<State> _buttonKey = GlobalKey<State>();
+  final GlobalKey<State> _indicatorKey = GlobalKey<State>();
   final List<Widget> _onboardings = <Widget>[
     const Column(
       mainAxisSize: MainAxisSize.min,
@@ -48,39 +49,47 @@ class _OnboardingState extends State<Onboarding> {
                 itemCount: _onboardings.length,
                 controller: _onboardingController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (int value) => _buttonKey.currentState!.setState(() => _activeIndex = value),
+                onPageChanged: (int value) {
+                  _indicatorKey.currentState!.setState(() => _activeIndex = value);
+                  _buttonKey.currentState!.setState(() {});
+                },
                 itemBuilder: (BuildContext context, int index) => Center(child: _onboardings[index]),
               ),
             ),
             Column(
               children: <Widget>[
                 const Spacer(),
-                AnimatedSmoothIndicator(
-                  activeIndex: _activeIndex,
-                  count: _onboardings.length,
-                  duration: 500.ms,
-                  effect: CustomizableEffect(
-                    activeDotDecoration: DotDecoration(
-                      width: 32,
-                      height: 12,
-                      color: pink,
-                      rotationAngle: 180,
-                      verticalOffset: -10,
-                      borderRadius: BorderRadius.circular(24),
-                      dotBorder: const DotBorder(padding: 2, width: 2, color: pink),
-                    ),
-                    dotDecoration: const DotDecoration(
-                      width: 24,
-                      height: 12,
-                      color: grey,
-                      dotBorder: DotBorder(padding: 2, width: 2, color: grey),
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(2), topRight: Radius.circular(16), bottomLeft: Radius.circular(16), bottomRight: Radius.circular(2)),
-                      verticalOffset: 0,
-                    ),
-                    spacing: 6.0,
-                    activeColorOverride: (int index) => pink,
-                    inActiveColorOverride: (int index) => grey,
-                  ),
+                StatefulBuilder(
+                  key: _indicatorKey,
+                  builder: (BuildContext context, void Function(void Function()) _) {
+                    return AnimatedSmoothIndicator(
+                      activeIndex: _activeIndex,
+                      count: _onboardings.length,
+                      duration: 500.ms,
+                      effect: CustomizableEffect(
+                        activeDotDecoration: DotDecoration(
+                          width: 32,
+                          height: 12,
+                          color: pink,
+                          rotationAngle: 180,
+                          verticalOffset: -10,
+                          borderRadius: BorderRadius.circular(24),
+                          dotBorder: const DotBorder(padding: 2, width: 2, color: pink),
+                        ),
+                        dotDecoration: const DotDecoration(
+                          width: 24,
+                          height: 12,
+                          color: grey,
+                          dotBorder: DotBorder(padding: 2, width: 2, color: grey),
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(2), topRight: Radius.circular(16), bottomLeft: Radius.circular(16), bottomRight: Radius.circular(2)),
+                          verticalOffset: 0,
+                        ),
+                        spacing: 6.0,
+                        activeColorOverride: (int index) => pink,
+                        inActiveColorOverride: (int index) => grey,
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 30),
                 GestureDetector(
