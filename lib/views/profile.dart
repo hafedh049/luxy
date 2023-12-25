@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 
@@ -88,7 +89,21 @@ class _ProfileState extends State<Profile> {
                 builder: (BuildContext context, void Function(void Function()) setS) {
                   return SizedBox(
                     height: 20,
-                    child: Switch(
+                    child: FlutterSwitch(
+                      width: 60,
+                      height: 40,
+                      valueFontSize: 15,
+                      toggleSize: 45,
+                      value: !user!.get("dark_mode"),
+                      borderRadius: 30.0,
+                      padding: 8.0,
+                      showOnOff: true,
+                      onToggle: (bool value) {
+                        user!.put("dark_mode", !user!.get("dark_mode"));
+                        setS(() {});
+                      },
+                    ),
+                    /*child: Switch(
                       value: user!.get("dark_mode"),
                       onChanged: (bool value) {
                         user!.put("dark_mode", !user!.get("dark_mode"));
@@ -97,7 +112,7 @@ class _ProfileState extends State<Profile> {
                       activeColor: pink,
                       inactiveThumbColor: white,
                       inactiveTrackColor: white,
-                    ),
+                    ),*/
                   );
                 },
               ),
