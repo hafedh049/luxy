@@ -19,12 +19,12 @@ class _ProfileState extends State<Profile> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         const SizedBox(height: 20),
-        const Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[Text("Profile", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.w500))]),
+        const Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[Text("Profile", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500))]),
         GestureDetector(
           onTap: () {},
           child: const Row(
             children: <Widget>[
-              CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/pictures/me.jpeg")),
+              CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/pictures/me.jpeg")),
               SizedBox(width: 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,7 @@ class _ProfileState extends State<Profile> {
                     first: false,
                     second: true,
                     style: const ToggleStyle(indicatorColor: pink, borderColor: pink),
-                    iconBuilder: (bool value) => Icon(value ? Bootstrap.moon : Bootstrap.sun, size: 15, color: white),
+                    iconBuilder: (bool value) => Icon(value ? Bootstrap.moon_stars_fill : Bootstrap.sun_fill, size: 15, color: white),
                     animationDuration: 500.ms,
                     animationCurve: Curves.bounceOut,
                     onChanged: (b) {
