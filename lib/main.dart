@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/methods.dart';
+import 'package:luxy/views/loading_screen.dart';
 import 'package:luxy/views/onboarding.dart';
+import 'package:luxy/views/red_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +21,15 @@ class Main extends StatelessWidget {
       home: FutureBuilder<bool>(
         future: load(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          return const Onboarding();
+          if (snapshot.hasData) {
+            if (snapshot.data!) {
+              return const Onboarding();
+            } else {
+              return const RedScreenOfDeath(error: "Something Wrong");
+            }
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return const LoadingScreen();
+          } else {}
         },
       ),
     );
