@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 
 class Layvy extends StatelessWidget {
@@ -13,8 +14,8 @@ class Layvy extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Icon()
-            Text("La", style: TextStyle(fontSize: fontsize, fontWeight: FontWeight.w500, color: pink)),
+            Icon(FontAwesome.wifi_solid, size: fontSize, color: pink),
+            Text("La", style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w500, color: pink)),
           ],
         ),
         Row(
