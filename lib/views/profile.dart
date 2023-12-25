@@ -37,7 +37,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         const SizedBox(height: 10),
-        const Text("Settings", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
+        const Text("Settings", style: TextStyle(color: white, fontSize: 18, letterSpacing: 2, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {},
@@ -179,7 +179,7 @@ class _ProfileState extends State<Profile> {
           onTap: () {},
           child: const Row(
             children: <Widget>[
-              Icon(FontAwesome.info_solid, size: 15, color: white),
+              Icon(Bootstrap.info_circle, size: 15, color: white),
               SizedBox(width: 20),
               Text("Help Center", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
               Spacer(),
@@ -191,7 +191,7 @@ class _ProfileState extends State<Profile> {
           onTap: () {},
           child: const Row(
             children: <Widget>[
-              Icon(FontAwesome.users_solid, size: 15, color: white),
+              Icon(Bootstrap.people, size: 15, color: white),
               SizedBox(width: 20),
               Text("Invite friends", style: TextStyle(color: white, fontSize: 16, letterSpacing: 2, fontWeight: FontWeight.w500)),
               Spacer(),
