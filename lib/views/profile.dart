@@ -28,7 +28,7 @@ class _ProfileState extends State<Profile> {
               onTap: () {},
               child: const Row(
                 children: <Widget>[
-                  CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/me.png")),
+                  CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/pictures/me.png")),
                   SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
