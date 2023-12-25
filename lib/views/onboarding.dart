@@ -11,6 +11,7 @@ class Onboarding extends StatefulWidget {
 
 class _OnboardingState extends State<Onboarding> {
   final PageController _onboardingController = PageController();
+  final GlobalKey<State> _buttonKey = GlobalKey<State>();
   final List<Widget> _onboardings = <Widget>[
     Column(
       children: <Widget>[],
@@ -53,7 +54,7 @@ class _OnboardingState extends State<Onboarding> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
                   child: StatefulBuilder(
-                    key: null,
+                    key: _buttonKey,
                     builder: (BuildContext context, void Function(void Function()) _) {
                       return const Text("NEXT", style: TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.w500));
                     },
