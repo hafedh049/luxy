@@ -87,7 +87,7 @@ class _ProfileState extends State<Profile> {
               const Spacer(),
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) setS) {
-                  return FlutterSwitch(
+                  return /*FlutterSwitch(
                     width: 80,
                     height: 30,
                     value: !user!.get("dark_mode"),
@@ -102,6 +102,30 @@ class _ProfileState extends State<Profile> {
                     onToggle: (bool value) {
                       user!.put("dark_mode", !user!.get("dark_mode"));
                       setS(() {});
+                    },
+                  )*/
+                      ToggleSwitch(
+                    minWidth: 90.0,
+                    minHeight: 70.0,
+                    initialLabelIndex: 0,
+                    cornerRadius: 20.0,
+                    activeFgColor: Colors.white,
+                    inactiveBgColor: Colors.grey,
+                    inactiveFgColor: Colors.white,
+                    totalSwitches: 2,
+                    icons: [
+                      FontAwesomeIcons.lightbulb,
+                      FontAwesomeIcons.solidLightbulb,
+                    ],
+                    iconSize: 30.0,
+                    activeBgColors: [
+                      [Colors.black45, Colors.black26],
+                      [Colors.yellow, Colors.orange]
+                    ],
+                    animate: true, // with just animate set to true, default curve = Curves.easeIn
+                    curve: Curves.bounceInOut, // animate must be set to true when using custom curve
+                    onToggle: (index) {
+                      print('switched to: $index');
                     },
                   );
                 },
