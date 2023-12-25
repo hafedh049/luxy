@@ -74,6 +74,9 @@ class _ProductsState extends State<Products> {
                           children: <Widget>[
                             Chip(
                               backgroundColor: pink,
+                              elevation: 8,
+                              padding: const EdgeInsets.all(4),
+                              shadowColor: pink.withOpacity(.3),
                               avatar: const Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
                               label: const Text(" Most Baught", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                             ),
