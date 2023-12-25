@@ -70,9 +70,10 @@ class _ProductsState extends State<Products> {
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))]),
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[],
+                          children: <Widget>[
+                            Container(Chip(label: ,),),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 10),
