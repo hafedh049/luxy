@@ -91,7 +91,14 @@ class _ProfileState extends State<Profile> {
                   const Spacer(),
                   StatefulBuilder(
                     builder: (BuildContext context, void Function(void Function()) setS) {
-                      return Switch(value: user.get("dark_theme"), onChanged: onChanged);
+                      return Switch(
+                        value: user.get("dark_theme"),
+                        onChanged: (bool value) => user.put("dark_theme", !user.get("dark_theme")),
+                        activeColor: pink,
+                        inactiveThumbColor: grey,
+                        activeTrackColor: grey,
+                        inactiveTrackColor: white,
+                      );
                     },
                   ),
                 ],
