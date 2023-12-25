@@ -36,6 +36,7 @@ class _OnboardingState extends State<Onboarding> {
 
   @override
   Widget build(BuildContext context) {
+    print(1);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -43,6 +44,7 @@ class _OnboardingState extends State<Onboarding> {
           children: <Widget>[
             Positioned.fill(
               child: PageView.builder(
+                itemCount: _onboardings.length,
                 controller: _onboardingController,
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (int value) => _buttonKey.currentState!.setState(() {}),
