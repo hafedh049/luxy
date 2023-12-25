@@ -10,6 +10,7 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
+  final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,6 +22,7 @@ class _ProductsState extends State<Products> {
             hintText: "Search",
             prefixIcon: Icon(Bootstrap.search, size: 15, color: white),
             contentPadding: EdgeInsets.all(16),
+            suffixIcon: IconButton(onPressed: ()=>, icon: Icon(Bootstrap.x_diamond, size: 15, color: white)),
           ),
         ),
         const SizedBox(height: 20),
