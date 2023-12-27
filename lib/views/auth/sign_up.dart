@@ -29,6 +29,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   int _gender = -1;
+  bool _genderMenu = false;
   File? profilePicture;
   @override
   Widget build(BuildContext context) {
@@ -152,17 +153,46 @@ class _SignUpState extends State<SignUp> {
                           hintStyle: const TextStyle(color: grey),
                           prefixIcon: _gender == -1 ? null : Icon(_gender == 0 ? Bootstrap.gender_male : Bootstrap.gender_female, size: 15, color: grey),
                           suffixIcon: IconButton(
-                            onPressed: () => _(() {}),
-                            icon: const Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                            onPressed: () => _(() => _genderMenu = !_genderMenu),
+                            icon: Icon(_genderMenu ? FontAwesome.chevron_left_solid : FontAwesome.chevron_down_solid, size: 15, color: grey),
                           ),
                         ),
                       ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(child: Buttoned(text: "Male", icon: Bootstrap.gender_male, callback: () {})),
-                          const SizedBox(width: 10),
-                          Expanded(child: Buttoned(text: "Female", icon: Bootstrap.gender_female, callback: () {})),
-                        ],
+                      Visibility(
+                        visible: _genderMenu,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Buttoned(
+                                text: "Male",
+                                icon: Bootstrap.gender_male,
+                                callback: () {
+                                  _(
+                                    () {
+                                      _gender = 0;
+                                      _genderMenu = false;
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Buttoned(
+                                text: "Female",
+                                icon: Bootstrap.gender_female,
+                                callback: () {
+                                  _(
+                                    () {
+                                      _gender = 1;
+                                      _genderMenu = false;
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
