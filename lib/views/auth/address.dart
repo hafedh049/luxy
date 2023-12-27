@@ -51,6 +51,38 @@ class _AddressState extends State<Address> {
                   ),
                 ),
               ),
+              const SizedBox(height: 30),
+              const Text("City", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 20),
+              Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                child: TextField(
+                  controller: _localisationController,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(16),
+                    border: InputBorder.none,
+                    hintText: "Gouvernement",
+                    hintStyle: TextStyle(color: grey),
+                    suffix: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              const Text("City", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 20),
+              Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                child: TextField(
+                  controller: _localisationController,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(16),
+                    border: InputBorder.none,
+                    hintText: "Gouvernement",
+                    hintStyle: TextStyle(color: grey),
+                    suffix: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                  ),
+                ),
+              ),
               Row(
                 children: <Widget>[
                   Expanded(
