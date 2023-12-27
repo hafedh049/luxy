@@ -194,6 +194,15 @@ class _SignUpState extends State<SignUp> {
                   );
                 },
               ),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
+                  alignment: Alignment.center,
+                  child: const Text("Continue", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                ),
+              ),
             ],
           ),
         ),
