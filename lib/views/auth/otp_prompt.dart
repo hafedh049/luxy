@@ -16,18 +16,20 @@ class OTPPrompt extends StatefulWidget {
 
 class _OTPPromptState extends State<OTPPrompt> {
   final OtpFieldController _otpController = OtpFieldController();
-  final List<IconData> _keyboard = <IconData>[
-    FontAwesome.num1_solid,
-    FontAwesome.num2_solid,
-    FontAwesome.num3_solid,
-    FontAwesome.num4_solid,
-    FontAwesome.num5_solid,
-    FontAwesome.num6_solid,
-    FontAwesome.num7_solid,
-    FontAwesome.num9_solid,
-    FontAwesome.num9_solid,
-    FontAwesome.num0_solid,
-    FontAwesome.x_solid,
+  int _fillIndex = 0;
+  final Map<IconData,String> _keyboard = <IconData,String>[
+    FontAwesome.num1_solid:"1",
+    FontAwesome.num2_solid:"2",
+    FontAwesome.num3_solid:"3",
+    FontAwesome.num4_solid:"4",
+    FontAwesome.num5_solid:"5",
+    FontAwesome.num6_solid:"6",
+    FontAwesome.num7_solid:"7",
+    FontAwesome.num9_solid:"8",
+    FontAwesome.num9_solid:"9",
+    FontAwesome.asterisk_solid:"*",
+    FontAwesome.num0_solid:"0",
+    FontAwesome.x_solid:"x",
   ];
   @override
   Widget build(BuildContext context) {
@@ -47,12 +49,7 @@ class _OTPPromptState extends State<OTPPrompt> {
         builder: (BuildContext context) => Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 8),
-              width: 40,
-              height: 2,
-              decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(5)),
-            ),
+            Container(margin: const EdgeInsets.symmetric(vertical: 8), width: 80, height: 3, decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(5))),
             Wrap(
               alignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
@@ -67,7 +64,13 @@ class _OTPPromptState extends State<OTPPrompt> {
                     child: Buttoned(
                       icon: _keyboard[icon],
                       text: "",
-                      callback: () {},
+                      callback: () {
+                        if (_keyboard[icon] != FontAwesome.asterisk_solid) {
+                          if (_keyboard[icon] != FontAwesome.x_solid) {
+                            _otpController.setValue(, _fillIndex);
+                          } else {}
+                        }
+                      },
                     ),
                   ),
               ],
