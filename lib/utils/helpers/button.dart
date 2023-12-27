@@ -51,8 +51,10 @@ class _ButtonedState extends State<Buttoned> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Icon(widget.icon, size: widget.fontSize, color: _colorState ? dark : null),
-            const SizedBox(width: 10),
-            Text(widget.text, style: TextStyle(fontWeight: FontWeight.w500, fontSize: widget.fontSize, color: _colorState ? dark : null)),
+            if (widget.text.isNotEmpty) ...<Widget>[
+              const SizedBox(width: 10),
+              Text(widget.text, style: TextStyle(fontWeight: FontWeight.w500, fontSize: widget.fontSize, color: _colorState ? dark : null)),
+            ],
           ],
         ),
       ),
