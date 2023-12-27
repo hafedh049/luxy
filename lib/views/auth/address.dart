@@ -94,12 +94,18 @@ class _AddressState extends State<Address> {
                                     key: _governorateKey,
                                     builder: (BuildContext context, void Function(void Function()) _) {
                                       final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_localisationController.text.trim())).toList();
-                                      return ListView.builder(
+                                      return ListView.separated(
                                         itemCount: tempo.length,
                                         padding: EdgeInsets.zero,
+                                        separatorBuilder: (context, index) => Container(
+                                          width: MediaQuery.sizeOf(context).width,
+                                        ),
                                         itemBuilder: (BuildContext context, int index) => GestureDetector(
                                           onTap: () {},
-                                          child: Container(),
+                                          child: Container(
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                                            child: const Text("Phone Number", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                                          ),
                                         ),
                                       );
                                     },
