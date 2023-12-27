@@ -3,6 +3,8 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/helpers/button.dart';
 import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/otp_field_style.dart';
+import 'package:otp_text_field/style.dart';
 
 class OTPPrompt extends StatefulWidget {
   const OTPPrompt({super.key});
@@ -45,24 +47,26 @@ class _OTPPromptState extends State<OTPPrompt> {
             const Spacer(),
             const Flexible(child: Text("Code has been sent to +216 223 56* **2", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
             const SizedBox(height: 30),
-            Flexible(
-              child: IgnorePointer(
-                ignoring: true,
-                child: OTPTextField(
-                  contentPadding: const EdgeInsets.all(16),
-                  controller: _otpController,
-                ),
-              ),
+            OTPTextField(
+              length: 4,
+              width: MediaQuery.of(context).size.width,
+              fieldWidth: 60,
+              otpFieldStyle: OtpFieldStyle(borderColor: white, backgroundColor: grey.withOpacity(.3)),
+              contentPadding: const EdgeInsets.all(16),
+              style: const TextStyle(fontSize: 16),
+              textFieldAlignment: MainAxisAlignment.spaceAround,
+              controller: _otpController,
+              fieldStyle: FieldStyle.box,
+              onCompleted: (String pin) {},
             ),
             const SizedBox(height: 30),
-            const Spacer(),
             GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const OTPPrompt()));
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
+                decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
                 alignment: Alignment.center,
                 child: const Text("Verify", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               ),
@@ -70,7 +74,7 @@ class _OTPPromptState extends State<OTPPrompt> {
             const SizedBox(height: 10),
             Expanded(
               child: Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.6)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
                 child: GridView.builder(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
