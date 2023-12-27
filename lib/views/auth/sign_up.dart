@@ -34,7 +34,7 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: dark,
-        leading: Iconed(icon: Bootstrap.chevron_compact_left, callback: () {}),
+        leading: Iconed(icon: FontAwesome.chevron_left_solid, callback: () {}),
         title: const Text("Fill your profile", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
       ),
       body: Padding(

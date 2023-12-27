@@ -3,6 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/helpers/icon.dart';
 import 'package:luxy/utils/helpers/layvy.dart';
+import 'package:luxy/views/auth/sign_up.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -116,7 +117,7 @@ class _SignInState extends State<SignIn> {
                 ],
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const SignUp())),
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
