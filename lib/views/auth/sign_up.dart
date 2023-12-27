@@ -34,7 +34,10 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: dark,
-        leading: Iconed(icon: FontAwesome.chevron_left_solid, callback: () {}),
+        leading: IconButton(
+          icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: const Text("Fill your profile", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
       ),
       body: Padding(
@@ -44,26 +47,28 @@ class _SignUpState extends State<SignUp> {
           children: <Widget>[
             StatefulBuilder(
               builder: (BuildContext context, void Function(void Function()) _) {
-                return Stack(
-                  alignment: Alignment.bottomRight,
-                  children: <Widget>[
-                    Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: pink),
-                        image: profilePicture == null ? null : DecorationImage(image: AssetImage(profilePicture!.path), fit: BoxFit.cover),
+                return GestureDetector(
+                  onTap: () {},
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: <Widget>[
+                      Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: pink),
+                          image: profilePicture == null ? null : DecorationImage(image: AssetImage(profilePicture!.path), fit: BoxFit.cover),
+                        ),
+                        child: profilePicture == null ? null : const Icon(Bootstrap.people, size: 25, color: pink),
                       ),
-                      child: profilePicture == null ? null : const Icon(Bootstrap.people, size: 25, color: pink),
-                    ),
-                    IconButton(
-                      iconSize: 10,
-                      color: pink,
-                      onPressed: () {},
-                      icon: const Icon(Bootstrap.pencil),
-                    ),
-                  ],
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: const BoxDecoration(shape: BoxShape.circle, color: grey),
+                        child: const Icon(Bootstrap.pen, size: 15, color: white),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
