@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
-import 'package:luxy/utils/helpers/icon.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -57,14 +56,14 @@ class _SignUpState extends State<SignUp> {
                         height: 150,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: pink),
+                          border: Border.all(color: pink, width: 2),
                           image: profilePicture == null ? null : DecorationImage(image: AssetImage(profilePicture!.path), fit: BoxFit.cover),
                         ),
                         child: profilePicture == null ? null : const Icon(Bootstrap.people, size: 25, color: pink),
                       ),
                       Container(
                         padding: const EdgeInsets.all(8),
-                        decoration: const BoxDecoration(shape: BoxShape.circle, color: grey),
+                        decoration: BoxDecoration(shape: BoxShape.circle, color: grey.withOpacity(.3)),
                         child: const Icon(Bootstrap.pen, size: 15, color: white),
                       ),
                     ],
@@ -73,8 +72,9 @@ class _SignUpState extends State<SignUp> {
               },
             ),
             Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
               child: TextField(
+                style: const TextStyle(color: grey),
                 controller: _usernameController,
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(16),
@@ -85,8 +85,9 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
               child: TextField(
+                style: const TextStyle(color: grey),
                 controller: _emailController,
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(16),
@@ -97,9 +98,11 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
               child: TextField(
                 controller: _birthDateController,
+                style: const TextStyle(color: grey),
+                readOnly: true,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(16),
                   border: InputBorder.none,
@@ -123,7 +126,7 @@ class _SignUpState extends State<SignUp> {
                         },
                       );
                     },
-                    icon: const Icon(Bootstrap.chevron_compact_down, size: 15, color: grey),
+                    icon: const Icon(Bootstrap.calendar, size: 15, color: grey),
                   ),
                 ),
               ),
@@ -132,12 +135,13 @@ class _SignUpState extends State<SignUp> {
               builder: (BuildContext context, void Function(void Function()) _) {
                 return AnimatedContainer(
                   duration: 500.ms,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       TextField(
                         readOnly: true,
+                        style: const TextStyle(color: grey),
                         controller: _emailController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(16),
@@ -147,7 +151,7 @@ class _SignUpState extends State<SignUp> {
                           prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
                           suffixIcon: IconButton(
                             onPressed: () => _(() {}),
-                            icon: const Icon(Bootstrap.chevron_compact_down, size: 15, color: grey),
+                            icon: const Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
                           ),
                         ),
                       ),
