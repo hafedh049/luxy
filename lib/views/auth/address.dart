@@ -66,7 +66,32 @@ class _AddressState extends State<Address> {
                     hintStyle: const TextStyle(color: grey),
                     suffixIcon: IconButton(
                       onPressed: () {
-                        showModalBottomSheet(context: context, builder: (BuildContext context) =>  );
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) => SizedBox(
+                            height: MediaQuery.sizeOf(context).height * .3,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                                  child: TextField(
+                                    controller: _localisationController,
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.all(16),
+                                      border: InputBorder.none,
+                                      hintText: "Gouvernement",
+                                      hintStyle: TextStyle(color: grey),
+                                      suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Expanded(child: child)
+                              ],
+                            ),
+                          ),
+                        );
                       },
                       icon: const Icon(Bootstrap.pin_map, size: 15, color: grey),
                     ),
@@ -78,9 +103,8 @@ class _AddressState extends State<Address> {
               const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
-                child: TextField(
-                  controller: _localisationController,
-                  decoration: const InputDecoration(
+                child: const TextField(
+                  decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(16),
                     border: InputBorder.none,
                     hintText: "Gouvernement",
