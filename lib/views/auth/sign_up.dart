@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
@@ -11,6 +13,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  File? profilePicture;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +27,23 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Stack(),
+            Stack(
+              alignment: Alignment.bottomRight,
+              children: <Widget>[
+                StatefulBuilder(builder: (context, snapshot) {
+                  return Container(
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: pink),
+                      image: profilePicture == null ? null : DecorationImage(image: AssetImage(profilePicture!.path), fit: BoxFit.cover),
+                    ),
+                    child: profilePicture == null ? null : const Icon(Bootstrap.people, size: 25, color: pink),
+                  );
+                }),
+              ],
+            ),
           ],
         ),
       ),
