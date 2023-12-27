@@ -26,7 +26,7 @@ class _ForgetPasswordMethodsState extends State<ForgetPasswordMethods> {
           icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text("Create new password", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+        title: const Text("Forgot Password", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
