@@ -107,12 +107,11 @@ class _SignInState extends State<SignIn> {
             ),
             GestureDetector(
               onTap: () {},
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Iconed(icon: Bootstrap.facebook, callback: () {}),
-                  Iconed(icon: Bootstrap.google, callback: () {}),
-                  Iconed(icon: Bootstrap.apple, callback: () {}),
+                  Text("Don't have an account ", style: TextStyle(color: grey, fontSize: 16, fontWeight: FontWeight.w500)),
+                  Text("Sign up", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                 ],
               ),
             ),
