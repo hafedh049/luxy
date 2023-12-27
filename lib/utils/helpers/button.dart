@@ -22,24 +22,24 @@ class _ButtonedState extends State<Buttoned> {
     return GestureDetector(
       onLongPressDown: (LongPressDownDetails details) async {
         setState(() => _colorState = true);
-        await Future.delayed(300.ms);
+        await Future.delayed(100.ms);
         setState(() => _borderState = true);
       },
       onLongPressUp: () async {
         setState(() => _colorState = false);
-        await Future.delayed(300.ms);
-        setState(() => _borderState = false);
         widget.callback();
+        await Future.delayed(100.ms);
+        setState(() => _borderState = false);
       },
       onTapUp: (TapUpDetails details) async {
         setState(() => _colorState = false);
-        await Future.delayed(700.ms);
-        setState(() => _borderState = false);
         widget.callback();
+        await Future.delayed(200.ms);
+        setState(() => _borderState = false);
       },
       onTapDown: (TapDownDetails details) async {
         setState(() => _colorState = true);
-        await Future.delayed(300.ms);
+        await Future.delayed(100.ms);
         setState(() => _borderState = true);
       },
       child: AnimatedContainer(
