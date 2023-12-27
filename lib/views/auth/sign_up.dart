@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/helpers/button.dart';
+import 'package:luxy/views/auth/address.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -195,7 +196,9 @@ class _SignUpState extends State<SignUp> {
                 },
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Address()));
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),

@@ -10,11 +10,19 @@ class Address extends StatefulWidget {
 }
 
 class _AddressState extends State<Address> {
+  final TextEditingController _localisationController = TextEditingController();
+  @override
+  void dispose() {
+    _localisationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: dark,
           leading: IconButton(
@@ -27,8 +35,22 @@ class _AddressState extends State<Address> {
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
+              const Text("Address Details", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 20),
+              Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                child: TextField(
+                  controller: _localisationController,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(16),
+                    border: InputBorder.none,
+                    hintText: "Location",
+                    hintStyle: TextStyle(color: grey),
+                    suffix: Icon(Bootstrap.pin_map, size: 15, color: grey),
+                  ),
+                ),
+              ),
               Row(
                 children: <Widget>[
                   Expanded(
