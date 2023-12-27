@@ -97,14 +97,12 @@ class _AddressState extends State<Address> {
                                       return ListView.separated(
                                         itemCount: tempo.length,
                                         padding: EdgeInsets.zero,
-                                        separatorBuilder: (context, index) => Container(
-                                          width: MediaQuery.sizeOf(context).width,
-                                        ),
+                                        separatorBuilder: (BuildContext context, int index) => Container(width: MediaQuery.sizeOf(context).width, height: .5, color: grey),
                                         itemBuilder: (BuildContext context, int index) => GestureDetector(
                                           onTap: () {},
                                           child: Container(
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
-                                            child: const Text("Phone Number", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                                            child: Text(tempo[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                                           ),
                                         ),
                                       );
