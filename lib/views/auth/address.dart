@@ -17,6 +17,7 @@ class _AddressState extends State<Address> {
     super.dispose();
   }
 
+  final List<String> tunisianGovernorates = <String>['Tunis', 'Ariana', 'Ben Arous', 'Manouba', 'Nabeul', 'Zaghouan', 'Bizerte', 'Béja', 'Jendouba', 'Kef', 'Siliana', 'Kairouan', 'Kasserine', 'Sidi Bouzid', 'Sousse', 'Monastir', 'Mahdia', 'Sfax', 'Gafsa', 'Tozeur', 'Kebili', 'Gabès', 'Medenine', 'Tataouine'];
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -61,9 +62,9 @@ class _AddressState extends State<Address> {
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(16),
                     border: InputBorder.none,
-                    hintText: "Gouvernement",
+                    hintText: "Governorate",
                     hintStyle: TextStyle(color: grey),
-                    suffix: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                    suffixIcon: Icon(Bootstrap.pin_map, size: 15, color: grey),
                   ),
                 ),
               ),
@@ -79,10 +80,11 @@ class _AddressState extends State<Address> {
                     border: InputBorder.none,
                     hintText: "Gouvernement",
                     hintStyle: TextStyle(color: grey),
-                    suffix: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                    suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
                   ),
                 ),
               ),
+              const Spacer(),
               Row(
                 children: <Widget>[
                   Expanded(
@@ -110,6 +112,7 @@ class _AddressState extends State<Address> {
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
