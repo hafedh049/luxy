@@ -14,6 +14,7 @@ class _SignInState extends State<SignIn> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscure = false;
+  bool _rememberMe = false;
 
   @override
   void dispose() {
@@ -50,12 +51,38 @@ class _SignInState extends State<SignIn> {
               suffixIcon: StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) _) {
                   return IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Bootstrap.lock_fill, size: 15, color: grey),
+                    onPressed: () => _(() => _obscure = !_obscure),
+                    icon: Icon(_obscure ? Bootstrap.eye_slash : Bootstrap.eye, size: 15, color: grey),
                   );
                 },
               ),
             ),
+          ),
+          Row(
+            children: <Widget>[
+              StatefulBuilder(
+                builder: (BuildContext context, void Function(void Function()) _) {
+                  return Checkbox(
+                    value: _rememberMe,
+                    checkColor: white,
+                    activeColor: pink,
+                    onChanged: (bool? value) => _(() => _rememberMe = !_rememberMe),
+                  );
+                },
+              ),
+              const SizedBox(width: 10),
+              const Text("Remember Me", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+            ],
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
+            alignment: Alignment.center,
+            child: const Text("Sign In", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: const Text("Forgot the password?", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
           ),
         ],
       ),
