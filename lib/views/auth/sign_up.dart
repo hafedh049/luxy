@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/helpers/icon.dart';
@@ -15,7 +16,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _birthDateController = TextEditingController();
+  final TextEditingController _birthDateController = TextEditingController(text: DateTime.now().toString().split(" ")[0]);
   final TextEditingController _genderController = TextEditingController();
 
   @override
@@ -112,7 +113,7 @@ class _SignUpState extends State<SignUp> {
                       ).then(
                         (DateTime? value) {
                           if (value != null) {
-                            _birthDateController.text = value.toString().split(" ")[0].replaceAll("", replace);
+                            _birthDateController.text = value.toString().split(" ")[0];
                           }
                         },
                       );
@@ -124,22 +125,28 @@ class _SignUpState extends State<SignUp> {
             ),
             StatefulBuilder(
               builder: (BuildContext context, void Function(void Function()) _) {
-                return Container(
+                return AnimatedContainer(
+                  duration: 500.ms,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
-                  child: TextField(
-                    readOnly: true,
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(16),
-                      border: InputBorder.none,
-                      hintText: "Gender",
-                      hintStyle: const TextStyle(color: grey),
-                      prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
-                      suffixIcon: IconButton(
-                        onPressed: () => _(() {}),
-                        icon: const Icon(Bootstrap.chevron_compact_down, size: 15, color: grey),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      TextField(
+                        readOnly: true,
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(16),
+                          border: InputBorder.none,
+                          hintText: "Gender",
+                          hintStyle: const TextStyle(color: grey),
+                          prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+                          suffixIcon: IconButton(
+                            onPressed: () => _(() {}),
+                            icon: const Icon(Bootstrap.chevron_compact_down, size: 15, color: grey),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 );
               },
