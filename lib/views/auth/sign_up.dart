@@ -15,11 +15,15 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  DateTime _birthdate = DateTime(2001);
+  final TextEditingController _birthDateController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+
   @override
   void dispose() {
     _usernameController.dispose();
     _emailController.dispose();
+    _genderController.dispose();
+    _birthDateController.dispose();
     super.dispose();
   }
 
@@ -89,7 +93,7 @@ class _SignUpState extends State<SignUp> {
             Container(
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
               child: TextField(
-                controller: _emailController,
+                controller: _birthDateController,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(16),
                   border: InputBorder.none,
@@ -105,6 +109,12 @@ class _SignUpState extends State<SignUp> {
                         confirmText: "PICK",
                         cancelText: "LEAVE",
                         helpText: "Choose your birthdate",
+                      ).then(
+                        (DateTime? value) {
+                          if (value != null) {
+                            _birthDateController.text = value.toString().split(" ")[0].replaceAll("", replace);
+                          }
+                        },
                       );
                     },
                     icon: const Icon(Bootstrap.chevron_compact_down, size: 15, color: grey),
