@@ -34,13 +34,17 @@ class _SignInState extends State<SignIn> {
           children: <Widget>[
             const Layvy(),
             const Text("Login to your account", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500)),
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.all(16),
-                border: InputBorder.none,
-                hintText: "E-mail",
-                prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+            Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+              child: TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  hintText: "E-mail",
+                  hintStyle: TextStyle(color: grey),
+                  prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+                ),
               ),
             ),
             TextField(
@@ -50,6 +54,7 @@ class _SignInState extends State<SignIn> {
                 contentPadding: const EdgeInsets.all(16),
                 border: InputBorder.none,
                 hintText: "Password",
+                hintStyle: const TextStyle(color: grey),
                 prefixIcon: const Icon(Bootstrap.lock_fill, size: 15, color: grey),
                 suffixIcon: StatefulBuilder(
                   builder: (BuildContext context, void Function(void Function()) _) {

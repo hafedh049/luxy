@@ -40,6 +40,7 @@ class _ProductsState extends State<Products> {
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: "Search",
+              hintStyle: const TextStyle(color: grey),
               prefixIcon: const Icon(Bootstrap.search, size: 15, color: white),
               contentPadding: const EdgeInsets.all(16),
               suffixIcon: IconButton(

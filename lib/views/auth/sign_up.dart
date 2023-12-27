@@ -13,6 +13,15 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+   @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
+
   File? profilePicture;
   @override
   Widget build(BuildContext context) {
@@ -27,22 +36,62 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Stack(
-              alignment: Alignment.bottomRight,
-              children: <Widget>[
-                StatefulBuilder(builder: (context, snapshot) {
-                  return Container(
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: pink),
-                      image: profilePicture == null ? null : DecorationImage(image: AssetImage(profilePicture!.path), fit: BoxFit.cover),
+            StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) _) {
+                return Stack(
+                  alignment: Alignment.bottomRight,
+                  children: <Widget>[
+                    Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: pink),
+                        image: profilePicture == null ? null : DecorationImage(image: AssetImage(profilePicture!.path), fit: BoxFit.cover),
+                      ),
+                      child: profilePicture == null ? null : const Icon(Bootstrap.people, size: 25, color: pink),
                     ),
-                    child: profilePicture == null ? null : const Icon(Bootstrap.people, size: 25, color: pink),
-                  );
-                }),
-              ],
+                    IconButton(
+                      iconSize: 10,
+                      color: pink,
+                      onPressed: () {},
+                      icon: const Icon(Bootstrap.pencil),
+                    ),
+                  ],
+                );
+              },
+            ),
+            Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+              child: TextField(
+                controller: _usernameController,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  hintText: "Username",                  hintStyle: TextStyle(color: grey),
+                  prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+              child: TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  hintText: "E-mail",                  hintStyle: TextStyle(color: grey),
+                  prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+              child:
+            ),
+            Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+              child:
             ),
           ],
         ),
