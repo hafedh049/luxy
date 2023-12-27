@@ -10,6 +10,18 @@ class Password extends StatefulWidget {
 }
 
 class _PasswordState extends State<Password> {
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,7 +42,7 @@ class _PasswordState extends State<Password> {
               Expanded(
                 child: SizedBox(),
               ),
-              const Text("Address Details", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+              const Text("Create your new password", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
@@ -38,7 +50,7 @@ class _PasswordState extends State<Password> {
                   builder: (BuildContext context, void Function(void Function()) _) {
                     return TextField(
                       controller: _passwordController,
-                      obscureText: _obscure,
+                      obscureText: _obscurePassword,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
                         border: InputBorder.none,
@@ -46,8 +58,31 @@ class _PasswordState extends State<Password> {
                         hintStyle: const TextStyle(color: grey),
                         prefixIcon: const Icon(Bootstrap.lock_fill, size: 15, color: grey),
                         suffixIcon: IconButton(
-                          onPressed: () => _(() => _obscure = !_obscure),
-                          icon: Icon(_obscure ? Bootstrap.eye_slash : Bootstrap.eye, size: 15, color: grey),
+                          onPressed: () => _(() => _obscurePassword = !_obscurePassword),
+                          icon: Icon(_obscurePassword ? Bootstrap.eye_slash : Bootstrap.eye, size: 15, color: grey),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                child: StatefulBuilder(
+                  builder: (BuildContext context, void Function(void Function()) _) {
+                    return TextField(
+                      controller: _confirmPasswordController,
+                      obscureText: _obscureConfirmPassword,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(16),
+                        border: InputBorder.none,
+                        hintText: "Password",
+                        hintStyle: const TextStyle(color: grey),
+                        prefixIcon: const Icon(Bootstrap.lock_fill, size: 15, color: grey),
+                        suffixIcon: IconButton(
+                          onPressed: () => _(() => _obscureConfirmPassword = !_obscureConfirmPassword),
+                          icon: Icon(_obscureConfirmPassword ? Bootstrap.eye_slash : Bootstrap.eye, size: 15, color: grey),
                         ),
                       ),
                     );
