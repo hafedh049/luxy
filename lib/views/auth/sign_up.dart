@@ -15,7 +15,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-   @override
+  @override
   void dispose() {
     _usernameController.dispose();
     _emailController.dispose();
@@ -68,8 +68,8 @@ class _SignUpState extends State<SignUp> {
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(16),
                   border: InputBorder.none,
-                  hintText: "Username",                  hintStyle: TextStyle(color: grey),
-                  prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+                  hintText: "Username",
+                  hintStyle: TextStyle(color: grey),
                 ),
               ),
             ),
@@ -80,18 +80,50 @@ class _SignUpState extends State<SignUp> {
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(16),
                   border: InputBorder.none,
-                  hintText: "E-mail",                  hintStyle: TextStyle(color: grey),
-                  prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+                  hintText: "E-mail",
+                  hintStyle: TextStyle(color: grey),
                 ),
               ),
             ),
             Container(
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
-              child:
+              child: TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  hintText: "Date of birth",
+                  hintStyle: const TextStyle(color: grey),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      DatePickerDialog();
+                    },
+                    icon: const Icon(Bootstrap.chevron_compact_down, size: 15, color: grey),
+                  ),
+                ),
+              ),
             ),
-            Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
-              child:
+            StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) _) {
+                return Container(
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+                  child: TextField(
+                    readOnly: true,
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(16),
+                      border: InputBorder.none,
+                      hintText: "Gender",
+                      hintStyle: const TextStyle(color: grey),
+                      prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+                      suffixIcon: IconButton(
+                        onPressed: () => _(() {}),
+                        icon: const Icon(Bootstrap.chevron_compact_down, size: 15, color: grey),
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
