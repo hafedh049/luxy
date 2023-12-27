@@ -13,7 +13,6 @@ class Iconed extends StatefulWidget {
 }
 
 class _IconedState extends State<Iconed> {
-  bool _borderState = false;
   bool _colorState = false;
 
   @override
@@ -21,30 +20,22 @@ class _IconedState extends State<Iconed> {
     return GestureDetector(
       onLongPressDown: (LongPressDownDetails details) async {
         setState(() => _colorState = true);
-        await Future.delayed(300.ms);
-        setState(() => _borderState = true);
       },
       onLongPressUp: () async {
         setState(() => _colorState = false);
-        await Future.delayed(300.ms);
-        setState(() => _borderState = false);
         widget.callback();
       },
       onTapUp: (TapUpDetails details) async {
         setState(() => _colorState = false);
-        await Future.delayed(500.ms);
-        setState(() => _borderState = false);
         widget.callback();
       },
       onTapDown: (TapDownDetails details) async {
         setState(() => _colorState = true);
-        await Future.delayed(300.ms);
-        setState(() => _borderState = true);
       },
       child: AnimatedContainer(
         duration: 500.ms,
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(border: Border.all(width: 1, color: _borderState ? pink : transparent), shape: BoxShape.circle, color: _colorState ? pink : transparent),
+        decoration: BoxDecoration(border: Border.all(width: 1, color: pink), shape: BoxShape.circle, color: _colorState ? pink : transparent),
         child: Icon(widget.icon, size: widget.iconSize, color: _colorState ? dark : white),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/helpers/layvy.dart';
-import 'package:luxy/views/home.dart';
+import 'package:luxy/views/auth/sign_in.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {
@@ -121,7 +121,7 @@ class _OnboardingState extends State<Onboarding> {
                     if (_activeIndex < _onboardings.length - 1) {
                       _onboardingController.nextPage(duration: 500.ms, curve: Curves.linear);
                     } else {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Home()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const SignIn()));
                     }
                   },
                   child: Container(
