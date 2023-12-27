@@ -68,7 +68,7 @@ class _AddressState extends State<Address> {
                 ),
               ),
               const SizedBox(height: 30),
-              const Text("City", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+              const Text("Phone Number", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
