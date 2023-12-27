@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 
@@ -43,19 +44,29 @@ class _ForgetPasswordMethodsState extends State<ForgetPasswordMethods> {
                   for (final Map<String, dynamic> entry in _methods)
                     GestureDetector(
                       onTap: () => _(() => _currentMethod = _methods.indexOf(entry)),
-                      child: Container(
+                      child: AnimatedContainer(
+                        duration: 500.ms,
                         padding: const EdgeInsets.all(24),
                         margin: const EdgeInsets.only(bottom: 16),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(color: pink, width: 2),
+                          boxShadow: <BoxShadow>[BoxShadow(color: white.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 4))],
                         ),
                         child: Row(
                           children: <Widget>[
-                            Container(),
+                            Container(
+                              padding: const EdgeInsets.all(24),
+                              decoration: const BoxDecoration(shape: BoxShape.circle, color: grey),
+                              child: Icon(entry["icon"], size: 25, color: white),
+                            ),
                             const SizedBox(width: 10),
                             Column(
-                              children: <Widget>[],
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(entry["title"], style: const TextStyle(color: grey, fontSize: 14, fontWeight: FontWeight.w500)),
+                                Text(entry["subtitle"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                              ],
                             ),
                           ],
                         ),
