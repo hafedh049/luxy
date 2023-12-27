@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/home.dart';
 
 class Password extends StatefulWidget {
   const Password({super.key});
@@ -14,6 +15,8 @@ class _PasswordState extends State<Password> {
   final TextEditingController _confirmPasswordController = TextEditingController();
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
+
+  bool _rememberMe = false;
 
   @override
   void dispose() {
@@ -90,7 +93,34 @@ class _PasswordState extends State<Password> {
                   },
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
+              Row(
+                children: <Widget>[
+                  StatefulBuilder(
+                    builder: (BuildContext context, void Function(void Function()) _) {
+                      return Checkbox(
+                        value: _rememberMe,
+                        checkColor: white,
+                        activeColor: pink,
+                        onChanged: (bool? value) => _(() => _rememberMe = !_rememberMe),
+                      );
+                    },
+                  ),
+                  const Text("Remember Me", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                ],
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Home()));
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
+                  alignment: Alignment.center,
+                  child: const Text("Continue", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                ),
+              ),
             ],
           ),
         ),
