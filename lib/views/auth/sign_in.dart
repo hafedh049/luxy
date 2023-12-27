@@ -3,6 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/helpers/icon.dart';
 import 'package:luxy/utils/helpers/layvy.dart';
+import 'package:luxy/views/auth/forget_password_menu.dart';
 import 'package:luxy/views/auth/sign_up.dart';
 
 class SignIn extends StatefulWidget {
@@ -98,7 +99,7 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ForgetPasswordMethods())),
                 child: const Text("Forgot the password?", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               ),
               const Row(
