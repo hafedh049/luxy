@@ -59,12 +59,17 @@ class _AddressState extends State<Address> {
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: TextField(
                   controller: _localisationController,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.all(16),
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(16),
                     border: InputBorder.none,
                     hintText: "Governorate",
-                    hintStyle: TextStyle(color: grey),
-                    suffixIcon: Icon(Bootstrap.pin_map, size: 15, color: grey),
+                    hintStyle: const TextStyle(color: grey),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        showModalBottomSheet(context: context, builder: (BuildContext context) =>  );
+                      },
+                      icon: const Icon(Bootstrap.pin_map, size: 15, color: grey),
+                    ),
                   ),
                 ),
               ),
