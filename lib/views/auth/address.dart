@@ -89,15 +89,22 @@ class _AddressState extends State<Address> {
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                Expanded(child: StatefulBuilder(
-                                  key: _governorateKey,
-                                  builder: (BuildContext context,void Function(void Function()) _) {
-                                    final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_localisationController.text.trim())).toList();
-                                    return ListView.builder(
-                                      itemCount:tempo.length ,
-                                      itemBuilder: (BuildContext context, int index) => ,);
-                                  }
-                                ),),
+                                Expanded(
+                                  child: StatefulBuilder(
+                                    key: _governorateKey,
+                                    builder: (BuildContext context, void Function(void Function()) _) {
+                                      final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_localisationController.text.trim())).toList();
+                                      return ListView.builder(
+                                        itemCount: tempo.length,
+                                        padding: EdgeInsets.zero,
+                                        itemBuilder: (BuildContext context, int index) => GestureDetector(
+                                          onTap: () {},
+                                          child: Container(),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
                               ],
                             ),
                           ),
