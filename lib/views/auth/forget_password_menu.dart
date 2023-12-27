@@ -44,9 +44,20 @@ class _ForgetPasswordMethodsState extends State<ForgetPasswordMethods> {
                     GestureDetector(
                       onTap: () => _(() => _currentMethod = _methods.indexOf(entry)),
                       child: Container(
+                        padding: const EdgeInsets.all(24),
+                        margin: const EdgeInsets.only(bottom: 16),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: pink),
+                          border: Border.all(color: pink, width: 2),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(),
+                            const SizedBox(width: 10),
+                            Column(
+                              children: <Widget>[],
+                            ),
+                          ],
                         ),
                       ),
                     ),
