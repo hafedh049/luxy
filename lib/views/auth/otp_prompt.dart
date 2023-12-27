@@ -10,6 +10,7 @@ class OTPPrompt extends StatefulWidget {
 }
 
 class _OTPPromptState extends State<OTPPrompt> {
+  final List<String> _keyboard = List<String>.generate(9, (int index) => (index + 1).toString())..addAll(const <String>["*", "0", "C"]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,10 +39,20 @@ class _OTPPromptState extends State<OTPPrompt> {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
                 alignment: Alignment.center,
-                child: const Text("Continue", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                child: const Text("Verify", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               ),
             ),
             const SizedBox(height: 10),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: grey),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                  itemCount: _keyboard.length,
+                  itemBuilder: itemBuilder,
+                ),
+              ),
+            ),
           ],
         ),
       ),
