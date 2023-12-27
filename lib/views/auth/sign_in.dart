@@ -3,8 +3,9 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/helpers/icon.dart';
 import 'package:luxy/utils/helpers/layvy.dart';
-import 'package:luxy/views/auth/forget_password_menu.dart';
+import 'package:luxy/views/auth/forget_password_method.dart';
 import 'package:luxy/views/auth/sign_up.dart';
+import 'package:luxy/views/home.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -90,7 +91,9 @@ class _SignInState extends State<SignIn> {
                 ],
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => const Home()), (Route route) => route.isFirst);
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),

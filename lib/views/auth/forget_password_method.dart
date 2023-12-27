@@ -86,7 +86,7 @@ class _ForgetPasswordMethodsState extends State<ForgetPasswordMethods> {
             const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const OTPPrompt()));
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const OTPPrompt()));
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 16),

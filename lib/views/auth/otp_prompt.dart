@@ -46,11 +46,16 @@ class _OTPPromptState extends State<OTPPrompt> {
 
   @override
   void initState() {
-    _timer = Timer.periodic(1.seconds, (Timer timer) {
-      if (_tiktok > 0) {
-        _tiktokKey.currentState!.setState(() => _tiktok -= 1);
-      }
-    });
+    _timer = Timer.periodic(
+      1.seconds,
+      (Timer timer) {
+        if (_tiktok > 0) {
+          _tiktokKey.currentState!.setState(() => _tiktok -= 1);
+        } else {
+          _timer.cancel();
+        }
+      },
+    );
     super.initState();
   }
 
@@ -109,6 +114,7 @@ class _OTPPromptState extends State<OTPPrompt> {
                   ),
               ],
             ),
+            Container(margin: const EdgeInsets.symmetric(vertical: 8), width: 80, height: 3, decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(5))),
           ],
         ),
       ),
@@ -137,17 +143,26 @@ class _OTPPromptState extends State<OTPPrompt> {
                 },
               ),
             ),
-            const SizedBox(height: 30),
             StatefulBuilder(
               key: _tiktokKey,
               builder: (BuildContext context, void Function(void Function()) _) {
-                return Text("Resend code in ${_tiktok}s", style: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500));
+                if (_tiktok == 0) {
+                  return const SizedBox();
+                } else {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const SizedBox(height: 30),
+                      Text("Resend code in ${_tiktok}s", style: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
+                    ],
+                  );
+                }
               },
             ),
             const SizedBox(height: 30),
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Password()));
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Password()));
               },
               child: StatefulBuilder(
                 key: _buttonKey,

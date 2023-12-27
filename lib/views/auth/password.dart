@@ -112,7 +112,7 @@ class _PasswordState extends State<Password> {
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Home()));
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => const Home()), (Route route) => route.isFirst);
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 16),

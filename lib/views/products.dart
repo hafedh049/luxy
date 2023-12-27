@@ -86,7 +86,6 @@ class _ProductsState extends State<Products> {
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                boxShadow: <BoxShadow>[BoxShadow(color: pink.withOpacity(.3), blurStyle: BlurStyle.outer, offset: const Offset(2, 2))],
                                 image: const DecorationImage(image: AssetImage("assets/pictures/me.jpeg"), fit: BoxFit.cover),
                               ),
                               child: Column(
@@ -95,19 +94,16 @@ class _ProductsState extends State<Products> {
                                 children: <Widget>[
                                   if (Random().nextBool())
                                     Chip(
-                                      backgroundColor: pink,
-                                      elevation: 8,
+                                      backgroundColor: grey.withOpacity(.3),
                                       padding: const EdgeInsets.all(4),
-                                      shadowColor: pink.withOpacity(.3),
-                                      avatar: const Icon(FontAwesome.crown_solid, size: 15, color: Colors.yellow),
+                                      avatar: const Icon(FontAwesome.crown_solid, size: 10, color: white),
                                       label: const Text(" MOST SELLED", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
                                     ),
                                   const Spacer(),
                                   Chip(
-                                    backgroundColor: pink,
-                                    elevation: 8,
+                                    backgroundColor: grey.withOpacity(.3),
                                     padding: const EdgeInsets.all(4),
-                                    shadowColor: pink.withOpacity(.3),
+                                    shadowColor: transparent,
                                     label: Text(products[index].productPrice, style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                                   ),
                                 ],
