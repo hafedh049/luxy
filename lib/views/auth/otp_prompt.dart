@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/utils/helpers/button.dart';
+import 'package:otp_text_field/otp_field.dart';
 
 class OTPPrompt extends StatefulWidget {
   const OTPPrompt({super.key});
@@ -10,7 +12,21 @@ class OTPPrompt extends StatefulWidget {
 }
 
 class _OTPPromptState extends State<OTPPrompt> {
-  final List<String> _keyboard = List<String>.generate(9, (int index) => (index + 1).toString())..addAll(const <String>["*", "0", "C"]);
+  final OtpFieldController _otpController = OtpFieldController();
+  final List<IconData> _keyboard = <IconData>[
+    FontAwesome.num1_solid,
+    FontAwesome.num2_solid,
+    FontAwesome.num3_solid,
+    FontAwesome.num4_solid,
+    FontAwesome.num5_solid,
+    FontAwesome.num6_solid,
+    FontAwesome.num7_solid,
+    FontAwesome.num9_solid,
+    FontAwesome.num9_solid,
+    FontAwesome.asterisk_solid,
+    FontAwesome.num0_solid,
+    FontAwesome.x_solid,
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +45,15 @@ class _OTPPromptState extends State<OTPPrompt> {
             const Spacer(),
             const Flexible(child: Text("Code has been sent to +216 223 56* **2", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
             const SizedBox(height: 30),
+            Flexible(
+              child: IgnorePointer(
+                ignoring: true,
+                child: OTPTextField(
+                  contentPadding: const EdgeInsets.all(16),
+                  controller: _otpController,
+                ),
+              ),
+            ),
             const SizedBox(height: 30),
             const Spacer(),
             GestureDetector(
@@ -37,7 +62,7 @@ class _OTPPromptState extends State<OTPPrompt> {
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
+                decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
                 alignment: Alignment.center,
                 child: const Text("Verify", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               ),
@@ -45,11 +70,13 @@ class _OTPPromptState extends State<OTPPrompt> {
             const SizedBox(height: 10),
             Expanded(
               child: Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: grey),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.6)),
                 child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                   itemCount: _keyboard.length,
-                  itemBuilder: itemBuilder,
+                  itemBuilder: (BuildContext context, int index) => Buttoned(icon: _keyboard[index], text: "", callback: () {}),
                 ),
               ),
             ),
