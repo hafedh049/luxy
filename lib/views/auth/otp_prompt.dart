@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/utils/helpers/button.dart';
@@ -16,8 +19,16 @@ class OTPPrompt extends StatefulWidget {
 
 class _OTPPromptState extends State<OTPPrompt> {
   final GlobalKey<State> _buttonKey = GlobalKey<State>();
+  final GlobalKey<State> _tiktokKey = GlobalKey<State>();
+
   final OtpFieldController _otpController = OtpFieldController();
+
+  late final Timer _timer;
+
   int _fillIndex = 0;
+  int _tiktok = 60;
+  String _pin = "";
+
   final Map<IconData, String> _keyboard = <IconData, String>{
     FontAwesome.num1_solid: "1",
     FontAwesome.num2_solid: "2",
@@ -32,6 +43,23 @@ class _OTPPromptState extends State<OTPPrompt> {
     FontAwesome.num0_solid: "0",
     FontAwesome.x_solid: "x",
   };
+
+  @override
+  void initState() {
+    _timer = Timer.periodic(1.seconds, (Timer timer) {
+      if (_tiktok > 0) {
+        _tiktokKey.currentState!.setState(() => _tiktok -= 1);
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,8 +131,18 @@ class _OTPPromptState extends State<OTPPrompt> {
                 textFieldAlignment: MainAxisAlignment.spaceAround,
                 controller: _otpController,
                 fieldStyle: FieldStyle.box,
-                onCompleted: (String pin) => _buttonKey.currentState!.setState(() {}),
+                onChanged: (String pin) {
+                  _pin = pin;
+                  _buttonKey.currentState!.setState(() {});
+                },
               ),
+            ),
+            const SizedBox(height: 30),
+            StatefulBuilder(
+              key: _tiktokKey,
+              builder: (BuildContext context, void Function(void Function()) _) {
+                return Text("Resend code in ${_tiktok}s", style: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500));
+              },
             ),
             const SizedBox(height: 30),
             GestureDetector(
@@ -116,7 +154,7 @@ class _OTPPromptState extends State<OTPPrompt> {
                 builder: (BuildContext context, void Function(void Function()) _) {
                   return Container(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    decoration: BoxDecoration(color: _otpController. < 3 ? pink : grey, borderRadius: BorderRadius.circular(15)),
+                    decoration: BoxDecoration(color: _pin.length == 4 ? pink : grey, borderRadius: BorderRadius.circular(15)),
                     alignment: Alignment.center,
                     child: const Text("Verify", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                   );
