@@ -15,6 +15,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  DateTime _birthdate = DateTime(2001);
   @override
   void dispose() {
     _usernameController.dispose();
@@ -96,7 +97,15 @@ class _SignUpState extends State<SignUp> {
                   hintStyle: const TextStyle(color: grey),
                   suffixIcon: IconButton(
                     onPressed: () {
-                      DatePickerDialog();
+                      showDatePicker(
+                        context: context,
+                        firstDate: DateTime(1990),
+                        currentDate: DateTime.now(),
+                        lastDate: DateTime(2100),
+                        confirmText: "PICK",
+                        cancelText: "LEAVE",
+                        helpText: "Choose your birthdate",
+                      );
                     },
                     icon: const Icon(Bootstrap.chevron_compact_down, size: 15, color: grey),
                   ),
