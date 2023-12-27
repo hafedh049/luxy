@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/utils/helpers/button.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -27,6 +28,7 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
+  int _gender = -1;
   File? profilePicture;
   @override
   Widget build(BuildContext context) {
@@ -148,12 +150,19 @@ class _SignUpState extends State<SignUp> {
                           border: InputBorder.none,
                           hintText: "Gender",
                           hintStyle: const TextStyle(color: grey),
-                          prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
+                          prefixIcon: _gender == -1 ? null : Icon(_gender == 0 ? Bootstrap.gender_male : Bootstrap.gender_female, size: 15, color: grey),
                           suffixIcon: IconButton(
                             onPressed: () => _(() {}),
                             icon: const Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
                           ),
                         ),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(child: Buttoned(text: "Male", icon: Bootstrap.gender_male, callback: () {})),
+                          const SizedBox(width: 10),
+                          Expanded(child: Buttoned(text: "Female", icon: Bootstrap.gender_female, callback: () {})),
+                        ],
                       ),
                     ],
                   ),
