@@ -14,7 +14,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool _obscure = false;
+  bool _obscure = true;
   bool _rememberMe = false;
 
   @override
@@ -29,15 +29,16 @@ class _SignInState extends State<SignIn> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              const Layvy(),
+              const Layvy(fontSize: 64),
               const Text("Login to your account", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500)),
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: TextField(
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -50,12 +51,12 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.4)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: StatefulBuilder(
                   builder: (BuildContext context, void Function(void Function()) _) {
                     return TextField(
-                      controller: _emailController,
-                      obscureText: !_obscure,
+                      controller: _passwordController,
+                      obscureText: _obscure,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
                         border: InputBorder.none,
@@ -101,9 +102,9 @@ class _SignInState extends State<SignIn> {
               ),
               const Row(
                 children: <Widget>[
-                  Divider(thickness: .5, height: .5, color: grey, indent: 25, endIndent: 25),
+                  Expanded(child: Divider(thickness: .5, height: .5, color: grey, endIndent: 5)),
                   Text("OR CONTINUE WITH", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
-                  Divider(thickness: .5, height: .5, color: grey, indent: 25, endIndent: 25),
+                  Expanded(child: Divider(thickness: .5, height: .5, color: grey, indent: 5)),
                 ],
               ),
               Row(
@@ -117,7 +118,7 @@ class _SignInState extends State<SignIn> {
               GestureDetector(
                 onTap: () {},
                 child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text("Don't have an account ", style: TextStyle(color: grey, fontSize: 16, fontWeight: FontWeight.w500)),
                     Text("Sign up", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
