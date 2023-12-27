@@ -19,6 +19,7 @@ class _AddressState extends State<Address> {
     super.dispose();
   }
 
+  String _governorate = 'Tunis';
   final List<String> _tunisianGovernorates = <String>['Tunis', 'Ariana', 'Ben Arous', 'Manouba', 'Nabeul', 'Zaghouan', 'Bizerte', 'Béja', 'Jendouba', 'Kef', 'Siliana', 'Kairouan', 'Kasserine', 'Sidi Bouzid', 'Sousse', 'Monastir', 'Mahdia', 'Sfax', 'Gafsa', 'Tozeur', 'Kebili', 'Gabès', 'Medenine', 'Tataouine'];
   @override
   Widget build(BuildContext context) {
@@ -99,9 +100,14 @@ class _AddressState extends State<Address> {
                                         padding: EdgeInsets.zero,
                                         separatorBuilder: (BuildContext context, int index) => Container(width: MediaQuery.sizeOf(context).width, height: .5, color: grey),
                                         itemBuilder: (BuildContext context, int index) => GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            if (_governorate != tempo[index]) {
+                                              _governorate = tempo[index];
+                                            }
+                                            Navigator.pop(context);
+                                          },
                                           child: Container(
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: _governorate == tempo[index] ? pink : grey.withOpacity(.2)),
                                             child: Text(tempo[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                                           ),
                                         ),
