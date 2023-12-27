@@ -32,6 +32,7 @@ class _OTPPromptState extends State<OTPPrompt> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: dark,
         leading: IconButton(
@@ -40,24 +41,39 @@ class _OTPPromptState extends State<OTPPrompt> {
         ),
         title: const Text("Forgot Password", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
       ),
-      bottomSheet: Wrap(
-        alignment: WrapAlignment.center,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        runAlignment: WrapAlignment.center,
-        runSpacing: 10,
-        spacing: 10,
-        children: <Widget>[
-          for (int icon = 0; icon < _keyboard.length; icon += 1)
-            SizedBox(
-              height: 40,
-              width: MediaQuery.sizeOf(context).width / 3,
-              child: Buttoned(
-                icon: _keyboard[icon],
-                text: "",
-                callback: () {},
-              ),
+      bottomSheet: BottomSheet(
+        enableDrag: false,
+        onClosing: () {},
+        builder: (BuildContext context) => Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              width: 40,
+              height: 2,
+              decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(5)),
             ),
-        ],
+            Wrap(
+              alignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.center,
+              runSpacing: 10,
+              spacing: 10,
+              children: <Widget>[
+                for (int icon = 0; icon < _keyboard.length; icon += 1)
+                  SizedBox(
+                    height: 40,
+                    width: MediaQuery.sizeOf(context).width / 4,
+                    child: Buttoned(
+                      icon: _keyboard[icon],
+                      text: "",
+                      callback: () {},
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -90,6 +106,7 @@ class _OTPPromptState extends State<OTPPrompt> {
                 child: const Text("Verify", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               ),
             ),
+            const Spacer(),
           ],
         ),
       ),
