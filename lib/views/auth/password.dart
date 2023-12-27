@@ -38,6 +38,7 @@ class _PasswordState extends State<Password> {
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(
                 child: SizedBox(),

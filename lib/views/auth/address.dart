@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/auth/password.dart';
 
 class Address extends StatefulWidget {
   const Address({super.key});
@@ -145,7 +146,7 @@ class _AddressState extends State<Address> {
                 children: <Widget>[
                   Expanded(
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Password())),
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
