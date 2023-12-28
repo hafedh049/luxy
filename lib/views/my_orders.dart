@@ -22,20 +22,20 @@ class _MyOrdersState extends State<MyOrders> {
         "Active": List<Map<String, dynamic>>.generate(
           20,
           (int index) => <String, dynamic>{
-            "order_id": Random().nextInt(3000) + 1000,
+            "order_id": (Random().nextInt(3000) + 1000).toString(),
             "order_state": _orderStates[Random().nextInt(_orderStates.length - 1)],
             "seller_name": "Hafedh Gunichi",
             "seller_picture": "me.jpeg",
             "product_name": "Product N°$index",
             "product_picture": "me.jpeg",
-            "order_quantity": Random().nextInt(60) + 1,
+            "order_quantity": (Random().nextInt(60) + 1).toString(),
             "order_sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
           },
         ),
         "Completed": List<Map<String, dynamic>>.generate(
           20,
           (int index) => <String, dynamic>{
-            "order_id": Random().nextInt(3000) + 1000,
+            "order_id": (Random().nextInt(3000) + 1000).toString(),
             "order_state": _orderStates[Random().nextInt(_orderStates.length - 1)],
             "seller_name": "Hafedh Gunichi",
             "seller_picture": "me.jpeg",

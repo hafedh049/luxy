@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -11,39 +13,21 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
-  final Map<String, List<Map<String, dynamic>>> _orders = <String, List<Map<String, dynamic>>>{};
-  final List<String> _orderStates = <String>["Pending", "Awaiting Shipment", "In Delivery", "Completed"];
+  final List<Map<String, dynamic>> _products = <Map<String, dynamic>>[];
+
   @override
   void initState() {
-    _orders.addAll(
-      <String, List<Map<String, dynamic>>>{
-        "Active": List<Map<String, dynamic>>.generate(
-          20,
-          (int index) => <String, dynamic>{
-            "order_id": Random().nextInt(3000) + 1000,
-            "order_state": _orderStates[Random().nextInt(_orderStates.length - 1)],
-            "seller_name": "Hafedh Gunichi",
-            "seller_picture": "me.jpeg",
-            "product_name": "Product N°$index",
-            "product_picture": "me.jpeg",
-            "order_quantity": Random().nextInt(60) + 1,
-            "order_sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
-          },
-        ),
-        "Completed": List<Map<String, dynamic>>.generate(
-          20,
-          (int index) => <String, dynamic>{
-            "order_id": Random().nextInt(3000) + 1000,
-            "order_state": _orderStates[Random().nextInt(_orderStates.length - 1)],
-            "seller_name": "Hafedh Gunichi",
-            "seller_picture": "me.jpeg",
-            "product_name": "Product N°$index",
-            "product_picture": "me.jpeg",
-            "order_quantity": Random().nextInt(60) + 1,
-            "order_sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
-          },
-        ),
-      },
+    _products.addAll(
+      List<Map<String, dynamic>>.generate(
+        20,
+        (int index) => <String, dynamic>{
+          "product_name": "Product N°$index",
+          "product_picture": "me.jpeg",
+          "product_quantity": (Random().nextInt(60) + 1).toString(),
+          "product_sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
+          "product_total": (Random().nextInt(1000) + 100).toString(),
+        },
+      ),
     );
     super.initState();
   }
@@ -68,10 +52,10 @@ class _OrderDetailsState extends State<OrderDetails> {
                 Container(
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
-                  child: Text(_orders[key]![index]["order_id"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                  child: Text("Order #${Random().nextInt(4000) + 1000}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                 ),
                 const Spacer(),
-                Text(formatDate(DateTime.now(), <String>[]), style: const TextStyle(color: grey, fontSize: 14, fontWeight: FontWeight.w500)),
+                Text(formatDate(DateTime.now(), <String>[dd, '-', mm, '-', yyyy, "\t", HH, ':', nn, ':', ss, " ", am]), style: const TextStyle(color: grey, fontSize: 14, fontWeight: FontWeight.w500)),
               ],
             ),
             Expanded(
@@ -87,24 +71,24 @@ class _OrderDetailsState extends State<OrderDetails> {
                         Container(
                           padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
-                          child: Text(_orders[key]![index]["order_state"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                          child: Text(_products[key]![index]["order_state"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                         ),
                       ],
                     ),
                     const SizedBox(height: 10),
                     Row(
                       children: <Widget>[
-                        Container(width: 80, height: 80, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
+                        Container(width: 80, height: 80, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_products[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
                         const SizedBox(width: 10),
                         Expanded(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Flexible(child: Text(_orders[key]![index]["product_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
+                              Flexible(child: Text(_products[key]![index]["product_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
                               const SizedBox(height: 10),
-                              Text("Quantity : ${_orders[key]![index]["order_quantity"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                              Text("Sku : ${_orders[key]![index]["order_sku"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                              Text("Quantity : ${_products[key]![index]["order_quantity"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                              Text("Sku : ${_products[key]![index]["order_sku"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                             ],
                           ),
                         ),
