@@ -56,11 +56,15 @@ class _MyOrdersState extends State<MyOrders> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        const SizedBox(height: 20),
         Row(
           children: <Widget>[
             Expanded(
               child: TabBar(
                 controller: _tabController,
+                labelColor: pink,
+                dividerColor: grey,
+                indicatorColor: pink,
                 onTap: (int value) => _tabController.animateTo(value, duration: 300.ms, curve: Curves.linear),
                 tabs: const <Tab>[Tab(text: 'Active'), Tab(text: 'Completed')],
               ),
@@ -93,7 +97,14 @@ class _MyOrdersState extends State<MyOrders> with TickerProviderStateMixin {
                               const Spacer(),
                               Container(
                                 padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: _orders[key]![index]["order_state"] == "Pending" || _orders[key]![index]["order_state"] == "Completed"
+                                      ? Colors.lightBlue
+                                      : _orders[key]![index]["order_state"] == "In Delivery"
+                                          ? Colors.green
+                                          : Colors.amber,
+                                ),
                                 child: Text(_orders[key]![index]["order_state"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                               ),
                             ],
