@@ -89,9 +89,9 @@ class _MyOrdersState extends State<MyOrders> with TickerProviderStateMixin {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              const Text("You don't have an order yet.", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                              const Text("You don't have an order yet.", style: TextStyle(fontSize: 18, color: white, fontWeight: FontWeight.w500)),
                               const SizedBox(height: 10),
-                              Text("You don't have an ${_tabController.index == 0 ? 'active' : 'completed'} orders at this time", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                              Text("You don't have an ${_tabController.index == 0 ? 'active' : 'completed'} orders at this time", style: const TextStyle(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                             ],
                           ),
                         )
