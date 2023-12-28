@@ -118,19 +118,85 @@ class _OrderDetailsState extends State<OrderDetails> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      const Text("Shiping Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      const Text("Shipping Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                       const Spacer(),
                       IconButton(onPressed: () {}, icon: const Icon(FontAwesome.chevron_down_solid, size: 15, color: white)),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Row(
-                    children: <Widget>[],
+                    children: <Widget>[
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text("Name :", style: TextStyle(fontSize: 16, color: white.withOpacity(.6), fontWeight: FontWeight.w500)),
+                          const SizedBox(height: 10),
+                          Text("Phone Number :", style: TextStyle(fontSize: 16, color: white.withOpacity(.6), fontWeight: FontWeight.w500)),
+                          const SizedBox(height: 10),
+                          Text("City :", style: TextStyle(fontSize: 16, color: white.withOpacity(.6), fontWeight: FontWeight.w500)),
+                          const SizedBox(height: 10),
+                          Text("Address :", style: TextStyle(fontSize: 16, color: white.withOpacity(.6), fontWeight: FontWeight.w500)),
+                        ],
+                      ),
+                      const SizedBox(width: 10),
+                      const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text("Hafedh Guenichi", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                          SizedBox(height: 10),
+                          Text("(+216) 23 566 502", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                          SizedBox(height: 10),
+                          Text("Ariana", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                          SizedBox(height: 10),
+                          Text("Jaafar, Ariana | Tunisia", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      const Text("Payment Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      const Spacer(),
+                      IconButton(onPressed: () {}, icon: const Icon(FontAwesome.chevron_down_solid, size: 15, color: white)),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  const Row(
+                    children: <Widget>[
+                      Text("Total items", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      Spacer(),
+                      Text("6", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                  const Row(
+                    children: <Widget>[
+                      Text("7.000 DT", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      Spacer(),
+                      Text("Shipping charges", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                  const Row(
+                    children: <Widget>[
+                      Text("Total Price", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      Spacer(),
+                      Text("Shipping charges", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
