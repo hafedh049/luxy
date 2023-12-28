@@ -12,13 +12,13 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrdersState extends State<MyOrders> {
-  final List<List<Map<String, dynamic>>> _orders = <List<Map<String, dynamic>>>[];
+  final Map<String, List<Map<String, dynamic>>> _orders = <String, List<Map<String, dynamic>>>{};
   final List<String> _orderStates = <String>["Pending", "Awaiting Shipment", "In Delivery", "Completed"];
   @override
   void initState() {
     _orders.addAll(
-      <List<Map<String, dynamic>>>[
-        List<Map<String, dynamic>>.generate(
+      <String, List<Map<String, dynamic>>>{
+        "Active": List<Map<String, dynamic>>.generate(
           20,
           (int index) => <String, dynamic>{
             "order_id": Random().nextInt(3000) + 1000,
@@ -27,11 +27,11 @@ class _MyOrdersState extends State<MyOrders> {
             "seller_picture": "me.jpeg",
             "product_name": "Product N°$index",
             "product_picture": "me.jpeg",
-            "quantity": Random().nextInt(60) + 1,
+            "order_quantity": Random().nextInt(60) + 1,
             "sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
           },
         ),
-        List<Map<String, dynamic>>.generate(
+        "Completed": List<Map<String, dynamic>>.generate(
           20,
           (int index) => <String, dynamic>{
             "order_id": Random().nextInt(3000) + 1000,
@@ -40,11 +40,11 @@ class _MyOrdersState extends State<MyOrders> {
             "seller_picture": "me.jpeg",
             "product_name": "Product N°$index",
             "product_picture": "me.jpeg",
-            "quantity": Random().nextInt(60) + 1,
+            "order_quantity": Random().nextInt(60) + 1,
             "sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
           },
         ),
-      ],
+      },
     );
     super.initState();
   }
@@ -64,78 +64,79 @@ class _MyOrdersState extends State<MyOrders> {
         padding: const EdgeInsets.all(16),
         child: TabBarView(
           children: <Tab>[
-            Tab(
-              text: "Active",
-              child: ListView.builder(
-                itemCount: 20,
-                itemBuilder: (BuildContext context, int index) => Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
-                            child: const Text("Order #3244", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                          ),
-                          const Spacer(),
-                          Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
-                            child: const Text("Pending", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Container(decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/me.jpeg"), fit: BoxFit.cover))),
-                          const SizedBox(width: 10),
-                          const Text("Hafedh Guenichi", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Container(width: 80, height: 80, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/me.jpeg"), fit: BoxFit.cover))),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+            for (final String key in _orders.keys)
+              Tab(
+                text: key,
+                child: ListView.builder(
+                  itemCount: _orders[key]!.length,
+                  itemBuilder: (BuildContext context, int index) => Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
+                              child: Text(_orders[key]![index]["order_id"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                            ),
+                            const Spacer(),
+                            Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
+                              child: Text(_orders[key]![index]["order_state"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Container(decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["seller_picture"]}"), fit: BoxFit.cover))),
+                            const SizedBox(width: 10),
+                            Text(_orders[key]![index]["seller_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Container(width: 80, height: 80, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Flexible(child: Text(_orders[key]![index]["product_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
+                                  const SizedBox(height: 10),
+                                  const Text("Quantity : ${_orders[key]![index][""]}", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                  const Text("Sku : 24234", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Flexible(child: const Text("Product name", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
-                                const SizedBox(height: 10),
-                                const Text("Quantity : 3", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                                const Text("Sku : 24234", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                Text("View Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text("View Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),
