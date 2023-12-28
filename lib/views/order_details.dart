@@ -67,29 +67,34 @@ class _OrderDetailsState extends State<OrderDetails> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        const Spacer(),
                         Container(
                           padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
-                          child: Text(_products[key]![index]["order_state"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
+                          child: const Text("Products Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                         ),
+                        const Spacer(),
+                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.chevron_down_solid, size: 15, color: white)),
                       ],
                     ),
                     const SizedBox(height: 10),
                     Row(
                       children: <Widget>[
-                        Container(width: 80, height: 80, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_products[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
+                        Container(width: 80, height: 80, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_products[index]["product_picture"]}"), fit: BoxFit.cover))),
                         const SizedBox(width: 10),
                         Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Flexible(child: Text(_products[key]![index]["product_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
-                              const SizedBox(height: 10),
-                              Text("Quantity : ${_products[key]![index]["order_quantity"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                              Text("Sku : ${_products[key]![index]["order_sku"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                            ],
+                          child: ListView.separated(
+                            itemBuilder: (context, index) => Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Flexible(child: Text(_products[index]["product_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
+                                const SizedBox(height: 10),
+                                Text("Quantity : ${_products[index]["order_quantity"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                Text("Sku : ${_products[index]["order_sku"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                              ],
+                            ),
+                            separatorBuilder: (context, index) => const SizedBox(height: 10),
+                            itemCount: itemCount,
                           ),
                         ),
                       ],
