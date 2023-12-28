@@ -13,7 +13,7 @@ class MyOrders extends StatefulWidget {
 
 class _MyOrdersState extends State<MyOrders> {
   final List<List<Map<String, dynamic>>> _orders = <List<Map<String, dynamic>>>[];
-
+  final List<String> _orderStates = <String>["Pending", "Awaiting Shipment", "In Delivery", "Completed"];
   @override
   void initState() {
     _orders.addAll(
@@ -21,7 +21,27 @@ class _MyOrdersState extends State<MyOrders> {
         List<Map<String, dynamic>>.generate(
           20,
           (int index) => <String, dynamic>{
-            "orderID": Random().nextInt(3000) + 1000,
+            "order_id": Random().nextInt(3000) + 1000,
+            "order_state": _orderStates[Random().nextInt(_orderStates.length - 1)],
+            "seller_name": "Hafedh Gunichi",
+            "seller_picture": "me.jpeg",
+            "product_name": "Product N°$index",
+            "product_picture": "me.jpeg",
+            "quantity": Random().nextInt(60) + 1,
+            "sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
+          },
+        ),
+        List<Map<String, dynamic>>.generate(
+          20,
+          (int index) => <String, dynamic>{
+            "order_id": Random().nextInt(3000) + 1000,
+            "order_state": _orderStates[Random().nextInt(_orderStates.length - 1)],
+            "seller_name": "Hafedh Gunichi",
+            "seller_picture": "me.jpeg",
+            "product_name": "Product N°$index",
+            "product_picture": "me.jpeg",
+            "quantity": Random().nextInt(60) + 1,
+            "sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
           },
         ),
       ],
