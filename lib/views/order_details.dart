@@ -140,18 +140,20 @@ class _OrderDetailsState extends State<OrderDetails> {
                         ],
                       ),
                       const SizedBox(width: 10),
-                      const Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text("Hafedh Guenichi", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                          SizedBox(height: 10),
-                          Text("(+216) 23 566 502", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                          SizedBox(height: 10),
-                          Text("Ariana", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                          SizedBox(height: 10),
-                          Text("Jaafar, Ariana | Tunisia", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                        ],
+                      const Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text("Hafedh Guenichi", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                            SizedBox(height: 10),
+                            Text("(+216) 23 566 502", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                            SizedBox(height: 10),
+                            Text("Ariana", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                            SizedBox(height: 10),
+                            Text("Jaafar, Ariana | Tunisia", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -173,25 +175,25 @@ class _OrderDetailsState extends State<OrderDetails> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  const Row(
+                  Row(
                     children: <Widget>[
-                      Text("Total items", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                      Spacer(),
-                      Text("6", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      Text("Total items", style: TextStyle(fontSize: 16, color: white.withOpacity(.6), fontWeight: FontWeight.w500)),
+                      const Spacer(),
+                      const Text("6", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                     ],
                   ),
-                  const Row(
+                  Row(
                     children: <Widget>[
-                      Text("7.000 DT", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                      Spacer(),
-                      Text("Shipping charges", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      Text("Shipping charges", style: TextStyle(fontSize: 16, color: white.withOpacity(.6), fontWeight: FontWeight.w500)),
+                      const Spacer(),
+                      const Text("7.000 DT", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                     ],
                   ),
-                  const Row(
+                  Row(
                     children: <Widget>[
-                      Text("Total Price", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                      Spacer(),
-                      Text("Shipping charges", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      Text("Total Price", style: TextStyle(fontSize: 16, color: white.withOpacity(.6), fontWeight: FontWeight.w500)),
+                      const Spacer(),
+                      const Text("2.545.000 DT", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                     ],
                   ),
                 ],

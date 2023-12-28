@@ -53,6 +53,12 @@ class _MyOrdersState extends State<MyOrders> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -77,88 +83,99 @@ class _MyOrdersState extends State<MyOrders> with TickerProviderStateMixin {
             children: <Widget>[
               for (final String key in _orders.keys)
                 Tab(
-                  //text: key,
-                  child: ListView.separated(
-                    itemCount: _orders[key]!.length,
-                    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10),
-                    itemBuilder: (BuildContext context, int index) => Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Container(
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
-                                child: Text("Order #${_orders[key]![index]["order_id"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                              ),
-                              const Spacer(),
-                              Container(
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: _orders[key]![index]["order_state"] == "Pending" || _orders[key]![index]["order_state"] == "Completed"
-                                      ? Colors.lightBlue
-                                      : _orders[key]![index]["order_state"] == "In Delivery"
-                                          ? Colors.green
-                                          : Colors.amber,
-                                ),
-                                child: Text(_orders[key]![index]["order_state"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
+                  child: _orders[key]!.isEmpty
+                      ? Center(
+                          child: Column(
                             mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Container(width: 20, height: 20, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["seller_picture"]}"), fit: BoxFit.cover))),
-                              const SizedBox(width: 10),
-                              Text(_orders[key]![index]["seller_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                              const Text("You don't have an order yet.", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                              const SizedBox(height: 10),
+                              Text("You don't have an ${_tabController.index == 0 ? 'active' : 'completed'} orders at this time", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                             ],
                           ),
-                          const SizedBox(height: 10),
-                          Row(
-                            children: <Widget>[
-                              Container(width: 80, height: 80, decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                        )
+                      : ListView.separated(
+                          itemCount: _orders[key]!.length,
+                          separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10),
+                          itemBuilder: (BuildContext context, int index) => Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
                                   children: <Widget>[
-                                    Flexible(child: Text(_orders[key]![index]["product_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
-                                    const SizedBox(height: 10),
-                                    Text("Quantity : ${_orders[key]![index]["order_quantity"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                                    Text("Sku : ${_orders[key]![index]["order_sku"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                    Container(
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
+                                      child: Text("Order #${_orders[key]![index]["order_id"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                    ),
+                                    const Spacer(),
+                                    Container(
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: _orders[key]![index]["order_state"] == "Pending" || _orders[key]![index]["order_state"] == "Completed"
+                                            ? Colors.lightBlue
+                                            : _orders[key]![index]["order_state"] == "In Delivery"
+                                                ? Colors.green
+                                                : Colors.amber,
+                                      ),
+                                      child: Text(_orders[key]![index]["order_state"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                    ),
                                   ],
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const OrderDetails()));
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text("View Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                                ],
-                              ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Container(width: 20, height: 20, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["seller_picture"]}"), fit: BoxFit.cover))),
+                                    const SizedBox(width: 10),
+                                    Text(_orders[key]![index]["seller_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: <Widget>[
+                                    Container(width: 80, height: 80, decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Flexible(child: Text(_orders[key]![index]["product_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
+                                          const SizedBox(height: 10),
+                                          Text("Quantity : ${_orders[key]![index]["order_quantity"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                          Text("Sku : ${_orders[key]![index]["order_sku"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const OrderDetails()));
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.symmetric(vertical: 4),
+                                    decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
+                                    child: const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text("View Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                          ),
+                        ),
                 ),
             ],
           ),
