@@ -85,6 +85,7 @@ class _MyOrdersState extends State<MyOrders> with TickerProviderStateMixin {
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Row(
@@ -92,7 +93,7 @@ class _MyOrdersState extends State<MyOrders> with TickerProviderStateMixin {
                               Container(
                                 padding: const EdgeInsets.all(4),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
-                                child: Text(_orders[key]![index]["order_id"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                child: Text("Order #${_orders[key]![index]["order_id"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                               ),
                               const Spacer(),
                               Container(
@@ -113,14 +114,15 @@ class _MyOrdersState extends State<MyOrders> with TickerProviderStateMixin {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Container(decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["seller_picture"]}"), fit: BoxFit.cover))),
+                              Container(width: 20, height: 20, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["seller_picture"]}"), fit: BoxFit.cover))),
                               const SizedBox(width: 10),
                               Text(_orders[key]![index]["seller_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                             ],
                           ),
+                          const SizedBox(height: 10),
                           Row(
                             children: <Widget>[
-                              Container(width: 80, height: 80, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
+                              Container(width: 80, height: 80, decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
                               const SizedBox(width: 10),
                               Expanded(
                                 child: Column(

@@ -55,7 +55,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   child: Text("Order #${Random().nextInt(4000) + 1000}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                 ),
                 const Spacer(),
-                Text(formatDate(DateTime.now(), <String>[dd, '-', mm, '-', yyyy, "\t", HH, ':', nn, ':', ss, " ", am]), style: const TextStyle(color: grey, fontSize: 14, fontWeight: FontWeight.w500)),
+                Text(formatDate(DateTime.now(), <String>[dd, '-', mm, '-', yyyy, "\t", HH, ':', nn, ':', ss, " ", am]), style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               ],
             ),
             Expanded(
@@ -96,7 +96,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     children: <Widget>[
                                       Text("Sku : ${_products[index]["product_sku"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                                       const Spacer(),
-                                      Text(_products[index]["product_total"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.bold)),
+                                      Text("${_products[index]["product_total"]} DT", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.bold)),
                                     ],
                                   ),
                                 ],
