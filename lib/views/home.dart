@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/views/cart.dart';
+import 'package:luxy/views/my_orders.dart';
 import 'package:luxy/views/products.dart';
 import 'package:luxy/views/profile.dart';
 
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _pages = <Widget>[
     const Products(),
     const Cart(),
-    const Cart(),
+    const MyOrders(),
     const Profile(),
   ];
 
@@ -50,7 +51,7 @@ class _HomeState extends State<Home> {
           tabs: const <GButton>[
             GButton(icon: FontAwesome.house_chimney_solid, text: 'Home'),
             GButton(icon: Bootstrap.grid, text: 'Products'),
-            GButton(icon: FontAwesome.shop_solid, text: 'Shop'),
+            GButton(icon: FontAwesome.first_order_brand, text: 'Orders'),
             GButton(icon: FontAwesome.person_rifle_solid, text: 'Profile'),
           ],
         ),

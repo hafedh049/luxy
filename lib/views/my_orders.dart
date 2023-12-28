@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/order_details.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({super.key});
@@ -63,10 +64,10 @@ class _MyOrdersState extends State<MyOrders> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: TabBarView(
-          children: <Tab>[
+          children: <Widget>[
             for (final String key in _orders.keys)
               Tab(
-                text: key,
+                //text: key,
                 child: ListView.builder(
                   itemCount: _orders[key]!.length,
                   itemBuilder: (BuildContext context, int index) => Container(
@@ -119,7 +120,9 @@ class _MyOrdersState extends State<MyOrders> {
                         ),
                         const SizedBox(height: 10),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const OrderDetails()));
+                          },
                           child: Container(
                             alignment: Alignment.center,
                             padding: const EdgeInsets.symmetric(vertical: 4),
