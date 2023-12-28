@@ -28,7 +28,7 @@ class _MyOrdersState extends State<MyOrders> {
             "product_name": "Product N°$index",
             "product_picture": "me.jpeg",
             "order_quantity": Random().nextInt(60) + 1,
-            "sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
+            "order_sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
           },
         ),
         "Completed": List<Map<String, dynamic>>.generate(
@@ -41,7 +41,7 @@ class _MyOrdersState extends State<MyOrders> {
             "product_name": "Product N°$index",
             "product_picture": "me.jpeg",
             "order_quantity": Random().nextInt(60) + 1,
-            "sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
+            "order_sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
           },
         ),
       },
@@ -110,8 +110,8 @@ class _MyOrdersState extends State<MyOrders> {
                                 children: <Widget>[
                                   Flexible(child: Text(_orders[key]![index]["product_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
                                   const SizedBox(height: 10),
-                                  const Text("Quantity : ${_orders[key]![index][""]}", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                                  const Text("Sku : 24234", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                  Text("Quantity : ${_orders[key]![index]["order_quantity"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                  Text("Sku : ${_orders[key]![index]["order_sku"]}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                                 ],
                               ),
                             ),
