@@ -33,7 +33,38 @@ class _MyOrdersState extends State<MyOrders> {
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
                   child: Column(
-                    children: <Widget>[],
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
+                            child: const Text("Order #3244", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                          ),
+                          const Spacer(),
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
+                            child: const Text("Pending"),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/me.jpeg"))),
+                          ),
+                          const Spacer(),
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
+                            child: const Text("Pending"),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
