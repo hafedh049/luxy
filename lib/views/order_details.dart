@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
@@ -10,6 +11,43 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
+  final Map<String, List<Map<String, dynamic>>> _orders = <String, List<Map<String, dynamic>>>{};
+  final List<String> _orderStates = <String>["Pending", "Awaiting Shipment", "In Delivery", "Completed"];
+  @override
+  void initState() {
+    _orders.addAll(
+      <String, List<Map<String, dynamic>>>{
+        "Active": List<Map<String, dynamic>>.generate(
+          20,
+          (int index) => <String, dynamic>{
+            "order_id": Random().nextInt(3000) + 1000,
+            "order_state": _orderStates[Random().nextInt(_orderStates.length - 1)],
+            "seller_name": "Hafedh Gunichi",
+            "seller_picture": "me.jpeg",
+            "product_name": "Product N°$index",
+            "product_picture": "me.jpeg",
+            "order_quantity": Random().nextInt(60) + 1,
+            "order_sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
+          },
+        ),
+        "Completed": List<Map<String, dynamic>>.generate(
+          20,
+          (int index) => <String, dynamic>{
+            "order_id": Random().nextInt(3000) + 1000,
+            "order_state": _orderStates[Random().nextInt(_orderStates.length - 1)],
+            "seller_name": "Hafedh Gunichi",
+            "seller_picture": "me.jpeg",
+            "product_name": "Product N°$index",
+            "product_picture": "me.jpeg",
+            "order_quantity": Random().nextInt(60) + 1,
+            "order_sku": (Random().nextInt(9) + 1).toString() + (Random().nextInt(4000) + 1000).toString(),
+          },
+        ),
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +63,17 @@ class _OrderDetailsState extends State<OrderDetails> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
+                  child: Text(_orders[key]![index]["order_id"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                ),
+                const Spacer(),
+                Text(formatDate(DateTime.now(), <String>[]), style: const TextStyle(color: grey, fontSize: 14, fontWeight: FontWeight.w500)),
+              ],
+            ),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(16),
@@ -34,11 +83,6 @@ class _OrderDetailsState extends State<OrderDetails> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
-                          child: Text(_orders[key]![index]["order_id"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                        ),
                         const Spacer(),
                         Container(
                           padding: const EdgeInsets.all(4),
@@ -48,14 +92,6 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(_orders[key]![index]["seller_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                        const SizedBox(width: 10),
-                        Text(_orders[key]![index]["seller_name"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                      ],
-                    ),
                     Row(
                       children: <Widget>[
                         Container(width: 80, height: 80, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_orders[key]![index]["product_picture"]}"), fit: BoxFit.cover))),
