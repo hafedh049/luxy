@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
@@ -10,6 +12,23 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrdersState extends State<MyOrders> {
+  final List<List<Map<String, dynamic>>> _orders = <List<Map<String, dynamic>>>[];
+
+  @override
+  void initState() {
+    _orders.addAll(
+      <List<Map<String, dynamic>>>[
+        List<Map<String, dynamic>>.generate(
+          20,
+          (int index) => <String, dynamic>{
+            "orderID": Random().nextInt(3000) + 1000,
+          },
+        ),
+      ],
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,6 +100,7 @@ class _MyOrdersState extends State<MyOrders> {
                       GestureDetector(
                         onTap: () {},
                         child: Container(
+                          alignment: Alignment.center,
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
                           child: const Row(
