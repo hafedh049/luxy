@@ -55,9 +55,10 @@ class _OrderDetailsState extends State<OrderDetails> {
                   child: Text("Order #${Random().nextInt(4000) + 1000}", style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                 ),
                 const Spacer(),
-                Text(formatDate(DateTime.now(), <String>[dd, '-', mm, '-', yyyy, "\t", HH, ':', nn, ':', ss, " ", am]), style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                Text(formatDate(DateTime.now(), <String>[dd, '-', mm, '-', yyyy, "  ", HH, ':', nn, " ", am]), style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               ],
             ),
+            const SizedBox(height: 10),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(16),
@@ -67,11 +68,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey),
-                          child: const Text("Products Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                        ),
+                        const Text("Products Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                         const Spacer(),
                         IconButton(onPressed: () {}, icon: const Icon(FontAwesome.chevron_down_solid, size: 15, color: white)),
                       ],
@@ -82,7 +79,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         padding: EdgeInsets.zero,
                         itemBuilder: (BuildContext context, int index) => Row(
                           children: <Widget>[
-                            Container(width: 80, height: 80, decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/${_products[index]["product_picture"]}"), fit: BoxFit.cover))),
+                            Container(width: 80, height: 80, decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: DecorationImage(image: AssetImage("assets/pictures/${_products[index]["product_picture"]}"), fit: BoxFit.cover))),
                             const SizedBox(width: 10),
                             Expanded(
                               child: Column(
@@ -104,7 +101,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             ),
                           ],
                         ),
-                        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10),
+                        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 30),
                         itemCount: _products.length,
                       ),
                     ),
@@ -112,6 +109,28 @@ class _OrderDetailsState extends State<OrderDetails> {
                 ),
               ),
             ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      const Text("Shiping Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                      const Spacer(),
+                      IconButton(onPressed: () {}, icon: const Icon(FontAwesome.chevron_down_solid, size: 15, color: white)),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: <Widget>[],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
           ],
         ),
       ),
