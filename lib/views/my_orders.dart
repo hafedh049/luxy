@@ -78,6 +78,19 @@ class _MyOrdersState extends State<MyOrders> {
                         ],
                       ),
                       const SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text("View Details", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
