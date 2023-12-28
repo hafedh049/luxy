@@ -46,24 +46,38 @@ class _MyOrdersState extends State<MyOrders> {
                           Container(
                             padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
-                            child: const Text("Pending"),
+                            child: const Text("Pending", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
                           ),
                         ],
                       ),
                       const SizedBox(height: 10),
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/me.jpeg"))),
-                          ),
-                          const Spacer(),
-                          Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.lightBlue),
-                            child: const Text("Pending"),
+                          Container(decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/me.jpeg"), fit: BoxFit.cover))),
+                          const SizedBox(width: 10),
+                          const Text("Hafedh Guenichi", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Container(width: 80, height: 80, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/pictures/me.jpeg"), fit: BoxFit.cover))),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Flexible(child: const Text("Product name", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
+                                const SizedBox(height: 10),
+                                const Text("Quantity : 3", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                const Text("Sku : 24234", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                              ],
+                            ),
                           ),
                         ],
                       ),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 ),
