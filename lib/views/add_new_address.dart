@@ -18,6 +18,8 @@ class _AddNewAddressState extends State<AddNewAddress> {
 
   final GlobalKey<State> _governorateKey = GlobalKey<State>();
 
+  bool _rememberMe = false;
+
   @override
   void dispose() {
     _localisationController.dispose();
@@ -98,6 +100,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                           decoration: BoxDecoration(color: grey.withOpacity(.2)),
                                           child: TextField(
                                             controller: _cityController,
+                                            onChanged: (String value) => _governorateKey.currentState!.setState(() {}),
                                             decoration: const InputDecoration(
                                               contentPadding: EdgeInsets.all(16),
                                               border: InputBorder.none,
@@ -111,7 +114,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                           child: StatefulBuilder(
                                             key: _governorateKey,
                                             builder: (BuildContext context, void Function(void Function()) _) {
-                                              final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_cityController.text.trim())).toList();
+                                              final List<String> tempo = _tunisianGovernorates.where((String element) => element.toLowerCase().startsWith(_cityController.text.trim().toLowerCase())).toList();
                                               return ListView.separated(
                                                 itemCount: tempo.length,
                                                 padding: EdgeInsets.zero,
@@ -189,9 +192,24 @@ class _AddNewAddressState extends State<AddNewAddress> {
                           border: InputBorder.none,
                           hintText: "Meta data",
                           hintStyle: TextStyle(color: grey),
-                          suffixIcon: Icon(Bootstrap.pin_map, size: 15, color: grey),
                         ),
                       ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      children: <Widget>[
+                        StatefulBuilder(
+                          builder: (BuildContext context, void Function(void Function()) _) {
+                            return Checkbox(
+                              value: _rememberMe,
+                              checkColor: white,
+                              activeColor: pink,
+                              onChanged: (bool? value) => _(() => _rememberMe = !_rememberMe),
+                            );
+                          },
+                        ),
+                        const Text("Make this as the default address", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                      ],
                     ),
                     const SizedBox(height: 20),
                     const Spacer(),
@@ -204,7 +222,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("Continue", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                            Text("Add", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                           ],
                         ),
                       ),

@@ -13,11 +13,16 @@ class Address extends StatefulWidget {
 
 class _AddressState extends State<Address> {
   final TextEditingController _localisationController = TextEditingController();
+  final TextEditingController _detailsController = TextEditingController();
+
   final GlobalKey<State> _governorateKey = GlobalKey<State>();
+
+  PhoneNumber _phoneNumber = PhoneNumber(dialCode: "+216");
 
   @override
   void dispose() {
     _localisationController.dispose();
+    _detailsController.dispose();
     super.dispose();
   }
 
@@ -60,7 +65,7 @@ class _AddressState extends State<Address> {
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: TextField(
-                  controller: _localisationController,
+                  readOnly: true,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(16),
                     border: InputBorder.none,
@@ -78,11 +83,12 @@ class _AddressState extends State<Address> {
                                 Container(
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                                   child: TextField(
-                                    controller: _localisationController,
+                                    onChanged: (String value) => _governorateKey.currentState!.setState(() {}),
+                                    controller: _detailsController,
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.all(16),
                                       border: InputBorder.none,
-                                      hintText: "Gouvernement",
+                                      hintText: "Choose a city",
                                       hintStyle: TextStyle(color: grey),
                                       suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
                                     ),
@@ -93,7 +99,7 @@ class _AddressState extends State<Address> {
                                   child: StatefulBuilder(
                                     key: _governorateKey,
                                     builder: (BuildContext context, void Function(void Function()) _) {
-                                      final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_localisationController.text.trim())).toList();
+                                      final List<String> tempo = _tunisianGovernorates.where((String element) => element.toLowerCase().startsWith(_detailsController.text.trim().toLowerCase())).toList();
                                       return ListView.separated(
                                         itemCount: tempo.length,
                                         padding: EdgeInsets.zero,
@@ -130,41 +136,33 @@ class _AddressState extends State<Address> {
               const Text("Phone Number", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 20),
               Container(
+                padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: InternationalPhoneNumberInput(
+                  selectorButtonOnErrorPadding: 4,
+                  spaceBetweenSelectorAndTextField: 0,
+                  selectorConfig: const SelectorConfig(
+                    leadingPadding: 16,
+                    selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                    trailingSpace: false,
+                    useBottomSheetSafeArea: true,
+                    useEmoji: true,
+                    showFlags: true,
+                    setSelectorButtonAsPrefixIcon: true,
+                  ),
                   autoValidateMode: AutovalidateMode.onUserInteraction,
                   cursorColor: pink,
                   errorMessage: "Wrong phone number format",
-                  hintText: "+216 23 566 502",
-                  searchBoxDecoration: const InputDecoration(
-                    contentPadding: EdgeInsets.all(16),
-                    border: InputBorder.none,
-                    hintText: "Choose your country",
-                    hintStyle: TextStyle(color: grey),
-                    suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
-                  ),
-                  inputDecoration: const InputDecoration(
-                    contentPadding: EdgeInsets.all(16),
-                    border: InputBorder.none,
-                    hintText: "Number",
-                    hintStyle: TextStyle(color: grey),
-                    suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
-                  ),
-                  onInputChanged: (PhoneNumber value) {},
+                  selectorTextStyle: const TextStyle(color: grey),
+                  locale: "en",
+                  initialValue: _phoneNumber,
+                  searchBoxDecoration: const InputDecoration(contentPadding: EdgeInsets.all(16), hintStyle: TextStyle(color: grey, fontSize: 18, fontWeight: FontWeight.w500)),
+                  inputDecoration: const InputDecoration(contentPadding: EdgeInsets.all(16), border: InputBorder.none, hintStyle: TextStyle(color: grey), hintText: "23 566 502"),
+                  onInputChanged: (PhoneNumber value) {
+                    _phoneNumber = value;
+                  },
                 ),
               ),
-              /* Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(16),
-                    border: InputBorder.none,
-                    hintText: "Number",
-                    hintStyle: TextStyle(color: grey),
-                    suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
-                  ),
-                ),
-              ),*/
               const Spacer(),
               Row(
                 children: <Widget>[
