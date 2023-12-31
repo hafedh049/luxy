@@ -220,6 +220,17 @@ class _ProfileState extends State<Profile> {
             ],
           ),
         ),
+        const SizedBox(height: 10),
+        GestureDetector(
+          onTap: () {},
+          child: const Row(
+            children: <Widget>[
+              Icon(FontAwesome.leaf_solid, size: 15, color: pink),
+              SizedBox(width: 20),
+              Text("Sign Out", style: TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.w500)),
+            ],
+          ),
+        ),
       ],
     );
   }

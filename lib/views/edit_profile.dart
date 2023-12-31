@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:luxy/utils/helpers/button.dart';
 
 import '../utils/globals.dart';
 
@@ -11,80 +14,40 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _birthDateController = TextEditingController(text: DateTime.now().toString().split(" ")[0]);
+  final TextEditingController _genderController = TextEditingController();
+
+  PhoneNumber _phoneNumber = PhoneNumber(dialCode: "+216");
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _genderController.dispose();
+    _birthDateController.dispose();
+    super.dispose();
+  }
+
+  int _gender = -1;
+  bool _genderMenu = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: dark,
-        leading: IconButton(icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white), onPressed: () => Navigator.pop(context)),
-        title: const Text("Edit Profile", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
-              child: TextField(
-                controller: _usernameController,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(16),
-                  border: InputBorder.none,
-                  hintText: "Username",
-                  hintStyle: TextStyle(color: grey),
-                  prefixIcon: Icon(Bootstrap.envelope, size: 15, color: grey),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-          ],
-        ),
-      ),
-    );
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: dark,
-          leading: IconButton(
-            icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white),
-            onPressed: () => Navigator.pop(context),
-          ),
-          title: const Text("Fill your profile", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+          leading: IconButton(icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white), onPressed: () => Navigator.pop(context)),
+          title: const Text("Edit Profile", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              StatefulBuilder(
-                builder: (BuildContext context, void Function(void Function()) _) {
-                  return GestureDetector(
-                    onTap: () {},
-                    child: Stack(
-                      alignment: Alignment.bottomRight,
-                      children: <Widget>[
-                        Container(
-                          width: 150,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: pink, width: 2),
-                            image: profilePicture == null ? null : DecorationImage(image: AssetImage(profilePicture!.path), fit: BoxFit.cover),
-                          ),
-                          child: profilePicture != null ? null : const Icon(Bootstrap.people, size: 35, color: pink),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(shape: BoxShape.circle, color: grey.withOpacity(.3)),
-                          child: const Icon(Bootstrap.pen, size: 15, color: white),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: TextField(
@@ -93,6 +56,7 @@ class _EditProfileState extends State<EditProfile> {
                   decoration: const InputDecoration(contentPadding: EdgeInsets.all(16), border: InputBorder.none, hintText: "Username", hintStyle: TextStyle(color: grey)),
                 ),
               ),
+              const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: TextField(
@@ -101,6 +65,7 @@ class _EditProfileState extends State<EditProfile> {
                   decoration: const InputDecoration(contentPadding: EdgeInsets.all(16), border: InputBorder.none, hintText: "E-mail", hintStyle: TextStyle(color: grey)),
                 ),
               ),
+              const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: TextField(
@@ -135,6 +100,36 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                child: InternationalPhoneNumberInput(
+                  selectorButtonOnErrorPadding: 4,
+                  spaceBetweenSelectorAndTextField: 0,
+                  selectorConfig: const SelectorConfig(
+                    leadingPadding: 16,
+                    selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                    trailingSpace: false,
+                    useBottomSheetSafeArea: true,
+                    useEmoji: true,
+                    showFlags: true,
+                    setSelectorButtonAsPrefixIcon: true,
+                  ),
+                  autoValidateMode: AutovalidateMode.onUserInteraction,
+                  cursorColor: pink,
+                  errorMessage: "Wrong phone number format",
+                  selectorTextStyle: const TextStyle(color: grey),
+                  locale: "en",
+                  initialValue: _phoneNumber,
+                  searchBoxDecoration: const InputDecoration(contentPadding: EdgeInsets.all(16), hintStyle: TextStyle(color: grey, fontSize: 18, fontWeight: FontWeight.w500)),
+                  inputDecoration: const InputDecoration(contentPadding: EdgeInsets.all(16), border: InputBorder.none, hintStyle: TextStyle(color: grey), hintText: "23 566 502"),
+                  onInputChanged: (PhoneNumber value) {
+                    _phoneNumber = value;
+                  },
+                ),
+              ),
+              const SizedBox(height: 20),
               StatefulBuilder(
                 builder: (BuildContext context, void Function(void Function()) _) {
                   return AnimatedContainer(
@@ -202,17 +197,19 @@ class _EditProfileState extends State<EditProfile> {
                   );
                 },
               ),
+              const Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Address()));
+                  Navigator.pop(context);
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
                   alignment: Alignment.center,
-                  child: const Text("Continue", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                  child: const Text("Update", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
