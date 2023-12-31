@@ -33,6 +33,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
             if (snapshot.hasData) {
               final List<Map<String, dynamic>> data = snapshot.data!;
+
               return Column(
                 children: <Widget>[
                   Expanded(
@@ -50,9 +51,20 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                 ? Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[for()Flexible(child: Text("${data[index]["subtitles"].indexOf(item) + 1}. ${data[index]["header"]}", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.bold))),],
+                                    children: <Widget>[
+                                      for (final String text in item["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${item["data"].indexOf(text) + 1}. $text", style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
+                                    ],
                                   )
-                                : const SizedBox(),
+                                : item["type"] == "text with custom list"
+                                    ? Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${item["data"].removeAt(0)}", style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
+                                          for (final Map<String, String> text in item["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${item["data"].indexOf(text) + 1}. $text", style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
+                                        ],
+                                      )
+                                    : const SizedBox(),
                         ],
                       ),
                     ),
