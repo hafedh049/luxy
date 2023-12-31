@@ -52,7 +52,8 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
-                                      for (final String text in item["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${item["data"].indexOf(text) + 1}. $text", style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
+                                      Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${item["data"].indexOf(item["subtitle"]) + 1}. $text", style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
+                                      for (final String text in item["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text(text, style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
                                     ],
                                   )
                                 : item["type"] == "text with custom list"
@@ -63,20 +64,16 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                           for (final dynamic customPuce in item["data"])
                                             Flexible(
                                               child: Container(
+                                                margin: const EdgeInsets.only(bottom: 10),
                                                 child: customPuce is String
                                                     ? Text(customPuce, style: TextStyle(color: white.withOpacity(.8), fontSize: 18, fontWeight: FontWeight.bold))
-                                                    : Row(
-                                                        mainAxisSize: MainAxisSize.min,
-                                                        children: <Widget>[
-                                                          Text(
-                                                            "● ${item["data"].indexOf(customPuce) + 1}. $customPuce['word']",
-                                                            style: const TextStyle(color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold),
-                                                          ),
-                                                          Text(
-                                                            " $customPuce['rest']",
-                                                            style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold),
-                                                          ),
-                                                        ],
+                                                    : RichText(
+                                                        text: TextSpan(
+                                                          children: <TextSpan>[
+                                                            TextSpan(text: "● ${customPuce['word']}", style: const TextStyle(color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold)),
+                                                            TextSpan(text: " ${customPuce['rest']}", style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
+                                                          ],
+                                                        ),
                                                       ),
                                               ),
                                             ),
