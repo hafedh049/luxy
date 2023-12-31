@@ -257,12 +257,25 @@
         "header": "Changes to this Privacy Policy",
         "subtitles": [
             {
-                "type": "text with list",
+                "type": "text with pink list",
                 "data": [
                     "If you have any questions about this Privacy Policy, You can contact us:",
-                    "We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.",
-                    "We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the \"Last updated\" date at the top of this Privacy Policy.",
-                    "You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page."
+                    {
+                        "word": "By email:",
+                        "rest": "hafedhgunichi@gmail.com"
+                    },
+                    {
+                        "word": "By visiting this page on our website:",
+                        "rest": "https://hafedh-gunichi-d749f.web.app"
+                    },
+                    {
+                        "word": "By phone number:",
+                        "rest": "+216 23 566 502"
+                    },
+                    {
+                        "word": "By mail:",
+                        "rest": "Jaafar, Ariana 2083"
+                    }
                 ]
             }
         ]
