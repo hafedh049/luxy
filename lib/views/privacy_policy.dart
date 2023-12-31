@@ -61,6 +61,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
+                                          if (item['subtitle'] != null) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${data[index]['subtitles'].indexOf(item) + 1}. ${item['subtitle']}", style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
                                           for (final dynamic customPuce in item["data"])
                                             Flexible(
                                               child: Container(
@@ -79,32 +80,35 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                             ),
                                         ],
                                       )
-                                    : item["type"] == "text with list"
+                                    : item["type"] == "subtitle with nested ones"
                                         ? Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.min,
                                             children: <Widget>[
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(text: " $puce", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
-                                                  ],
-                                                ),
-                                              ),
-                                              for (final dynamic puce in item["data"])
-                                                Flexible(
-                                                  child: Container(
-                                                    margin: const EdgeInsets.only(bottom: 10),
-                                                    child: RichText(
-                                                      text: TextSpan(
-                                                        children: <TextSpan>[
-                                                          const TextSpan(text: "●", style: TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.bold)),
-                                                          TextSpan(text: " $puce", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
-                                                        ],
-                                                      ),
-                                                    ),
+                                              if (item['subtitle'] != null) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${data[index]['subtitles'].indexOf(item) + 1}. ${item['subtitle']}", style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
+                                              for()
+/*Container(
+                                                margin: const EdgeInsets.only(bottom: 10),
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                    children: <TextSpan>[
+                                                      TextSpan(text: " ${item["data"][0]}", style: TextStyle(color: white.withOpacity(.8), fontSize: 16, fontWeight: FontWeight.bold)),
+                                                    ],
                                                   ),
                                                 ),
+                                              ),
+                                              for (final dynamic puce in item["data"].skip(1))
+                                                Container(
+                                                  margin: const EdgeInsets.only(bottom: 10),
+                                                  child: RichText(
+                                                    text: TextSpan(
+                                                      children: <TextSpan>[
+                                                        const TextSpan(text: "●", style: TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                        TextSpan(text: " $puce", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ), */
                                             ],
                                           )
                                         : const SizedBox(),
