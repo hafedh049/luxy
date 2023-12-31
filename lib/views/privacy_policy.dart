@@ -44,7 +44,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Flexible(child: Text("${_romanNumerals[index]}. ${data[index]["header"]}", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.bold))),
+                          Flexible(child: Text("${_romanNumerals[index]}. ${data[index]["header"]}", style: const TextStyle(color: pink, fontSize: 20, fontWeight: FontWeight.bold))),
                           const SizedBox(height: 20),
                           for (final Map<String, dynamic> item in data[index]["subtitles"])
                             item["type"] == "text"
@@ -52,8 +52,8 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
-                                      Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${item["data"].indexOf(item["subtitle"]) + 1}. $text", style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
-                                      for (final String text in item["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text(text, style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
+                                      if (item['subtitle'] != null) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${data[index]['subtitles'].indexOf(item) + 1}. ${item['subtitle']}", style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
+                                      for (final String text in item["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text(text, style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)))),
                                     ],
                                   )
                                 : item["type"] == "text with custom list"
@@ -66,12 +66,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                               child: Container(
                                                 margin: const EdgeInsets.only(bottom: 10),
                                                 child: customPuce is String
-                                                    ? Text(customPuce, style: TextStyle(color: white.withOpacity(.8), fontSize: 18, fontWeight: FontWeight.bold))
+                                                    ? Text(customPuce, style: TextStyle(color: white.withOpacity(.8), fontSize: 16, fontWeight: FontWeight.bold))
                                                     : RichText(
                                                         text: TextSpan(
                                                           children: <TextSpan>[
-                                                            TextSpan(text: "● ${customPuce['word']}", style: const TextStyle(color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold)),
-                                                            TextSpan(text: " ${customPuce['rest']}", style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
+                                                            TextSpan(text: "● ${customPuce['word']}", style: const TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                            TextSpan(text: " ${customPuce['rest']}", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                                           ],
                                                         ),
                                                       ),
@@ -79,7 +79,35 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                             ),
                                         ],
                                       )
-                                    : const SizedBox(),
+                                    : item["type"] == "text with list"
+                                        ? Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: <TextSpan>[
+                                                    TextSpan(text: " $puce", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                  ],
+                                                ),
+                                              ),
+                                              for (final dynamic puce in item["data"])
+                                                Flexible(
+                                                  child: Container(
+                                                    margin: const EdgeInsets.only(bottom: 10),
+                                                    child: RichText(
+                                                      text: TextSpan(
+                                                        children: <TextSpan>[
+                                                          const TextSpan(text: "●", style: TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                          TextSpan(text: " $puce", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          )
+                                        : const SizedBox(),
                         ],
                       ),
                     ),
