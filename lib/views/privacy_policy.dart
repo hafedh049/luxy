@@ -63,20 +63,18 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                           for (final dynamic customPuce in item["data"])
                                             Flexible(
                                               child: Container(
-                                                margin: const EdgeInsets.only(bottom: 10),
                                                 child: customPuce is String
-                                                    ? Flexible(child: Text("${_romanNumerals[index]}. ${data[index]["header"]}", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.bold)))
+                                                    ? Text(customPuce, style: TextStyle(color: white.withOpacity(.8), fontSize: 18, fontWeight: FontWeight.bold))
                                                     : Row(
+                                                        mainAxisSize: MainAxisSize.min,
                                                         children: <Widget>[
                                                           Text(
                                                             "● ${item["data"].indexOf(customPuce) + 1}. $customPuce['word']",
                                                             style: const TextStyle(color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold),
                                                           ),
-                                                          Flexible(
-                                                            child: Text(
-                                                              "${item["data"].indexOf(customPuce) + 1}. $customPuce['rest']",
-                                                              style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold),
-                                                            ),
+                                                          Text(
+                                                            " $customPuce['rest']",
+                                                            style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold),
                                                           ),
                                                         ],
                                                       ),
