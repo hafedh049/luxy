@@ -20,24 +20,43 @@ class _ProfileState extends State<Profile> {
       children: <Widget>[
         const SizedBox(height: 20),
         const Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[Text("Profile", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500))]),
-        GestureDetector(
-          onTap: () {},
-          child: Row(
-            children: <Widget>[
-              const CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/pictures/me.jpeg")),
-              const SizedBox(width: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.w500)),
-                  Text("Following 23", style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
-                ],
-              ),
-            ],
-          ),
+        Row(
+          children: <Widget>[
+            StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) _) {
+                return GestureDetector(child: const CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/pictures/me.jpeg")));
+              },
+            ),
+            const SizedBox(width: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.w500)),
+                Text("Following 23", style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
+              ],
+            ),
+          ],
         ),
         const SizedBox(height: 10),
+        const Divider(color: grey, height: .8, thickness: .8),
+        const SizedBox(height: 10),
+        GestureDetector(
+          onTap: () {},
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: pink.withOpacity(.6)),
+            child: const Row(
+              children: <Widget>[
+                Icon(FontAwesome.file_code, size: 15, color: white),
+                SizedBox(width: 20),
+                Text("Become a SELLER", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                Spacer(),
+                Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+              ],
+            ),
+          ),
+        ),
         const SizedBox(height: 10),
         const Text("SETTINGS", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
