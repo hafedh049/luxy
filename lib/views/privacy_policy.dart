@@ -11,7 +11,7 @@ class PrivacyPolicy extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: dark,
         leading: IconButton(icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white), onPressed: () => Navigator.pop(context)),
-        title: const Text("Privacy Policy", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+        title: const Text("Privacy Policy For Layvy", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
       ),
       body: ListView.separated(itemCount: ,
         separatorBuilder: (BuildContext context,int index) => const SizedBox(height: 20),
