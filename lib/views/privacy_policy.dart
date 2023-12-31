@@ -15,7 +15,7 @@ class PrivacyPolicy extends StatefulWidget {
 }
 
 class _PrivacyPolicyState extends State<PrivacyPolicy> {
-  final List<String> romanNumerals = <String>['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX'];
+  final List<String> _romanNumerals = <String>['I', 'II', 'III', 'IV', 'V', 'VI'];
 
   Future<List<Map<String, dynamic>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/privacy_policy.json")).cast<Map<String, dynamic>>();
   @override
@@ -39,7 +39,22 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                     child: ListView.separated(
                       itemCount: data.length,
                       separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
-                      itemBuilder: (BuildContext context, int index) => data[index]["type"] == "text",
+                      itemBuilder: (BuildContext context, int index) => Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Flexible(child: Text("${_romanNumerals[index]}. ${data[index]["header"]}", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.bold))),
+                          const SizedBox(height: 20),
+                          for (final Map<String, dynamic> item in data[index]["subtitles"])
+                            item["type"] == "text"
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[for()Flexible(child: Text("${data[index]["subtitles"].indexOf(item) + 1}. ${data[index]["header"]}", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.bold))),],
+                                  )
+                                : const SizedBox(),
+                        ],
+                      ),
                     ),
                   ),
                 ],
