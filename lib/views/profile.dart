@@ -22,21 +22,22 @@ class _ProfileState extends State<Profile> {
         const Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[Text("Profile", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.w500))]),
         GestureDetector(
           onTap: () {},
-          child: const Row(
+          child: Row(
             children: <Widget>[
-              CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/pictures/me.jpeg")),
-              SizedBox(width: 20),
+              const CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/pictures/me.jpeg")),
+              const SizedBox(width: 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.w500)),
-                  Text("Following 23", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                  const Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.w500)),
+                  Text("Following 23", style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
                 ],
               ),
             ],
           ),
         ),
+        const SizedBox(height: 10),
         const SizedBox(height: 10),
         const Text("SETTINGS", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
