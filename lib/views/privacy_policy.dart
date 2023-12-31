@@ -60,8 +60,28 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${item["data"].removeAt(0)}", style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
-                                          for (final Map<String, String> text in item["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${item["data"].indexOf(text) + 1}. $text", style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold)))),
+                                          for (final dynamic customPuce in item["data"])
+                                            Flexible(
+                                              child: Container(
+                                                margin: const EdgeInsets.only(bottom: 10),
+                                                child: customPuce is String
+                                                    ? Flexible(child: Text("${_romanNumerals[index]}. ${data[index]["header"]}", style: const TextStyle(color: pink, fontSize: 25, fontWeight: FontWeight.bold)))
+                                                    : Row(
+                                                        children: <Widget>[
+                                                          Text(
+                                                            "● ${item["data"].indexOf(customPuce) + 1}. $customPuce['word']",
+                                                            style: const TextStyle(color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold),
+                                                          ),
+                                                          Flexible(
+                                                            child: Text(
+                                                              "${item["data"].indexOf(customPuce) + 1}. $customPuce['rest']",
+                                                              style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                              ),
+                                            ),
                                         ],
                                       )
                                     : const SizedBox(),
