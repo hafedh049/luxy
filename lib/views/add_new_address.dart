@@ -21,6 +21,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
     super.dispose();
   }
 
+  PhoneNumber _phoneNumber = PhoneNumber(dialCode: "+216");
   String _governorate = 'Tunis';
   final List<String> _tunisianGovernorates = <String>['Tunis', 'Ariana', 'Ben Arous', 'Manouba', 'Nabeul', 'Zaghouan', 'Bizerte', 'Béja', 'Jendouba', 'Kef', 'Siliana', 'Kairouan', 'Kasserine', 'Sidi Bouzid', 'Sousse', 'Monastir', 'Mahdia', 'Sfax', 'Gafsa', 'Tozeur', 'Kebili', 'Gabès', 'Medenine', 'Tataouine'];
 
@@ -156,20 +157,14 @@ class _AddNewAddressState extends State<AddNewAddress> {
                         autoValidateMode: AutovalidateMode.onUserInteraction,
                         cursorColor: pink,
                         errorMessage: "Wrong phone number format",
-                        hintText: "+216 23 566 502",
-                        searchBoxDecoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(16),
-                          border: InputBorder.none,
-                          hintText: "Choose your country",
-                          hintStyle: TextStyle(color: grey),
-                        ),
-                        inputDecoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(16),
-                          border: InputBorder.none,
-                          hintText: "Number",
-                          hintStyle: TextStyle(color: grey),
-                        ),
-                        onInputChanged: (PhoneNumber value) {},
+                        selectorTextStyle: const TextStyle(color: grey),
+                        locale: "en",
+                        initialValue: _phoneNumber,
+                        searchBoxDecoration: const InputDecoration(contentPadding: EdgeInsets.all(16), hintStyle: TextStyle(color: grey, fontSize: 18, fontWeight: FontWeight.w500)),
+                        inputDecoration: const InputDecoration(contentPadding: EdgeInsets.all(16), border: InputBorder.none, hintStyle: TextStyle(color: grey), hintText: "23 566 502"),
+                        onInputChanged: (PhoneNumber value) {
+                          _phoneNumber = value;
+                        },
                       ),
                     ),
                     const SizedBox(height: 20),
