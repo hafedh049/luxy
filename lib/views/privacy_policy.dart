@@ -116,7 +116,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             mainAxisSize: MainAxisSize.min,
                                                             children: <Widget>[
-                                                              for (final String uplet in element["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text(uplet, style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
+                                                              for (final String uplet in element["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text(uplet, style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)))),
                                                             ],
                                                           )
                                                   ],
@@ -136,8 +136,8 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                                         child: RichText(
                                                           text: TextSpan(
                                                             children: <TextSpan>[
-                                                              const TextSpan(text: "●", style: TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.bold)),
-                                                              TextSpan(text: " $element", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                              TextSpan(text: "● ${element['word']}", style: const TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                              TextSpan(text: " ${element['rest']}", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                                             ],
                                                           ),
                                                         ),
