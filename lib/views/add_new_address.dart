@@ -13,11 +13,14 @@ class AddNewAddress extends StatefulWidget {
 
 class _AddNewAddressState extends State<AddNewAddress> {
   final TextEditingController _localisationController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+
   final GlobalKey<State> _governorateKey = GlobalKey<State>();
 
   @override
   void dispose() {
     _localisationController.dispose();
+    _cityController.dispose();
     super.dispose();
   }
 
@@ -71,7 +74,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                     Container(
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                       child: TextField(
-                        controller: _localisationController,
+                        readOnly: true,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(16),
                           border: InputBorder.none,
@@ -80,54 +83,58 @@ class _AddNewAddressState extends State<AddNewAddress> {
                           suffixIcon: IconButton(
                             onPressed: () {
                               showModalBottomSheet(
+                                useSafeArea: true,
                                 context: context,
-                                builder: (BuildContext context) => SizedBox(
-                                  height: MediaQuery.sizeOf(context).height * .3,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Container(
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
-                                        child: TextField(
-                                          controller: _localisationController,
-                                          decoration: const InputDecoration(
-                                            contentPadding: EdgeInsets.all(16),
-                                            border: InputBorder.none,
-                                            hintText: "Gouvernement",
-                                            hintStyle: TextStyle(color: grey),
-                                            suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                                builder: (BuildContext context) => ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: SizedBox(
+                                    height: MediaQuery.sizeOf(context).height * .3,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        Container(
+                                          decoration: BoxDecoration(color: grey.withOpacity(.2)),
+                                          child: TextField(
+                                            controller: _cityController,
+                                            decoration: const InputDecoration(
+                                              contentPadding: EdgeInsets.all(16),
+                                              border: InputBorder.none,
+                                              hintText: "Choose a city",
+                                              hintStyle: TextStyle(color: grey),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Expanded(
-                                        child: StatefulBuilder(
-                                          key: _governorateKey,
-                                          builder: (BuildContext context, void Function(void Function()) _) {
-                                            final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_localisationController.text.trim())).toList();
-                                            return ListView.separated(
-                                              itemCount: tempo.length,
-                                              padding: EdgeInsets.zero,
-                                              separatorBuilder: (BuildContext context, int index) => Container(width: MediaQuery.sizeOf(context).width, height: .5, color: grey),
-                                              itemBuilder: (BuildContext context, int index) => GestureDetector(
-                                                onTap: () {
-                                                  if (_governorate != tempo[index]) {
-                                                    _governorate = tempo[index];
-                                                  }
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Container(
-                                                  padding: const EdgeInsets.all(8),
-                                                  margin: const EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: _governorate == tempo[index] ? pink : grey.withOpacity(.2)),
-                                                  child: Text(tempo[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                                        const SizedBox(height: 10),
+                                        Expanded(
+                                          child: StatefulBuilder(
+                                            key: _governorateKey,
+                                            builder: (BuildContext context, void Function(void Function()) _) {
+                                              final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_localisationController.text.trim())).toList();
+                                              return ListView.separated(
+                                                itemCount: tempo.length,
+                                                padding: EdgeInsets.zero,
+                                                separatorBuilder: (BuildContext context, int index) => Container(width: MediaQuery.sizeOf(context).width, height: .5, color: grey),
+                                                itemBuilder: (BuildContext context, int index) => GestureDetector(
+                                                  onTap: () {
+                                                    if (_governorate != tempo[index]) {
+                                                      _governorate = tempo[index];
+                                                      _cityController.text = _governorate;
+                                                    }
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Container(
+                                                    padding: const EdgeInsets.all(8),
+                                                    margin: const EdgeInsets.all(8),
+                                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: _governorate == tempo[index] ? pink : null),
+                                                    child: Text(tempo[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
+                                              );
+                                            },
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
