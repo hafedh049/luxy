@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/edit_profile.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -24,7 +25,7 @@ class _ProfileState extends State<Profile> {
           children: <Widget>[
             StatefulBuilder(
               builder: (BuildContext context, void Function(void Function()) _) {
-                return GestureDetector(child: const CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/pictures/me.jpeg")));
+                return GestureDetector(onTap: () {}, child: const CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/pictures/me.jpeg")));
               },
             ),
             const SizedBox(width: 20),
@@ -61,7 +62,9 @@ class _ProfileState extends State<Profile> {
         const Text("SETTINGS", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const EditProfile()));
+          },
           child: const Row(
             children: <Widget>[
               Icon(FontAwesome.user, size: 15, color: white),
