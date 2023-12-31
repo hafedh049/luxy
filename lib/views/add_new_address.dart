@@ -13,6 +13,7 @@ class AddNewAddress extends StatefulWidget {
 
 class _AddNewAddressState extends State<AddNewAddress> {
   final TextEditingController _localisationController = TextEditingController();
+  final TextEditingController _metaDataController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
 
   final GlobalKey<State> _governorateKey = GlobalKey<State>();
@@ -20,6 +21,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
   @override
   void dispose() {
     _localisationController.dispose();
+    _metaDataController.dispose();
     _cityController.dispose();
     super.dispose();
   }
@@ -86,7 +88,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                 useSafeArea: true,
                                 context: context,
                                 builder: (BuildContext context) => ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(25),
                                   child: SizedBox(
                                     height: MediaQuery.sizeOf(context).height * .3,
                                     child: Column(
@@ -109,7 +111,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                           child: StatefulBuilder(
                                             key: _governorateKey,
                                             builder: (BuildContext context, void Function(void Function()) _) {
-                                              final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_localisationController.text.trim())).toList();
+                                              final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_cityController.text.trim())).toList();
                                               return ListView.separated(
                                                 itemCount: tempo.length,
                                                 padding: EdgeInsets.zero,
@@ -148,6 +150,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                     const Text("Phone Number", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 20),
                     Container(
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                       child: InternationalPhoneNumberInput(
                         selectorButtonOnErrorPadding: 4,
@@ -180,7 +183,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                     Container(
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                       child: TextField(
-                        controller: _localisationController,
+                        controller: _metaDataController,
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(16),
                           border: InputBorder.none,
