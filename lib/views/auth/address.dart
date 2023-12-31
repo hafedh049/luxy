@@ -30,10 +30,7 @@ class _AddressState extends State<Address> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: dark,
-          leading: IconButton(
-            icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white),
-            onPressed: () => Navigator.pop(context),
-          ),
+          leading: IconButton(icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white), onPressed: () => Navigator.pop(context)),
           title: const Text("Add your address", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
         ),
         body: Padding(
@@ -52,7 +49,7 @@ class _AddressState extends State<Address> {
                     border: InputBorder.none,
                     hintText: "Location",
                     hintStyle: TextStyle(color: grey),
-                    suffix: Icon(Bootstrap.pin_map, size: 15, color: grey),
+                    suffixIcon: Icon(Bootstrap.pin_map, size: 15, color: grey),
                   ),
                 ),
               ),
@@ -108,6 +105,8 @@ class _AddressState extends State<Address> {
                                             Navigator.pop(context);
                                           },
                                           child: Container(
+                                            padding: const EdgeInsets.all(8),
+                                            margin: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: _governorate == tempo[index] ? pink : grey.withOpacity(.2)),
                                             child: Text(tempo[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                                           ),

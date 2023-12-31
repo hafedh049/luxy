@@ -11,36 +11,184 @@ class AddNewAddress extends StatefulWidget {
 }
 
 class _AddNewAddressState extends State<AddNewAddress> {
+  final TextEditingController _localisationController = TextEditingController();
+  final GlobalKey<State> _governorateKey = GlobalKey<State>();
+
+  @override
+  void dispose() {
+    _localisationController.dispose();
+    super.dispose();
+  }
+
+  String _governorate = 'Tunis';
+  final List<String> _tunisianGovernorates = <String>['Tunis', 'Ariana', 'Ben Arous', 'Manouba', 'Nabeul', 'Zaghouan', 'Bizerte', 'Béja', 'Jendouba', 'Kef', 'Siliana', 'Kairouan', 'Kasserine', 'Sidi Bouzid', 'Sousse', 'Monastir', 'Mahdia', 'Sfax', 'Gafsa', 'Tozeur', 'Kebili', 'Gabès', 'Medenine', 'Tataouine'];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: dark,
-        leading: IconButton(icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white), onPressed: () => Navigator.pop(context)),
-        actions: <Widget>[
-          IconButton(icon: const Icon(FontAwesome.ellipsis_solid, size: 15, color: white), onPressed: () {}),
-        ],
-        title: const Text("Add New Address", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Divider(thickness: .5, height: .5, color: grey),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Address Details", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 10),
-                  const Divider(thickness: .5, height: .5, color: grey),
-                  const SizedBox(height: 10),
-                ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: dark,
+          leading: IconButton(icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white), onPressed: () => Navigator.pop(context)),
+          actions: <Widget>[IconButton(icon: const Icon(FontAwesome.ellipsis_solid, size: 15, color: white), onPressed: () {})],
+          title: const Text("Add New Address", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Divider(thickness: .5, height: .5, color: grey),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const Text("Address Details", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.w500)),
+                    const SizedBox(height: 10),
+                    const Divider(thickness: .5, height: .5, color: grey),
+                    const SizedBox(height: 10),
+                    const Text("Address", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                    const SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                      child: TextField(
+                        controller: _localisationController,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(16),
+                          border: InputBorder.none,
+                          hintText: "Location",
+                          hintStyle: TextStyle(color: grey),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text("City", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                    const SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                      child: TextField(
+                        controller: _localisationController,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(16),
+                          border: InputBorder.none,
+                          hintText: "Governorate",
+                          hintStyle: const TextStyle(color: grey),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) => SizedBox(
+                                  height: MediaQuery.sizeOf(context).height * .3,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Container(
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                                        child: TextField(
+                                          controller: _localisationController,
+                                          decoration: const InputDecoration(
+                                            contentPadding: EdgeInsets.all(16),
+                                            border: InputBorder.none,
+                                            hintText: "Gouvernement",
+                                            hintStyle: TextStyle(color: grey),
+                                            suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Expanded(
+                                        child: StatefulBuilder(
+                                          key: _governorateKey,
+                                          builder: (BuildContext context, void Function(void Function()) _) {
+                                            final List<String> tempo = _tunisianGovernorates.where((String element) => element.startsWith(_localisationController.text.trim())).toList();
+                                            return ListView.separated(
+                                              itemCount: tempo.length,
+                                              padding: EdgeInsets.zero,
+                                              separatorBuilder: (BuildContext context, int index) => Container(width: MediaQuery.sizeOf(context).width, height: .5, color: grey),
+                                              itemBuilder: (BuildContext context, int index) => GestureDetector(
+                                                onTap: () {
+                                                  if (_governorate != tempo[index]) {
+                                                    _governorate = tempo[index];
+                                                  }
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(8),
+                                                  margin: const EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: _governorate == tempo[index] ? pink : grey.withOpacity(.2)),
+                                                  child: Text(tempo[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                            icon: const Icon(Bootstrap.pin_map, size: 15, color: grey),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text("Phone Number", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                    const SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                      child: const TextField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(16),
+                          border: InputBorder.none,
+                          hintText: "Gouvernement",
+                          hintStyle: TextStyle(color: grey),
+                          suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text("Details", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                    const SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                      child: TextField(
+                        controller: _localisationController,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(16),
+                          border: InputBorder.none,
+                          hintText: "Meta data",
+                          hintStyle: TextStyle(color: grey),
+                          suffixIcon: Icon(Bootstrap.pin_map, size: 15, color: grey),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        decoration: BoxDecoration(color: pink, borderRadius: BorderRadius.circular(15)),
+                        alignment: Alignment.center,
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("Continue", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
