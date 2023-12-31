@@ -88,10 +88,54 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                               if (item['subtitle'] != null) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${data[index]['subtitles'].indexOf(item) + 1}. ${item['subtitle']}", style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
                                               for (final Map<String, dynamic> element in item["data"])
                                                 Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: <Widget>[
+                                                    element["type"] == "text with list"
+                                                        ? Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            mainAxisSize: MainAxisSize.min,
+                                                            children: <Widget>[
+                                                              Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text(element["data"][0], style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
+                                                              for (final String uplet in element["data"].skip(1))
+                                                                Container(
+                                                                  margin: const EdgeInsets.only(bottom: 10),
+                                                                  child: RichText(
+                                                                    text: TextSpan(
+                                                                      children: <TextSpan>[
+                                                                        const TextSpan(text: "●", style: TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                                        TextSpan(text: " $uplet", style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                            ],
+                                                          )
+                                                        : Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            mainAxisSize: MainAxisSize.min,
+                                                            children: <Widget>[
+                                                              for (final String uplet in element["data"]) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text(uplet, style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
+                                                            ],
+                                                          )
+                                                  ],
+                                                ),
+                                            ],
+                                          )
+                                        : Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              if (item['subtitle'] != null) Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text("${data[index]['subtitles'].indexOf(item) + 1}. ${item['subtitle']}", style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
+                                              for (final Map<String, dynamic> element in item["data"])
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisSize: MainAxisSize.min,
                                                   children: <Widget>[
                                                     for (final dynamic uplet in element["data"])
-                                                      element["type"] == "text with list"
-                                                          ? Container(
+                                                      uplet is String
+                                                          ? const SizedBox()
+                                                          : Container(
                                                               margin: const EdgeInsets.only(bottom: 10),
                                                               child: RichText(
                                                                 text: TextSpan(
@@ -102,12 +146,10 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                                                 ),
                                                               ),
                                                             )
-                                                          : Flexible(child: Container(margin: const EdgeInsets.only(bottom: 10), child: Text(uplet, style: const TextStyle(color: pink, fontSize: 18, fontWeight: FontWeight.bold)))),
                                                   ],
                                                 ),
                                             ],
-                                          )
-                                        : const SizedBox(),
+                                          ),
                         ],
                       ),
                     ),
