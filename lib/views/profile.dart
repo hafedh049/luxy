@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/views/edit_profile.dart';
+import 'package:luxy/views/privacy_policy.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -185,7 +186,9 @@ class _ProfileState extends State<Profile> {
         const Text("SERVICES", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const PrivacyPolicy()));
+          },
           child: const Row(
             children: <Widget>[
               Icon(Bootstrap.lock, size: 15, color: white),
