@@ -62,7 +62,7 @@ class _OrderDetailsState extends State<OrderDetails> {
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
@@ -112,7 +112,7 @@ class _OrderDetailsState extends State<OrderDetails> {
             const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -163,7 +163,7 @@ class _OrderDetailsState extends State<OrderDetails> {
             const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[

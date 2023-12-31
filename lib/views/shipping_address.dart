@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/add_new_address.dart';
 
 class ShippingAddress extends StatefulWidget {
   const ShippingAddress({super.key});
@@ -111,7 +112,9 @@ class _ShippingAddressState extends State<ShippingAddress> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const AddNewAddress()));
+              },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
