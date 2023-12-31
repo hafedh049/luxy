@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../utils/globals.dart';
 
@@ -140,14 +141,35 @@ class _AddNewAddressState extends State<AddNewAddress> {
                     const SizedBox(height: 20),
                     Container(
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
-                      child: const TextField(
-                        decoration: InputDecoration(
+                      child: InternationalPhoneNumberInput(
+                        selectorButtonOnErrorPadding: 4,
+                        spaceBetweenSelectorAndTextField: 0,
+                        selectorConfig: const SelectorConfig(
+                          leadingPadding: 16,
+                          selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                          trailingSpace: false,
+                          useBottomSheetSafeArea: true,
+                          useEmoji: true,
+                          showFlags: true,
+                          setSelectorButtonAsPrefixIcon: true,
+                        ),
+                        autoValidateMode: AutovalidateMode.onUserInteraction,
+                        cursorColor: pink,
+                        errorMessage: "Wrong phone number format",
+                        hintText: "+216 23 566 502",
+                        searchBoxDecoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(16),
                           border: InputBorder.none,
-                          hintText: "Gouvernement",
+                          hintText: "Choose your country",
                           hintStyle: TextStyle(color: grey),
-                          suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
                         ),
+                        inputDecoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(16),
+                          border: InputBorder.none,
+                          hintText: "Number",
+                          hintStyle: TextStyle(color: grey),
+                        ),
+                        onInputChanged: (PhoneNumber value) {},
                       ),
                     ),
                     const SizedBox(height: 20),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/views/auth/password.dart';
 
@@ -130,16 +131,40 @@ class _AddressState extends State<Address> {
               const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
+                child: InternationalPhoneNumberInput(
+                  autoValidateMode: AutovalidateMode.onUserInteraction,
+                  cursorColor: pink,
+                  errorMessage: "Wrong phone number format",
+                  hintText: "+216 23 566 502",
+                  searchBoxDecoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(16),
+                    border: InputBorder.none,
+                    hintText: "Choose your country",
+                    hintStyle: TextStyle(color: grey),
+                    suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                  ),
+                  inputDecoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(16),
+                    border: InputBorder.none,
+                    hintText: "Number",
+                    hintStyle: TextStyle(color: grey),
+                    suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
+                  ),
+                  onInputChanged: (PhoneNumber value) {},
+                ),
+              ),
+              /* Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.2)),
                 child: const TextField(
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(16),
                     border: InputBorder.none,
-                    hintText: "Gouvernement",
+                    hintText: "Number",
                     hintStyle: TextStyle(color: grey),
                     suffixIcon: Icon(FontAwesome.chevron_down_solid, size: 15, color: grey),
                   ),
                 ),
-              ),
+              ),*/
               const Spacer(),
               Row(
                 children: <Widget>[
