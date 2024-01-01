@@ -16,19 +16,7 @@ class LanguagesList extends StatefulWidget {
 }
 
 class _LanguagesListState extends State<LanguagesList> {
-  Future<List<Map<String, dynamic>>> _load() async {
-    final List<Map<String, dynamic>> data = json
-        .decode(await rootBundle.loadString('assets/jsons/languages.json'))
-        .map(
-          (dynamic e) {
-            e.addAll(<String, dynamic>{"key": GlobalKey<State>()});
-            return e;
-          },
-        )
-        .toList()
-        .cast<Map<String, dynamic>>();
-    return data;
-  }
+  Future<List<Map<String, dynamic>>> _load() async => json.decode(await rootBundle.loadString('assets/jsons/languages.json')).cast<Map<String, dynamic>>();
 
   String _currentLanguage = "en";
   @override
@@ -57,6 +45,10 @@ class _LanguagesListState extends State<LanguagesList> {
                         onTap: () {
                           if (_currentLanguage != data[index]["code"]) {
                             for (final Map<String, dynamic> language in data) {
+                              if (language["key"] == null) {
+                                language["key"] = GlobalKey<State>();
+                              }
+                              print(language["key"].currentState! == null);
                               language["key"].currentState!.setState(() => _currentLanguage = language["code"]);
                             }
                           }
