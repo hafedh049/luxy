@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/customer_service.dart';
 import 'package:luxy/views/loading_screen.dart';
 import 'package:luxy/views/red_screen.dart';
 
@@ -19,12 +20,18 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
   final GlobalKey<State> _filterKey = GlobalKey<State>();
 
   final List<Map<String, dynamic>> _contactUs = <Map<String, dynamic>>[
-    <String, dynamic>{"icon": FontAwesome.headphones_solid, "title": "Customer Service", "callback": () {}},
-    <String, dynamic>{"icon": Bootstrap.whatsapp, "title": "Whatsapp", "callback": () {}},
-    <String, dynamic>{"icon": Bootstrap.link, "title": "Website", "callback": () {}},
-    <String, dynamic>{"icon": Bootstrap.facebook, "title": "Facebook", "callback": () {}},
-    <String, dynamic>{"icon": Bootstrap.twitter_x, "title": "Twitter", "callback": () {}},
-    <String, dynamic>{"icon": Bootstrap.instagram, "title": "Instagram", "callback": () {}},
+    <String, dynamic>{
+      "icon": FontAwesome.headphones_solid,
+      "title": "Customer Service",
+      "callback": (BuildContext context) {
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const CustomerService()));
+      },
+    },
+    <String, dynamic>{"icon": Bootstrap.whatsapp, "title": "Whatsapp", "callback": (BuildContext context) {}},
+    <String, dynamic>{"icon": Bootstrap.link, "title": "Website", "callback": (BuildContext context) {}},
+    <String, dynamic>{"icon": Bootstrap.facebook, "title": "Facebook", "callback": (BuildContext context) {}},
+    <String, dynamic>{"icon": Bootstrap.twitter_x, "title": "Twitter", "callback": (BuildContext context) {}},
+    <String, dynamic>{"icon": Bootstrap.instagram, "title": "Instagram", "callback": (BuildContext context) {}},
   ];
 
   final List<String> _hints = <String>[];
@@ -162,7 +169,7 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
                       const SizedBox(height: 16),
                       for (final Map<String, dynamic> item in _contactUs)
                         GestureDetector(
-                          onTap: item["callback"](),
+                          onTap: () => item["callback"](context),
                           child: Container(
                             padding: const EdgeInsets.all(16),
                             margin: const EdgeInsets.only(bottom: 16),

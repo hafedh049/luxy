@@ -60,14 +60,14 @@ class _CustomerServiceState extends State<CustomerService> {
   @override
   void initState() {
     _attachments = <Map<String, dynamic>>[
-      <String, dynamic>{"icon": FontAwesome.image, "title": "Fotos", "callback": _handleImageSelection},
-      <String, dynamic>{"icon": FontAwesome.file, "title": "Archivos", "callback": _handleFileSelection},
-      <String, dynamic>{"icon": FontAwesome.leaf_solid, "title": "Cancelar", "callback": () => Navigator.pop(context)},
+      <String, dynamic>{"icon": FontAwesome.image, "title": "Pictures", "callback": _handleImageSelection},
+      <String, dynamic>{"icon": FontAwesome.file, "title": "Files", "callback": _handleFileSelection},
+      <String, dynamic>{"icon": FontAwesome.leaf_solid, "title": "Cancel", "callback": () => Navigator.pop(context)},
     ];
     _deletions = <Map<String, dynamic>>[
       <String, dynamic>{
         "icon": Icons.delete_forever,
-        "title": "ELIMINAR",
+        "title": "Delete Forever",
         "callback": (BuildContext context, QueryDocumentSnapshot<Map<String, dynamic>> doc, Map<String, dynamic> data) async {
           if (data["type"] == "audio") {
             final int index = _audios.indexWhere((VoiceController element) => element.audioSrc == data['content']);
@@ -87,7 +87,7 @@ class _CustomerServiceState extends State<CustomerService> {
           Navigator.pop(context);
         }
       },
-      <String, dynamic>{"icon": FontAwesome.leaf_solid, "title": "CANCELAR", "callback": () => Navigator.pop(context)},
+      <String, dynamic>{"icon": FontAwesome.leaf_solid, "title": "Cancel", "callback": () => Navigator.pop(context)},
     ];
     super.initState();
   }
@@ -349,7 +349,7 @@ class _CustomerServiceState extends State<CustomerService> {
                               constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * .7),
                               decoration: BoxDecoration(color: data["uid"] == _uid ? white : const Color.fromARGB(255, 200, 200, 200), borderRadius: BorderRadius.circular(5)),
                               padding: const EdgeInsets.all(8),
-                              child: Text(data["content"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w400)),
+                              child: Text(data["content"], style: const TextStyle(fontSize: 16, color: black, fontWeight: FontWeight.w400)),
                             ),
                           )
                         : (data["type"] == "image")
@@ -372,7 +372,7 @@ class _CustomerServiceState extends State<CustomerService> {
                                         isSender: data["uid"] == _uid,
                                         backgroundColor: transparent,
                                         activeSliderColor: white,
-                                        circlesColor: white,
+                                        circlesColor: grey,
                                         notActiveSliderColor: transparent,
                                         controller: _audios.last,
                                         innerPadding: 4,
@@ -426,7 +426,7 @@ class _CustomerServiceState extends State<CustomerService> {
                           _sendButtonKey.currentState!.setState(() {});
                         }
                       },
-                      decoration: const InputDecoration(border: InputBorder.none, hintText: "Escribe algo...", hintStyle: TextStyle(color: white)),
+                      decoration: const InputDecoration(border: InputBorder.none, hintText: "Type Something...", hintStyle: TextStyle(color: white)),
                     ),
                   ),
                   StatefulBuilder(
