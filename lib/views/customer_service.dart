@@ -372,7 +372,7 @@ class _CustomerServiceState extends State<CustomerService> {
                                         isSender: data["uid"] == _uid,
                                         backgroundColor: transparent,
                                         activeSliderColor: white,
-                                        circlesColor: grey,
+                                        circlesColor: black,
                                         notActiveSliderColor: transparent,
                                         controller: _audios.last,
                                         innerPadding: 4,
@@ -397,9 +397,9 @@ class _CustomerServiceState extends State<CustomerService> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          const Icon(FontAwesome.file, size: 15, color: white),
+                                          const Icon(FontAwesome.file, size: 15, color: black),
                                           const SizedBox(width: 10),
-                                          Flexible(child: Text(data["name"], style: const TextStyle(color: white))),
+                                          Flexible(child: Text(data["name"], style: const TextStyle(color: black))),
                                         ],
                                       ),
                                     ),
