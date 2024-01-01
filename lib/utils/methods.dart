@@ -15,6 +15,7 @@ Future<bool> load() async {
     if (user!.isEmpty) {
       await user!.put("dark_mode", true);
       await user!.put("first_time", true);
+      await user!.put("remember_me", false);
       await user!.put("language", "en");
     }
     return true;

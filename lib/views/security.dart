@@ -1,4 +1,8 @@
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:luxy/utils/globals.dart';
 
 class Security extends StatefulWidget {
   const Security({super.key});
@@ -10,38 +14,48 @@ class Security extends StatefulWidget {
 class _SecurityState extends State<Security> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(appBar: ,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[GestureDetector(
-          onTap: () {},
-          child: Row(
-            children: <Widget>[
-              const Icon(FontAwesome.eye, size: 15, color: white),
-              const SizedBox(width: 20),
-              const Text("Dark Mode", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
-              const Spacer(),
-              StatefulBuilder(
-                builder: (BuildContext context, void Function(void Function()) setS) {
-                  return AnimatedToggleSwitch<bool>.dual(
-                    current: user!.get("dark_mode"),
-                    first: false,
-                    second: true,
-                    style: const ToggleStyle(indicatorColor: pink, borderColor: pink),
-                    iconBuilder: (bool value) => Icon(value ? Bootstrap.moon_stars_fill : Bootstrap.sun_fill, size: 15, color: white),
-                    animationDuration: 500.ms,
-                    animationCurve: Curves.bounceOut,
-                    onChanged: (b) {
-                      user!.put("dark_mode", !user!.get("dark_mode"));
-                      setS(() {});
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: dark,
+        leading: IconButton(icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white), onPressed: () => Navigator.pop(context)),
+        title: const Text("Security", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {},
+              child: Row(
+                children: <Widget>[
+                  const Icon(FontAwesome.eye, size: 15, color: white),
+                  const SizedBox(width: 20),
+                  const Text("Remember me", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                  const Spacer(),
+                  StatefulBuilder(
+                    builder: (BuildContext context, void Function(void Function()) setS) {
+                      return AnimatedToggleSwitch<bool>.dual(
+                        current: user!.get("remember_me"),
+                        first: false,
+                        second: true,
+                        style: const ToggleStyle(indicatorColor: pink, borderColor: pink),
+                        iconBuilder: (bool value) => Icon(value ? Bootstrap.check : Bootstrap.x_diamond, size: 15, color: white),
+                        animationDuration: 500.ms,
+                        animationCurve: Curves.bounceOut,
+                        onChanged: (b) {
+                          user!.put("remember_me", !user!.get("remember_me"));
+                          setS(() {});
+                        },
+                        height: 30,
+                      );
                     },
-                    height: 30,
-                  );
-                },
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:luxy/utils/globals.dart';
 import 'package:luxy/views/edit_profile.dart';
 import 'package:luxy/views/languages_list.dart';
 import 'package:luxy/views/privacy_policy.dart';
+import 'package:luxy/views/security.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -135,7 +136,9 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Security()));
+          },
           child: const Row(
             children: <Widget>[
               Icon(Bootstrap.shield, size: 15, color: white),
