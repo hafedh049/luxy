@@ -22,6 +22,8 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
 
   late final TabController _tabController;
 
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
@@ -31,6 +33,7 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
   @override
   void dispose() {
     _tabController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -55,7 +58,7 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
                     dividerColor: grey,
                     indicatorColor: pink,
                     onTap: (int value) => _tabController.animateTo(value, duration: 300.ms, curve: Curves.linear),
-                    tabs: const <Tab>[Tab(text: 'Active'), Tab(text: 'Completed')],
+                    tabs: const <Tab>[Tab(text: 'FAQ'), Tab(text: 'Contact Us')],
                   ),
                 ),
               ],
@@ -67,6 +70,28 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      const SizedBox(height: 16),
+                      Container(
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: white, width: 1.5), color: grey.withOpacity(.1)),
+                        child: TextField(
+                          cursorColor: pink,
+                          controller: _searchController,
+                          style: TextStyle(color: white, fontWeight: FontWeight.w500),
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Bootstrap.search, size: 15, color: white),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.all(8),
+                            hintText: "Search",
+                            hintStyle: TextStyle(color: grey, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const SizedBox(height: 16),
                       for (final Map<String, dynamic> item in _contactUs)
                         GestureDetector(
                           onTap: item["callback"](),
