@@ -16,6 +16,8 @@ class HelpCenter extends StatefulWidget {
 }
 
 class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
+  final GlobalKey<State> _filterKey = GlobalKey<State>();
+
   final List<Map<String, dynamic>> _contactUs = <Map<String, dynamic>>[
     <String, dynamic>{"icon": FontAwesome.headphones_solid, "title": "Customer Service", "callback": () {}},
     <String, dynamic>{"icon": Bootstrap.whatsapp, "title": "Whatsapp", "callback": () {}},
@@ -31,7 +33,7 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
 
   final TextEditingController _searchController = TextEditingController();
 
-  Future<String> _load()async=>jsonDecode(await rootBundle.loadString("assets/jsons/faqs.json")).cast<String>();
+  Future<List<String>> _load() async => jsonDecode(await rootBundle.loadString("assets/jsons/faqs.json")).cast<String>();
 
   @override
   void initState() {
@@ -96,31 +98,45 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
                               hintText: "Search",
                               hintStyle: TextStyle(color: grey, fontWeight: FontWeight.w500),
                             ),
+                            onChanged: (String value) => _filterKey.currentState!.setState(() {}),
                           ),
                         ),
                         const SizedBox(height: 16),
-
-                         FutureBuilder(future: _load(), builder: (BuildContext context,AsyncSnapshot<> snpashot) {
-
-                          if(snapshot.hasData){
-final List<String> data = snapshot.data!;
-                            return ListView.separated(shrinkWrap: true,
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (BuildContext context,int index) =>  Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
-                            child: Row(
-                              children: <Widget>[
-                                Flexible(child: Text(data[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
-                                const SizedBox(width: 10),
-                                const Icon(FontAwesome.arrow_down_solid, color: white, size: 10),
-                              ],
-                            ),
-                          ), separatorBuilder: (BuildContext context,int index) => const SizedBox(height: 20), itemCount: ,)
-                          }
-                          else if(snapshot.connectionState == ConnectionState.waiting){return const LoadingScreen();}
-                          else {return RedScreenOfDeath(error: snapshot.error.toString());}
-                         } ,),
+                        Expanded(
+                          child: FutureBuilder<List<String>>(
+                            future: _load(),
+                            builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+                              if (snapshot.hasData) {
+                                return StatefulBuilder(
+                                    key: _filterKey,
+                                    builder: (BuildContext context, void Function(void Function()) _) {
+                                      final List<String> data = snapshot.data!.where((String element) => element.toLowerCase().startsWith(_searchController.text.trim().toLowerCase())).toList();
+                                      return ListView.separated(
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.zero,
+                                        itemBuilder: (BuildContext context, int index) => Container(
+                                          padding: const EdgeInsets.all(16),
+                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Flexible(child: Text(data[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
+                                              const Spacer(),
+                                              const Icon(FontAwesome.arrow_down_solid, color: white, size: 15),
+                                            ],
+                                          ),
+                                        ),
+                                        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
+                                        itemCount: data.length,
+                                      );
+                                    });
+                              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                                return const LoadingScreen();
+                              } else {
+                                return RedScreenOfDeath(error: snapshot.error.toString());
+                              }
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
