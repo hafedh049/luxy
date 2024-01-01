@@ -20,6 +20,12 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
     <String, dynamic>{"icon": Bootstrap.instagram, "title": "Instagram", "callback": () {}},
   ];
 
+  final List<Map<String, dynamic>> _faq = <Map<String, dynamic>>[
+    <String, dynamic>{"text": "", "callback": () {}},
+  ];
+
+  final List<String> _hints = <String>[];
+
   late final TabController _tabController;
 
   final TextEditingController _searchController = TextEditingController();
@@ -67,26 +73,43 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(height: 16),
-                      Container(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: white, width: 1.5), color: grey.withOpacity(.1)),
-                        child: TextField(
-                          cursorColor: pink,
-                          controller: _searchController,
-                          style: TextStyle(color: white, fontWeight: FontWeight.w500),
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Bootstrap.search, size: 15, color: white),
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.all(8),
-                            hintText: "Search",
-                            hintStyle: TextStyle(color: grey, fontWeight: FontWeight.w500),
+                  GestureDetector(
+                    onTap: () => FocusScope.of(context).unfocus(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(height: 16),
+                        Container(
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: white, width: 1.5), color: grey.withOpacity(.1)),
+                          child: TextField(
+                            cursorColor: pink,
+                            controller: _searchController,
+                            autofillHints: _hints,
+                            style: const TextStyle(color: white, fontWeight: FontWeight.w500),
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(Bootstrap.search, size: 15, color: white),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(8),
+                              hintText: "Search",
+                              hintStyle: TextStyle(color: grey, fontWeight: FontWeight.w500),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 16),
+                        for (final Map<String, dynamic> item in _faq)
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
+                            child: Row(
+                              children: <Widget>[
+                                Flexible(child: Text(item["text"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
+                                const SizedBox(width: 10),
+                                const Icon(FontAwesome.arrow_down_solid, color: white, size: 10),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
