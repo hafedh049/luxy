@@ -78,24 +78,26 @@ class _NotificationState extends State<Notification> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              for (final Map<String, dynamic> item in _notifications)
+              for (final Map<String, dynamic> item in _notifications) ...<Widget>[
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    item["callback"]();
+                  },
                   child: Row(
                     children: <Widget>[
-                      Text(item["title"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                      Text(item["title"], style: const TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.w500)),
                       const Spacer(),
                       StatefulBuilder(
                         builder: (BuildContext context, void Function(void Function()) setS) {
                           return AnimatedToggleSwitch<bool>.dual(
-                            current: user!.get("remember_me"),
+                            current: item["get"],
                             first: false,
                             second: true,
                             style: const ToggleStyle(indicatorColor: pink, borderColor: pink),
                             iconBuilder: (bool value) => Icon(value ? Bootstrap.check : Bootstrap.x_diamond, size: 15, color: white),
                             animationDuration: 500.ms,
                             animationCurve: Curves.bounceOut,
-                            onChanged: (b) {
+                            onChanged: (bool b) {
                               item["callback"]();
                               setS(() {});
                             },
@@ -106,6 +108,8 @@ class _NotificationState extends State<Notification> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 20),
+              ],
             ],
           ),
         ),
