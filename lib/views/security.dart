@@ -29,8 +29,6 @@ class _SecurityState extends State<Security> {
               onTap: () {},
               child: Row(
                 children: <Widget>[
-                  const Icon(FontAwesome.eye, size: 15, color: white),
-                  const SizedBox(width: 20),
                   const Text("Remember me", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
                   const Spacer(),
                   StatefulBuilder(
@@ -52,6 +50,27 @@ class _SecurityState extends State<Security> {
                     },
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {},
+              child: const Row(
+                children: <Widget>[
+                  Text("Google Authentificator", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                  Spacer(),
+                  Icon(FontAwesome.chevron_right_solid, size: 15, color: white),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(15)),
+                alignment: Alignment.center,
+                child: const Text("Change Password", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
               ),
             ),
           ],
