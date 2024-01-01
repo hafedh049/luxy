@@ -5,6 +5,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 import 'package:luxy/views/edit_profile.dart';
 import 'package:luxy/views/languages_list.dart';
+import 'package:luxy/views/notification.dart' as notification;
 import 'package:luxy/views/privacy_policy.dart';
 import 'package:luxy/views/security.dart';
 
@@ -79,7 +80,9 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const notification.Notification()));
+          },
           child: const Row(
             children: <Widget>[
               Icon(FontAwesome.bell, size: 15, color: white),

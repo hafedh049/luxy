@@ -17,6 +17,16 @@ Future<bool> load() async {
       await user!.put("first_time", true);
       await user!.put("remember_me", false);
       await user!.put("language", "en");
+      await user!.put("general_notification", false);
+      await user!.put("sound", false);
+      await user!.put("special_offers", false);
+      await user!.put("vibrate", false);
+      await user!.put("promote_discount", false);
+      await user!.put("payments", false);
+      await user!.put("cashback", false);
+      await user!.put("app_updates", false);
+      await user!.put("new_service_available", false);
+      await user!.put("new_tips_available", false);
     }
     return true;
   } catch (e) {
