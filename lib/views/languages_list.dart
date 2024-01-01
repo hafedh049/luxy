@@ -17,7 +17,16 @@ class LanguagesList extends StatefulWidget {
 
 class _LanguagesListState extends State<LanguagesList> {
   Future<List<Map<String, dynamic>>> _load() async {
-    final List<Map<String, dynamic>> data = json.decode(await rootBundle.loadString('assets/jsons/languages.json')).cast<Map<String, dynamic>>();
+    final List<Map<String, dynamic>> data = json
+        .decode(await rootBundle.loadString('assets/jsons/languages.json'))
+        .map(
+          (dynamic e) {
+            e.addAll(<String, dynamic>{"key": GlobalKey<State>()});
+            return e;
+          },
+        )
+        .toList()
+        .cast<Map<String, dynamic>>();
     return data;
   }
 
@@ -44,17 +53,17 @@ class _LanguagesListState extends State<LanguagesList> {
                       padding: EdgeInsets.zero,
                       itemCount: data.length,
                       separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
-                      itemBuilder: (BuildContext context, int index) => Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
-                        child: GestureDetector(
-                          onTap: () {
-                            if (_currentLanguage != data[index]["code"]) {
-                              for (final Map<String, dynamic> language in data) {
-                                language["key"].currentState!.setState(() => _currentLanguage = language["code"]);
-                              }
+                      itemBuilder: (BuildContext context, int index) => GestureDetector(
+                        onTap: () {
+                          if (_currentLanguage != data[index]["code"]) {
+                            for (final Map<String, dynamic> language in data) {
+                              language["key"].currentState!.setState(() => _currentLanguage = language["code"]);
                             }
-                          },
+                          }
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
                           child: Row(
                             children: <Widget>[
                               Expanded(
