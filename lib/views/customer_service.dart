@@ -15,6 +15,8 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:luxy/utils/methods.dart';
+import 'package:luxy/views/loading_screen.dart';
+import 'package:luxy/views/red_screen.dart';
 import 'package:mime/mime.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
@@ -85,7 +87,7 @@ class _CustomerServiceState extends State<CustomerService> {
           Navigator.pop(context);
         }
       },
-      <String, dynamic>{"icon": FontAwesome.leaf, "title": "CANCELAR", "callback": () => Navigator.pop(context)},
+      <String, dynamic>{"icon": FontAwesome.leaf_solid, "title": "CANCELAR", "callback": () => Navigator.pop(context)},
     ];
     super.initState();
   }
@@ -116,9 +118,9 @@ class _CustomerServiceState extends State<CustomerService> {
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Icon(item["icon"], size: 15, color: accent1),
+                          Icon(item["icon"], size: 15, color: white),
                           const SizedBox(height: 10),
-                          Text(item["title"], style: const TextStyle(color: accent1, fontSize: 16, fontWeight: FontWeight.w400)),
+                          Text(item["title"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w400)),
                         ],
                       ),
                     ),
@@ -127,22 +129,21 @@ class _CustomerServiceState extends State<CustomerService> {
               const SizedBox(height: 10),
               SocialMediaRecorder(
                 slideToCancelText: '',
-                slideToCancelTextStyle: const TextStyle(color: accent1, fontSize: 16, fontWeight: FontWeight.w400),
-                cancelTextStyle: const TextStyle(color: accent1, fontSize: 16, fontWeight: FontWeight.w400),
-                counterTextStyle: const TextStyle(color: accent1, fontSize: 16, fontWeight: FontWeight.w400),
+                slideToCancelTextStyle: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w400),
+                cancelTextStyle: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w400),
+                counterTextStyle: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w400),
                 recordIconBackGroundColor: transparent,
                 recordIconWhenLockBackGroundColor: transparent,
-                recordIconWhenLockedRecord: const Icon(FontAwesome.stop, color: accent1, size: 20),
+                recordIconWhenLockedRecord: const Icon(FontAwesome.stop_solid, color: white, size: 20),
                 counterBackGroundColor: transparent,
-                lockButton: const Icon(FontAwesome.microphone, color: accent1, size: 20),
-                sendButtonIcon: const Icon(FontAwesome.microphone, color: accent1, size: 20),
+                lockButton: const Icon(FontAwesome.microphone_solid, color: white, size: 20),
+                sendButtonIcon: const Icon(FontAwesome.microphone_solid, color: white, size: 20),
                 cancelTextBackGroundColor: transparent,
                 backGroundColor: transparent,
-                recordIcon: const Icon(FontAwesome.microphone, color: accent1, size: 20),
+                recordIcon: const Icon(FontAwesome.microphone_solid, color: white, size: 20),
                 maxRecordTimeInSecond: 120,
                 sendRequestFunction: (File soundFile, String time) async {
                   try {
-                    _counter = 0;
                     final String id = List<int>.generate(20, (int index) => Random().nextInt(10)).join();
                     await FirebaseStorage.instance.ref().child("/audios/$id.aac").putFile(soundFile, SettableMetadata(contentType: lookupMimeType(soundFile.path)!)).then(
                       (TaskSnapshot snap) async {
@@ -242,7 +243,7 @@ class _CustomerServiceState extends State<CustomerService> {
             body: Stack(
               children: <Widget>[
                 InteractiveViewer(alignment: Alignment.center, minScale: 1, child: Image.network(message['content'], fit: BoxFit.cover, width: MediaQuery.sizeOf(context).width, height: MediaQuery.sizeOf(context).height)),
-                Positioned(top: 36, child: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left, size: 20, color: Colors.green))),
+                Positioned(top: 36, child: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 20, color: Colors.green))),
               ],
             ),
           ),
@@ -268,7 +269,7 @@ class _CustomerServiceState extends State<CustomerService> {
         extendBodyBehindAppBar: false,
         appBar: AppBar(
           backgroundColor: transparent,
-          leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 20, color: white)),
+          leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white)),
           title: const Text("Customer Service", style: TextStyle(color: white, fontSize: 16)),
         ),
         body: Column(
@@ -277,7 +278,7 @@ class _CustomerServiceState extends State<CustomerService> {
               child: FirestoreListView(
                 reverse: true,
                 padding: const EdgeInsets.all(16),
-                loadingBuilder: (BuildContext context) => const Wait(),
+                loadingBuilder: (BuildContext context) => const LoadingScreen(),
                 query: FirebaseFirestore.instance.collection("chats").doc(_uid).collection("messages").orderBy("createdAt", descending: true),
                 emptyBuilder: (BuildContext context) => Center(
                   child: Column(
@@ -286,11 +287,11 @@ class _CustomerServiceState extends State<CustomerService> {
                     children: <Widget>[
                       LottieBuilder.asset("assets/lotties/empty.json", width: 200, height: 200),
                       const SizedBox(height: 10),
-                      const Text("NO HAY CHAT AÚN", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: accent1)),
+                      const Text("EMPTY CONVERSATION", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: white)),
                     ],
                   ),
                 ),
-                errorBuilder: (BuildContext context, Object error, StackTrace stackTrace) => Wrong(errorMessage: error.toString()),
+                errorBuilder: (BuildContext context, Object error, StackTrace stackTrace) => RedScreenOfDeath(error: error.toString()),
                 itemBuilder: (BuildContext context, QueryDocumentSnapshot<Map<String, dynamic>> doc) {
                   final Map<String, dynamic> data = doc.data();
                   if (data["type"] == "audio") {
@@ -328,9 +329,9 @@ class _CustomerServiceState extends State<CustomerService> {
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: <Widget>[
-                                              Icon(item["icon"], size: 15, color: accent1),
+                                              Icon(item["icon"], size: 15, color: white),
                                               const SizedBox(height: 10),
-                                              Text(item["title"], style: const TextStyle(color: accent1, fontSize: 16, fontWeight: FontWeight.w400)),
+                                              Text(item["title"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w400)),
                                             ],
                                           ),
                                         ),
@@ -346,9 +347,9 @@ class _CustomerServiceState extends State<CustomerService> {
                             child: Container(
                               margin: const EdgeInsets.symmetric(vertical: 8),
                               constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * .7),
-                              decoration: BoxDecoration(color: data["uid"] == _uid ? accent1 : const Color.fromARGB(255, 200, 200, 200), borderRadius: BorderRadius.circular(5)),
+                              decoration: BoxDecoration(color: data["uid"] == _uid ? white : const Color.fromARGB(255, 200, 200, 200), borderRadius: BorderRadius.circular(5)),
                               padding: const EdgeInsets.all(8),
-                              child: Text(data["content"], style: TextStyle(fontSize: 16, color: data["uid"] == _uid ? backgroundColor : foregroundColor, fontWeight: FontWeight.w400)),
+                              child: Text(data["content"], style: const TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w400)),
                             ),
                           )
                         : (data["type"] == "image")
@@ -358,7 +359,7 @@ class _CustomerServiceState extends State<CustomerService> {
                                   margin: const EdgeInsets.symmetric(vertical: 8),
                                   height: 200,
                                   width: 150,
-                                  decoration: BoxDecoration(color: accent1, borderRadius: BorderRadius.circular(5), border: Border.all(color: accent1, width: 2)),
+                                  decoration: BoxDecoration(color: white, borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: 2)),
                                   child: CachedNetworkImage(imageUrl: data["content"], width: 200, height: 350, fit: BoxFit.cover),
                                 ),
                               )
@@ -366,12 +367,12 @@ class _CustomerServiceState extends State<CustomerService> {
                                 ? Align(
                                     alignment: data["uid"] == _uid ? AlignmentDirectional.centerEnd : AlignmentDirectional.centerStart,
                                     child: Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: accent1, width: 2)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: 2)),
                                       child: VoiceMessageView(
                                         isSender: data["uid"] == _uid,
                                         backgroundColor: transparent,
-                                        activeSliderColor: accent1,
-                                        circlesColor: accent1,
+                                        activeSliderColor: white,
+                                        circlesColor: white,
                                         notActiveSliderColor: transparent,
                                         controller: _audios.last,
                                         innerPadding: 4,
@@ -385,7 +386,7 @@ class _CustomerServiceState extends State<CustomerService> {
                                       padding: const EdgeInsets.all(16),
                                       margin: const EdgeInsets.symmetric(vertical: 8),
                                       decoration: BoxDecoration(
-                                        color: accent1,
+                                        color: white,
                                         borderRadius: BorderRadius.only(
                                           topLeft: const Radius.circular(15),
                                           bottomRight: Radius.circular(data["uid"] == _uid ? 0 : 15),
@@ -396,9 +397,9 @@ class _CustomerServiceState extends State<CustomerService> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          const Icon(FontAwesome.file, size: 15, color: accent1),
+                                          const Icon(FontAwesome.file, size: 15, color: white),
                                           const SizedBox(width: 10),
-                                          Flexible(child: Text(data["name"], style: const TextStyle(color: backgroundColor))),
+                                          Flexible(child: Text(data["name"], style: const TextStyle(color: white))),
                                         ],
                                       ),
                                     ),
@@ -410,13 +411,13 @@ class _CustomerServiceState extends State<CustomerService> {
             Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: accent1.withOpacity(.3),
-                border: Border.all(color: accent1),
+                color: white.withOpacity(.3),
+                border: Border.all(color: white),
                 borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
               ),
               child: Row(
                 children: <Widget>[
-                  IconButton(onPressed: _handleAttachmentPressed, icon: const Icon(FontAwesome.folder_solid, size: 15, color: accent1)),
+                  IconButton(onPressed: _handleAttachmentPressed, icon: const Icon(FontAwesome.folder_solid, size: 15, color: white)),
                   Flexible(
                     child: TextField(
                       controller: _inputController,
@@ -425,7 +426,7 @@ class _CustomerServiceState extends State<CustomerService> {
                           _sendButtonKey.currentState!.setState(() {});
                         }
                       },
-                      decoration: const InputDecoration(border: InputBorder.none, hintText: "Escribe algo...", hintStyle: TextStyle(color: accent1)),
+                      decoration: const InputDecoration(border: InputBorder.none, hintText: "Escribe algo...", hintStyle: TextStyle(color: white)),
                     ),
                   ),
                   StatefulBuilder(
@@ -436,7 +437,7 @@ class _CustomerServiceState extends State<CustomerService> {
                         duration: 500.ms,
                         child: IconButton(
                           onPressed: _inputController.text.trim().isEmpty ? null : _handleSendPressed,
-                          icon: const Icon(FontAwesome.paper_plane, size: 15, color: accent1),
+                          icon: const Icon(FontAwesome.paper_plane, size: 15, color: white),
                         ),
                       );
                     },
