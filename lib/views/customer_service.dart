@@ -14,18 +14,16 @@ import 'package:http/http.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:luxy/utils/methods.dart';
 import 'package:mime/mime.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:social_media_recorder/screen/social_media_recorder.dart';
-import 'package:terrestra/models/messages/audio_message_model.dart';
-import 'package:terrestra/models/messages/file_message_model.dart';
-import 'package:terrestra/models/messages/image_message_module.dart';
-import 'package:terrestra/models/messages/text_message_model.dart';
-import 'package:terrestra/helpers/utils/globals.dart';
-import 'package:terrestra/helpers/utils/methods.dart';
-import 'package:terrestra/helpers/wait.dart';
-import 'package:terrestra/helpers/wrong.dart';
+import 'package:luxy/models/audio_message_model.dart';
+import 'package:luxy/models/file_message_model.dart';
+import 'package:luxy/models/image_message_module.dart';
+import 'package:luxy/models/text_message_model.dart';
+import 'package:luxy/utils/globals.dart';
 import 'package:voice_message_package/voice_message_package.dart';
 
 class CustomerService extends StatefulWidget {
@@ -35,8 +33,8 @@ class CustomerService extends StatefulWidget {
   State<CustomerService> createState() => _CustomerServiceState();
 }
 
-class _CustomerServiceState extends State<CustomerService> with WidgetsBindingObserver {
-  final String _uid = userLocalSettings!.get("RUT");
+class _CustomerServiceState extends State<CustomerService> {
+  final String _uid = "123456789";
   final TextEditingController _inputController = TextEditingController();
   final GlobalKey<State> _sendButtonKey = GlobalKey<State>();
 
@@ -44,23 +42,8 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
   late final List<Map<String, dynamic>> _deletions;
   final List<VoiceController> _audios = <VoiceController>[];
 
-  int _counter = 0;
-
-  late final Timer _timer;
-
-  AppLifecycleState _state = AppLifecycleState.resumed;
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.detached || state == AppLifecycleState.hidden || state == AppLifecycleState.inactive || state == AppLifecycleState.paused || state == AppLifecycleState.resumed) {
-      _state = state;
-      _counter = 0;
-    }
-  }
-
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     for (final VoiceController voiceController in _audios) {
       if (voiceController.isPlaying) {
         voiceController.stopPlaying();
@@ -68,42 +51,22 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
       voiceController.dispose();
     }
     _audios.clear();
-    _timer.cancel();
     _inputController.dispose();
     super.dispose();
   }
 
   @override
-  void deactivate() {
-    _counter = 0;
-    super.deactivate();
-  }
-
-  @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
-    _timer = Timer.periodic(
-      1.seconds,
-      (Timer _) {
-        if (_state == AppLifecycleState.resumed && context.mounted) {
-          _counter += 1;
-        }
-        if (_counter >= 60) {
-          Navigator.pop(context);
-        }
-      },
-    );
     _attachments = <Map<String, dynamic>>[
       <String, dynamic>{"icon": FontAwesome.image, "title": "Fotos", "callback": _handleImageSelection},
       <String, dynamic>{"icon": FontAwesome.file, "title": "Archivos", "callback": _handleFileSelection},
-      <String, dynamic>{"icon": FontAwesome.leaf, "title": "Cancelar", "callback": () => Navigator.pop(context)},
+      <String, dynamic>{"icon": FontAwesome.leaf_solid, "title": "Cancelar", "callback": () => Navigator.pop(context)},
     ];
     _deletions = <Map<String, dynamic>>[
       <String, dynamic>{
         "icon": Icons.delete_forever,
         "title": "ELIMINAR",
         "callback": (BuildContext context, QueryDocumentSnapshot<Map<String, dynamic>> doc, Map<String, dynamic> data) async {
-          _counter = 0;
           if (data["type"] == "audio") {
             final int index = _audios.indexWhere((VoiceController element) => element.audioSrc == data['content']);
             if (_audios[index].isPlaying) {
@@ -117,10 +80,9 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
           }
 
           await doc.reference.delete();
-          showSnack("Mensaje borrado");
+          showToast("Mensaje borrado");
           // ignore: use_build_context_synchronously
           Navigator.pop(context);
-          _counter = 0;
         }
       },
       <String, dynamic>{"icon": FontAwesome.leaf, "title": "CANCELAR", "callback": () => Navigator.pop(context)},
@@ -129,7 +91,6 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
   }
 
   Future<void> _handleAttachmentPressed() async {
-    _counter = 0;
     await showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) => SafeArea(
@@ -150,7 +111,6 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
                       onTap: () {
                         item["callback"]();
                         Navigator.pop(context);
-                        _counter = 0;
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -195,14 +155,11 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
                           duration: timeStringToDuration(time),
                           mimeType: lookupMimeType(soundFile.path)!,
                         );
-                        _counter = 0;
                         await FirebaseFirestore.instance.collection("chats").doc(_uid).collection("messages").add(message.toJson());
-                        _counter = 0;
                       },
                     );
                   } catch (e) {
-                    _counter = 0;
-                    showSnack(e.toString());
+                    showToast(e.toString());
                   }
                 },
               ),
@@ -211,18 +168,15 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
         ),
       ),
     );
-    _counter = 0;
   }
 
   void _handleFileSelection() async {
-    _counter = 0;
     final FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.any);
     if (result != null && result.files.single.path != null) {
       final String id = List<int>.generate(20, (int index) => Random().nextInt(10)).join();
-      showSnack("Espere por favor");
+      showToast("Espere por favor");
       await FirebaseStorage.instance.ref().child("/files/${id}__${result.files.single.name}").putFile(File(result.files.single.path!), SettableMetadata(contentType: lookupMimeType(result.files.single.path!)!)).then(
         (TaskSnapshot snap) async {
-          _counter = 0;
           final FileMessageModel message = FileMessageModel(
             uid: _uid,
             createdAt: DateTime.now().millisecondsSinceEpoch,
@@ -235,19 +189,16 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
         },
       );
     }
-    _counter = 0;
   }
 
   void _handleImageSelection() async {
-    _counter = 0;
     final XFile? result = await ImagePicker().pickImage(imageQuality: 70, source: ImageSource.gallery);
     if (result != null) {
       final Uint8List bytes = await result.readAsBytes();
       final String id = List<int>.generate(20, (int index) => Random().nextInt(10)).join();
-      showSnack("Espere por favor");
+      showToast("Espere por favor");
       await FirebaseStorage.instance.ref().child("/images/${id}__${result.name}").putFile(File(result.path), SettableMetadata(contentType: lookupMimeType(result.path)!)).then(
         (TaskSnapshot snap) async {
-          _counter = 0;
           final ImageMessageModel message = ImageMessageModel(
             uid: _uid,
             createdAt: DateTime.now().millisecondsSinceEpoch,
@@ -257,15 +208,12 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
             mimeType: lookupMimeType(result.path)!,
           );
           await FirebaseFirestore.instance.collection("chats").doc(_uid).collection("messages").add(message.toJson());
-          _counter = 0;
         },
       );
     }
-    _counter = 0;
   }
 
   void _handleMessageTap(Map<String, dynamic> message) async {
-    _counter = 0;
     if (message['type'] == "file") {
       String localPath = message['content'];
       if (message['content'].startsWith('http')) {
@@ -281,11 +229,11 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
         }
       }
       await Clipboard.setData(ClipboardData(text: message['content']));
-      showSnack("URL del archivo copiada al portapapeles");
+      showToast("URL del archivo copiada al portapapeles");
       await OpenFilex.open(localPath);
     } else if (message['type'] == "text") {
       await Clipboard.setData(ClipboardData(text: message['content']));
-      showSnack("Texto copiado al portapapeles");
+      showToast("Texto copiado al portapapeles");
     } else if (message['type'] == "image") {
       Navigator.push(
         context,
@@ -301,41 +249,27 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
         ),
       );
       await Clipboard.setData(ClipboardData(text: message['content']));
-      showSnack("URL de la imagen copiada al portapapeles");
+      showToast("URL de la imagen copiada al portapapeles");
     }
-    _counter = 0;
   }
 
   void _handleSendPressed() async {
-    _counter = 0;
     final textMessage = TextMessageModel(uid: _uid, createdAt: DateTime.now().millisecondsSinceEpoch, content: _inputController.text.trim());
     _inputController.clear();
     _sendButtonKey.currentState!.setState(() {});
-    _counter = 0;
     await FirebaseFirestore.instance.collection("chats").doc(_uid).collection("messages").add(textMessage.toJson());
-    _counter = 0;
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        _counter = 0;
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         extendBodyBehindAppBar: false,
         appBar: AppBar(
-          backgroundColor: backgroundColor,
-          leading: IconButton(
-            onPressed: () {
-              if (_counter < 60) {
-                Navigator.pop(context);
-              }
-            },
-            icon: const Icon(FontAwesome.chevron_left, size: 20, color: Colors.green),
-          ),
-          title: const Text("Unidad Control Operativa", style: TextStyle(color: foregroundColor, fontSize: 20)),
+          backgroundColor: transparent,
+          leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 20, color: white)),
+          title: const Text("Customer Service", style: TextStyle(color: white, fontSize: 16)),
         ),
         body: Column(
           children: <Widget>[
@@ -359,28 +293,23 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
                 errorBuilder: (BuildContext context, Object error, StackTrace stackTrace) => Wrong(errorMessage: error.toString()),
                 itemBuilder: (BuildContext context, QueryDocumentSnapshot<Map<String, dynamic>> doc) {
                   final Map<String, dynamic> data = doc.data();
-                  _counter = 0;
                   if (data["type"] == "audio") {
                     _audios.add(
                       VoiceController(
                         audioSrc: data["content"],
                         maxDuration: Duration(milliseconds: data["duration"]),
                         isFile: false,
-                        onComplete: () => _counter = 0,
-                        onPause: () => _counter = 0,
-                        onPlaying: () => _counter = 0,
+                        onComplete: () {},
+                        onPause: () {},
+                        onPlaying: () {},
                       ),
                     );
                   }
                   return GestureDetector(
-                    onTap: () {
-                      _handleMessageTap(data);
-                      _counter = 0;
-                    },
+                    onTap: () => _handleMessageTap(data),
                     onLongPress: data['uid'] != _uid
                         ? null
                         : () async {
-                            _counter = 0;
                             await showModalBottomSheet<void>(
                               context: context,
                               builder: (BuildContext context) => SafeArea(
@@ -394,10 +323,7 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
                                           hoverColor: transparent,
                                           splashColor: transparent,
                                           highlightColor: transparent,
-                                          onTap: () {
-                                            item["title"] == "REMOVE" ? item["callback"](context, doc, data) : item["callback"]();
-                                            _counter = 0;
-                                          },
+                                          onTap: () => item["title"] == "REMOVE" ? item["callback"](context, doc, data) : item["callback"](),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -413,7 +339,6 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
                                 ),
                               ),
                             );
-                            _counter = 0;
                           },
                     child: (data["type"] == "text")
                         ? Align(
@@ -491,13 +416,11 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
               ),
               child: Row(
                 children: <Widget>[
-                  IconButton(onPressed: _handleAttachmentPressed, icon: const Icon(FontAwesome.folder_plus, size: 15, color: accent1)),
+                  IconButton(onPressed: _handleAttachmentPressed, icon: const Icon(FontAwesome.folder_solid, size: 15, color: accent1)),
                   Flexible(
                     child: TextField(
-                      style: GoogleFonts.ibmPlexSans(color: accent1),
                       controller: _inputController,
                       onChanged: (String value) {
-                        _counter = 0;
                         if (_inputController.text.trim().length <= 1) {
                           _sendButtonKey.currentState!.setState(() {});
                         }
@@ -508,7 +431,6 @@ class _CustomerServiceState extends State<CustomerService> with WidgetsBindingOb
                   StatefulBuilder(
                     key: _sendButtonKey,
                     builder: (BuildContext context, void Function(void Function()) _) {
-                      _counter = 0;
                       return AnimatedOpacity(
                         opacity: _inputController.text.trim().isEmpty ? 0 : 1,
                         duration: 500.ms,
