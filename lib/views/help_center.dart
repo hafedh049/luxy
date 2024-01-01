@@ -11,6 +11,15 @@ class HelpCenter extends StatefulWidget {
 }
 
 class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
+  final List<Map<String, dynamic>> _contactUs = <Map<String, dynamic>>[
+    <String, dynamic>{"icon": FontAwesome.headphones_solid, "title": "Customer Service", "callback": () {}},
+    <String, dynamic>{"icon": Bootstrap.whatsapp, "title": "Whatsapp", "callback": () {}},
+    <String, dynamic>{"icon": Bootstrap.link, "title": "Website", "callback": () {}},
+    <String, dynamic>{"icon": Bootstrap.facebook, "title": "Facebook", "callback": () {}},
+    <String, dynamic>{"icon": Bootstrap.twitter_x, "title": "Twitter", "callback": () {}},
+    <String, dynamic>{"icon": Bootstrap.instagram, "title": "Instagram", "callback": () {}},
+  ];
+
   late final TabController _tabController;
 
   @override
@@ -54,7 +63,29 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
             Expanded(
               child: TabBarView(
                 controller: _tabController,
-                children: <Widget>[],
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      for (final Map<String, dynamic> item in _contactUs)
+                        GestureDetector(
+                          onTap: item["callback"](),
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            margin: const EdgeInsets.only(bottom: 16),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(item["icon"], color: white, size: 15),
+                                const SizedBox(width: 10),
+                                Text(item["title"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                              ],
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
