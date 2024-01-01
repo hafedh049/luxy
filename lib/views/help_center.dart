@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/loading_screen.dart';
+import 'package:luxy/views/red_screen.dart';
 
 class HelpCenter extends StatefulWidget {
   const HelpCenter({super.key});
@@ -20,15 +25,13 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
     <String, dynamic>{"icon": Bootstrap.instagram, "title": "Instagram", "callback": () {}},
   ];
 
-  final List<Map<String, dynamic>> _faq = <Map<String, dynamic>>[
-    <String, dynamic>{"text": "", "callback": () {}},
-  ];
-
   final List<String> _hints = <String>[];
 
   late final TabController _tabController;
 
   final TextEditingController _searchController = TextEditingController();
+
+  Future<String> _load()async=>jsonDecode(await rootBundle.loadString("assets/jsons/faqs.json")).cast<String>();
 
   @override
   void initState() {
@@ -96,18 +99,28 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
                           ),
                         ),
                         const SizedBox(height: 16),
-                        for (final Map<String, dynamic> item in _faq)
-                          Container(
+
+                         FutureBuilder(future: _load(), builder: (BuildContext context,AsyncSnapshot<> snpashot) {
+
+                          if(snapshot.hasData){
+final List<String> data = snapshot.data!;
+                            return ListView.separated(shrinkWrap: true,
+                              padding: EdgeInsets.zero,
+                              itemBuilder: (BuildContext context,int index) =>  Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
                             child: Row(
                               children: <Widget>[
-                                Flexible(child: Text(item["text"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
+                                Flexible(child: Text(data[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
                                 const SizedBox(width: 10),
                                 const Icon(FontAwesome.arrow_down_solid, color: white, size: 10),
                               ],
                             ),
-                          ),
+                          ), separatorBuilder: (BuildContext context,int index) => const SizedBox(height: 20), itemCount: ,)
+                          }
+                          else if(snapshot.connectionState == ConnectionState.waiting){return const LoadingScreen();}
+                          else {return RedScreenOfDeath(error: snapshot.error.toString());}
+                         } ,),
                       ],
                     ),
                   ),
