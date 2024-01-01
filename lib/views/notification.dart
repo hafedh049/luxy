@@ -15,53 +15,53 @@ class _NotificationState extends State<Notification> {
   final List<Map<String, dynamic>> _notifications = <Map<String, dynamic>>[
     <String, dynamic>{
       "title": "General Notification",
-      "callback": () => user!.put("general_notification", !user!.get("general_notification")),
-      "get": user!.get("general_notification"),
+      "callback": () async => user!.put("general_notification", !user!.get("general_notification")),
+      "get": () => user!.get("general_notification"),
     },
     <String, dynamic>{
       "title": "Sound",
       "callback": () => user!.put("sound", !user!.get("sound")),
-      "get": user!.get("sound"),
+      "get": () => user!.get("sound"),
     },
     <String, dynamic>{
       "title": "Special Offers",
       "callback": () => user!.put("special_offers", !user!.get("special_offers")),
-      "get": user!.get("special_offers"),
+      "get": () => user!.get("special_offers"),
     },
     <String, dynamic>{
       "title": "Vibrate",
       "callback": () => user!.put("vibrate", !user!.get("vibrate")),
-      "get": user!.get("vibrate"),
+      "get": () => user!.get("vibrate"),
     },
     <String, dynamic>{
       "title": "Promote & Discount",
       "callback": () => user!.put("promote_discount", !user!.get("promote_discount")),
-      "get": user!.get("promote_discount"),
+      "get": () => user!.get("promote_discount"),
     },
     <String, dynamic>{
       "title": "Payments",
       "callback": () => user!.put("payments", !user!.get("payments")),
-      "get": user!.get("payments"),
+      "get": () => user!.get("payments"),
     },
     <String, dynamic>{
       "title": "Cashback",
       "callback": () => user!.put("cashback", !user!.get("cashback")),
-      "get": user!.get("cashback"),
+      "get": () => user!.get("cashback"),
     },
     <String, dynamic>{
       "title": "App Updates",
       "callback": () => user!.put("app_updates", !user!.get("app_updates")),
-      "get": user!.get("app_updates"),
+      "get": () => user!.get("app_updates"),
     },
     <String, dynamic>{
       "title": "New Service Available",
       "callback": () => user!.put("new_service_available", !user!.get("new_service_available")),
-      "get": user!.get("new_service_available"),
+      "get": () => user!.get("new_service_available"),
     },
     <String, dynamic>{
       "title": "New Tips Available",
       "callback": () => user!.put("new_tips_available", !user!.get("new_tips_available")),
-      "get": user!.get("new_tips_available"),
+      "get": () => user!.get("new_tips_available"),
     },
   ];
   @override
@@ -80,8 +80,8 @@ class _NotificationState extends State<Notification> {
             children: <Widget>[
               for (final Map<String, dynamic> item in _notifications) ...<Widget>[
                 GestureDetector(
-                  onTap: () {
-                    item["callback"]();
+                  onTap: () async {
+                    await item["callback"]();
                   },
                   child: Row(
                     children: <Widget>[
@@ -90,15 +90,15 @@ class _NotificationState extends State<Notification> {
                       StatefulBuilder(
                         builder: (BuildContext context, void Function(void Function()) setS) {
                           return AnimatedToggleSwitch<bool>.dual(
-                            current: item["get"],
+                            current: item["get"](),
                             first: false,
                             second: true,
                             style: const ToggleStyle(indicatorColor: pink, borderColor: pink),
                             iconBuilder: (bool value) => Icon(value ? Bootstrap.check : Bootstrap.x_diamond, size: 15, color: white),
                             animationDuration: 500.ms,
                             animationCurve: Curves.bounceOut,
-                            onChanged: (bool b) {
-                              item["callback"]();
+                            onChanged: (bool b) async {
+                              await item["callback"]();
                               setS(() {});
                             },
                             height: 30,
