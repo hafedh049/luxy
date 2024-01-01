@@ -1,122 +1,152 @@
 [
     {
         "question": "How do I register an account?",
-        "answer": "To register an account, visit our website, click on the 'Register' button, fill in the required information such as your email address and password, and then follow the verification steps sent to your email."
+        "answer": "To register an account, visit our website, click on the 'Register' button, fill in the required information such as your email address and password, and then follow the verification steps sent to your email.",
+        "state": false
     },
     {
         "question": "What payment methods are supported?",
-        "answer": "We accept credit/debit cards, PayPal, and certain digital wallets like Apple Pay and Google Pay. You can view all available payment methods during the checkout process."
+        "answer": "We accept credit/debit cards, PayPal, and certain digital wallets like Apple Pay and Google Pay. You can view all available payment methods during the checkout process.",
+        "state": false
     },
     {
         "question": "Is there a return policy?",
-        "answer": "Yes, we have a return policy. If you are not satisfied with your purchase, you can return the item within a specified period for a refund or exchange. Please check our website for detailed return instructions and the return window for your purchase."
+        "answer": "Yes, we have a return policy. If you are not satisfied with your purchase, you can return the item within a specified period for a refund or exchange. Please check our website for detailed return instructions and the return window for your purchase.",
+        "state": false
     },
     {
         "question": "How can I track my order?",
-        "answer": "To track your order, log in to your account on our website, go to the order history section, and select the order you want to track. You will find a tracking number there. You can also track your order using the tracking link provided in the shipping confirmation email."
+        "answer": "To track your order, log in to your account on our website, go to the order history section, and select the order you want to track. You will find a tracking number there. You can also track your order using the tracking link provided in the shipping confirmation email.",
+        "state": false
     },
     {
         "question": "Are there discounts for bulk orders?",
-        "answer": "Yes, we offer discounts for bulk orders. Contact our customer support or check our website\"s bulk order section for more information on discounts based on the quantity of items you wish to purchase."
+        "answer": "Yes, we offer discounts for bulk orders. Contact our customer support or check our website\"s bulk order section for more information on discounts based on the quantity of items you wish to purchase.",
+        "state": false
     },
     {
         "question": "Can I customize my shirt?",
-        "answer": "Absolutely! We offer customization options for shirts. You can choose custom sizes, colors, and sometimes add personalized designs or text. Explore our customization options on the product page."
+        "answer": "Absolutely! We offer customization options for shirts. You can choose custom sizes, colors, and sometimes add personalized designs or text. Explore our customization options on the product page.",
+        "state": false
     },
     {
         "question": "How long does shipping take?",
-        "answer": "Shipping times vary depending on your location and the shipping method selected during checkout. Standard shipping typically takes X to Y business days, while expedited options may deliver within Z business days."
+        "answer": "Shipping times vary depending on your location and the shipping method selected during checkout. Standard shipping typically takes X to Y business days, while expedited options may deliver within Z business days.",
+        "state": false
     },
     {
         "question": "What are the available sizes?",
-        "answer": "We offer a range of sizes for our shirts, including small, medium, large, and extra-large. For specific measurements, refer to our size chart available on each product page."
+        "answer": "We offer a range of sizes for our shirts, including small, medium, large, and extra-large. For specific measurements, refer to our size chart available on each product page.",
+        "state": false
     },
     {
         "question": "Is there a loyalty program?",
-        "answer": "Yes, we have a loyalty program that rewards our regular customers. You can earn points for every purchase and unlock exclusive discounts, early access to sales, and other benefits. Join our loyalty program on our website."
+        "answer": "Yes, we have a loyalty program that rewards our regular customers. You can earn points for every purchase and unlock exclusive discounts, early access to sales, and other benefits. Join our loyalty program on our website.",
+        "state": false
     },
     {
         "question": "How do I contact customer support?",
-        "answer": "You can reach our customer support team via email at support@website.com, through the live chat option on our website, or by calling our toll-free number (XXX) XXX-XXXX during business hours."
+        "answer": "You can reach our customer support team via email at support@website.com, through the live chat option on our website, or by calling our toll-free number (XXX) XXX-XXXX during business hours.",
+        "state": false
     },
     {
         "question": "Can I use multiple payment methods?",
-        "answer": "Currently, we accept one payment method per order. You can choose your preferred payment method from the available options during checkout."
+        "answer": "Currently, we accept one payment method per order. You can choose your preferred payment method from the available options during checkout.",
+        "state": false
     },
     {
         "question": "Are there any membership benefits?",
-        "answer": "Yes, our membership program offers exclusive benefits like early access to sales, special discounts, and personalized offers based on your purchase history."
+        "answer": "Yes, our membership program offers exclusive benefits like early access to sales, special discounts, and personalized offers based on your purchase history.",
+        "state": false
     },
     {
         "question": "Do you offer express shipping options?",
-        "answer": "Yes, we provide express shipping for faster delivery. During checkout, you can select the express shipping option based on your preferences."
+        "answer": "Yes, we provide express shipping for faster delivery. During checkout, you can select the express shipping option based on your preferences.",
+        "state": false
     },
     {
         "question": "Are there eco-friendly options available?",
-        "answer": "We're committed to sustainability and offer eco-friendly shirt options made from organic materials or recycled fabrics. Check our eco-collection for more details."
+        "answer": "We're committed to sustainability and offer eco-friendly shirt options made from organic materials or recycled fabrics. Check our eco-collection for more details.",
+        "state": false
     },
     {
         "question": "How do I apply a discount code?",
-        "answer": "During checkout, you'll find an option to apply a discount code. Enter the code in the designated field and click 'Apply' to avail of the discount."
+        "answer": "During checkout, you'll find an option to apply a discount code. Enter the code in the designated field and click 'Apply' to avail of the discount.",
+        "state": false
     },
     {
         "question": "Are there size charts available?",
-        "answer": "Yes, we provide detailed size charts for each shirt style. Refer to the size chart on the product page to select the best-fitting size for you."
+        "answer": "Yes, we provide detailed size charts for each shirt style. Refer to the size chart on the product page to select the best-fitting size for you.",
+        "state": false
     },
     {
         "question": "What is the process for shirt customization?",
-        "answer": "We offer shirt customization services allowing you to add personalized designs or texts. Simply select the 'Customize' option on the product page."
+        "answer": "We offer shirt customization services allowing you to add personalized designs or texts. Simply select the 'Customize' option on the product page.",
+        "state": false
     },
     {
         "question": "Do you offer gift cards?",
-        "answer": "Yes, we have gift cards available for purchase. These cards make perfect gifts and allow the recipient to choose their preferred shirts."
+        "answer": "Yes, we have gift cards available for purchase. These cards make perfect gifts and allow the recipient to choose their preferred shirts.",
+        "state": false
     },
     {
         "question": "What is the estimated delivery time?",
-        "answer": "Delivery times vary based on your location and selected shipping method. During checkout, you'll see the estimated delivery date."
+        "answer": "Delivery times vary based on your location and selected shipping method. During checkout, you'll see the estimated delivery date.",
+        "state": false
     },
     {
         "question": "Are there any seasonal promotions?",
-        "answer": "Yes, we frequently run seasonal promotions offering discounts or special collections. Keep an eye on our website for seasonal deals."
+        "answer": "Yes, we frequently run seasonal promotions offering discounts or special collections. Keep an eye on our website for seasonal deals.",
+        "state": false
     },
     {
         "question": "Are the shirts machine washable?",
-        "answer": "Yes, our shirts are machine washable. However, we recommend following the care instructions on the label to ensure the best maintenance and longevity of the garment."
+        "answer": "Yes, our shirts are machine washable. However, we recommend following the care instructions on the label to ensure the best maintenance and longevity of the garment.",
+        "state": false
     },
     {
         "question": "What is the material used for the shirts?",
-        "answer": "We use high-quality cotton, polyester, and sometimes blends of other fabrics depending on the shirt style. Each product page includes detailed information about the materials used."
+        "answer": "We use high-quality cotton, polyester, and sometimes blends of other fabrics depending on the shirt style. Each product page includes detailed information about the materials used.",
+        "state": false
     },
     {
         "question": "Are international deliveries available?",
-        "answer": "Yes, we offer international shipping to several countries. During checkout, enter your shipping address to confirm if we deliver to your location."
+        "answer": "Yes, we offer international shipping to several countries. During checkout, enter your shipping address to confirm if we deliver to your location.",
+        "state": false
     },
     {
         "question": "How secure is the payment process?",
-        "answer": "Our payment process is highly secure. We use encrypted connections and trusted payment gateways to ensure the safety of your personal and financial information."
+        "answer": "Our payment process is highly secure. We use encrypted connections and trusted payment gateways to ensure the safety of your personal and financial information.",
+        "state": false
     },
     {
         "question": "What happens if my shirt doesn\"t fit?",
-        "answer": "If the shirt doesn\"t fit, we offer hassle-free exchanges for a different size. Refer to our return and exchange policy for more details on size-related issues."
+        "answer": "If the shirt doesn\"t fit, we offer hassle-free exchanges for a different size. Refer to our return and exchange policy for more details on size-related issues.",
+        "state": false
     },
     {
         "question": "Are there limited edition shirts?",
-        "answer": "Yes, we occasionally release limited edition shirts with unique designs or collaborations. Keep an eye on our website and newsletters for these exclusive releases."
+        "answer": "Yes, we occasionally release limited edition shirts with unique designs or collaborations. Keep an eye on our website and newsletters for these exclusive releases.",
+        "state": false
     },
     {
         "question": "Can I cancel or modify my order?",
-        "answer": "You can cancel or modify your order within a specific time frame after placing it. Visit your account or contact our customer support immediately for assistance."
+        "answer": "You can cancel or modify your order within a specific time frame after placing it. Visit your account or contact our customer support immediately for assistance.",
+        "state": false
     },
     {
         "question": "Are there different collar types available?",
-        "answer": "Yes, we offer various collar types including crew neck, V-neck, polo collars, and more. Check the product description for details on the specific shirt\"s collar style."
+        "answer": "Yes, we offer various collar types including crew neck, V-neck, polo collars, and more. Check the product description for details on the specific shirt\"s collar style.",
+        "state": false
     },
     {
         "question": "Do you offer gift wrapping?",
-        "answer": "Yes, we provide gift wrapping services for a nominal fee. During checkout, you can select the gift wrapping option and add a personalized message if desired."
+        "answer": "Yes, we provide gift wrapping services for a nominal fee. During checkout, you can select the gift wrapping option and add a personalized message if desired.",
+        "state": false
     },
     {
         "question": "What is the process for returns and exchanges?",
-        "answer": "Our return and exchange process is straightforward. Simply initiate the process through your account or contact our customer support for assistance."
+        "answer": "Our return and exchange process is straightforward. Simply initiate the process through your account or contact our customer support for assistance.",
+        "state": false
     }
 ]

@@ -33,7 +33,7 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
 
   final TextEditingController _searchController = TextEditingController();
 
-  Future<List<String>> _load() async => jsonDecode(await rootBundle.loadString("assets/jsons/faqs.json")).cast<String>();
+  Future<List<Map<String, dynamic>>> _load() async => jsonDecode(await rootBundle.loadString("assets/jsons/faqs.json")).cast<Map<String, dynamic>>();
 
   @override
   void initState() {
@@ -103,26 +103,42 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
                         ),
                         const SizedBox(height: 16),
                         Expanded(
-                          child: FutureBuilder<List<String>>(
+                          child: FutureBuilder<List<Map<String, dynamic>>>(
                             future: _load(),
-                            builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+                            builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                               if (snapshot.hasData) {
                                 return StatefulBuilder(
                                     key: _filterKey,
                                     builder: (BuildContext context, void Function(void Function()) _) {
-                                      final List<String> data = snapshot.data!.where((String element) => element.toLowerCase().startsWith(_searchController.text.trim().toLowerCase())).toList();
+                                      final List<Map<String, dynamic>> data = snapshot.data!.where((Map<String, dynamic> element) => element["question"].toLowerCase().startsWith(_searchController.text.trim().toLowerCase())).toList();
                                       return ListView.separated(
                                         shrinkWrap: true,
                                         padding: EdgeInsets.zero,
                                         itemBuilder: (BuildContext context, int index) => Container(
                                           padding: const EdgeInsets.all(16),
                                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Flexible(child: Text(data[index], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
-                                              const Spacer(),
-                                              const Icon(FontAwesome.arrow_down_solid, color: white, size: 15),
-                                            ],
+                                          child: StatefulBuilder(
+                                            builder: (BuildContext context, void Function(void Function()) _) {
+                                              return Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: <Widget>[
+                                                  Row(
+                                                    children: <Widget>[
+                                                      Expanded(child: Text(data[index]["question"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
+                                                      const SizedBox(width: 10),
+                                                      IconButton(onPressed: () => _(() => data[index]["state"] = !data[index]["state"]), icon: Icon(data[index]["state"] ? FontAwesome.arrow_up_solid : FontAwesome.arrow_down_solid, color: white, size: 15)),
+                                                    ],
+                                                  ),
+                                                  if (data[index]["state"]) ...<Widget>[
+                                                    const SizedBox(height: 10),
+                                                    const Divider(thickness: .5, height: .5, color: grey),
+                                                    const SizedBox(height: 10),
+                                                    Flexible(child: Text(data[index]["answer"], style: const TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500))),
+                                                  ],
+                                                ],
+                                              );
+                                            },
                                           ),
                                         ),
                                         separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
