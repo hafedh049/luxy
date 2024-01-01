@@ -35,11 +35,11 @@ Future<bool> load() async {
     }
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey: "AIzaSyDjuWTbysu3xYLXmRwYlVU47b4wgW2vkDA",
-        storageBucket: "truck-97497.appspot.com",
-        appId: "1:705178287722:android:a39bd5970c6af438c89413",
-        messagingSenderId: "705178287722",
-        projectId: "truck-97497",
+        apiKey: "AIzaSyBk-6axdTV6J3nkhV2F9JKk2hUpfYYfKtU",
+        storageBucket: "luxy-52f21.appspot.com",
+        appId: "1:2383632718:android:30aea251ddf7603ff7a61f",
+        messagingSenderId: "2383632718",
+        projectId: "luxy-52f21",
       ),
     );
 

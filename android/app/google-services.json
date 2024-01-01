@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "2383632718",
+    "project_id": "luxy-52f21",
+    "storage_bucket": "luxy-52f21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2383632718:android:30aea251ddf7603ff7a61f",
+        "android_client_info": {
+          "package_name": "com.example.luxy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk-6axdTV6J3nkhV2F9JKk2hUpfYYfKtU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
