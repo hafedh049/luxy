@@ -34,28 +34,28 @@ class _SellerDashboardState extends State<SellerDashboard> {
       "title": "Total Sale",
       "subtitle": "1234K DT",
       "chart_color": Colors.green,
-      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]),
+      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * index]),
       "percentage": "+167%",
     },
     <String, dynamic>{
       "title": "Total Profit",
       "subtitle": "564 DT",
       "chart_color": Colors.yellow,
-      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]),
+      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * index]),
       "percentage": "-156%",
     },
     <String, dynamic>{
       "title": "Total Orders",
       "subtitle": "52",
       "chart_color": Colors.purple,
-      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]),
+      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * index]),
       "percentage": "+22%",
     },
     <String, dynamic>{
       "title": "Likes",
       "subtitle": "153",
       "chart_color": Colors.blue,
-      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]),
+      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * index]),
       "percentage": "-2%",
     },
   ];
@@ -176,9 +176,9 @@ class _SellerDashboardState extends State<SellerDashboard> {
                                     LineChartBarData(
                                       spots: item["data"].map((List<double> e) => FlSpot(e[0], e[1])).toList().cast<FlSpot>(),
                                       isCurved: true,
-                                      gradient: LinearGradient(colors: <Color>[item["chart_color"].withOpacity(.8), white.withOpacity(.2)]),
+                                      color: item["chart_color"],
                                       barWidth: 1,
-                                      isStrokeCapRound: true,
+                                      isStrokeCapRound: false,
                                       dotData: const FlDotData(show: false),
                                       belowBarData: BarAreaData(show: true, gradient: LinearGradient(colors: <Color>[item["chart_color"].withOpacity(.8), white.withOpacity(.2)])),
                                     ),
@@ -248,7 +248,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
                       Expanded(
                         child: Container(
                           padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.1)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -265,8 +265,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
                                   width: 100,
                                 ),
                                 dropdownOptions: DropdownOptions(
-                                  width: 250,
-                                  height: 220,
+                                  width: 100,
                                   top: 0,
                                   left: 0,
                                   color: grey.withOpacity(.3),
@@ -292,16 +291,17 @@ class _SellerDashboardState extends State<SellerDashboard> {
                               Expanded(
                                 child: LineChart(
                                   LineChartData(
-                                    gridData: const FlGridData(show: false),
+                                    gridData: const FlGridData(show: true),
                                     titlesData: const FlTitlesData(show: false),
                                     borderData: FlBorderData(show: false),
+                                    minY: 0,
                                     lineBarsData: <LineChartBarData>[
                                       LineChartBarData(
-                                        spots: List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]).map((List<double> e) => FlSpot(e[0], e[1])).toList().cast<FlSpot>(),
+                                        spots: List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * index]).map((List<double> e) => FlSpot(e[0], e[1])).toList().cast<FlSpot>(),
                                         isCurved: true,
-                                        gradient: LinearGradient(colors: <Color>[pink.withOpacity(.8), white.withOpacity(.2)]),
+                                        color: pink,
                                         barWidth: 1,
-                                        isStrokeCapRound: true,
+                                        isStrokeCapRound: false,
                                         dotData: const FlDotData(show: false),
                                         belowBarData: BarAreaData(show: true, gradient: LinearGradient(colors: <Color>[pink.withOpacity(.8), white.withOpacity(.2)])),
                                       ),
