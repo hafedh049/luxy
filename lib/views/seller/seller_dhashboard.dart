@@ -61,6 +61,25 @@ class _SellerDashboardState extends State<SellerDashboard> {
   ];
   final DropdownController _dropdownController = DropdownController();
 
+  final List<Map<String, dynamic>> _months = <Map<String, dynamic>>[
+    <String, dynamic>{
+      "": "Jan",
+    },
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ];
+
+  String _selectedMonth = "Jan";
+
   @override
   void dispose() {
     _dropdownController.dispose();
@@ -191,45 +210,51 @@ class _SellerDashboardState extends State<SellerDashboard> {
             const SizedBox(height: 10),
             const Text("Analytics", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
             const SizedBox(height: 10),
-            Row(
-              children: <Widget>[
-                const Spacer(),
-                CoolDropdown<String>(
-                  defaultItem: CoolDropdownItem(label: "Jan", value: "Jan"),
-                  dropdownList: <String>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((String month) => CoolDropdownItem(label: month, value: month)).toList(),
-                  controller: _dropdownController,
-                  onChange: (String month) {},
-                  resultOptions: ResultOptions(
-                    textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
-                    boxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white)),
-                    openBoxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white)),
-                    height: 30,
-                    width: 100,
-                  ),
-                  dropdownOptions: DropdownOptions(
-                    width: 250,
-                    height: 220,
-                    top: 0,
-                    left: 0,
-                    color: grey.withOpacity(.3),
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide.none,
-                    shadows: const [],
-                    animationType = DropdownAnimationType.scale,
-                    align = DropdownAlign.center,
-                    selectedItemAlign = SelectedItemAlign.center,
-                    gap = DropdownGap.zero,
-                    padding = EdgeInsets.zero,
-                    duration = const Duration(milliseconds: 300),
-                    curve = Curves.easeInOut,
-                  ),
-                  dropdownItemOptions: DropdownItemOptions(
-                    boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: transparent),
-                    selectedBoxDecoration: BoxDecoration(color: pink.withOpacity(.2)),
-                    selectedTextStyle: const TextStyle(color: pink, fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ],
+            StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) _) {
+                return Row(
+                  children: <Widget>[
+                    const Text("${_selectedMonth} 1 - ${_selectedMonth} ?", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+                    const Spacer(),
+                    CoolDropdown<String>(
+                      defaultItem: CoolDropdownItem(label: _selectedMonth, value: _selectedMonth),
+                      dropdownList: _months.map((String month) => CoolDropdownItem(label: month, value: month)).toList(),
+                      controller: _dropdownController,
+                      onChange: (String month) {},
+                      resultOptions: ResultOptions(
+                        textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                        boxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white)),
+                        openBoxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white)),
+                        height: 30,
+                        width: 100,
+                      ),
+                      dropdownOptions: DropdownOptions(
+                        width: 250,
+                        height: 220,
+                        top: 0,
+                        left: 0,
+                        color: grey.withOpacity(.3),
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide.none,
+                        shadows: const <BoxShadow>[],
+                        animationType: DropdownAnimationType.scale,
+                        align: DropdownAlign.center,
+                        selectedItemAlign: SelectedItemAlign.center,
+                        gap: DropdownGap.zero,
+                        padding: EdgeInsets.zero,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      ),
+                      dropdownItemOptions: DropdownItemOptions(
+                        textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                        boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: transparent),
+                        selectedBoxDecoration: BoxDecoration(color: pink.withOpacity(.2)),
+                        selectedTextStyle: const TextStyle(color: pink, fontSize: 14, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ],
         ),
