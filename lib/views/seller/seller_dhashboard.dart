@@ -79,18 +79,18 @@ class _SellerDashboardState extends State<SellerDashboard> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: transparent,
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              Icon(FontAwesome.wifi_solid, size: 15, color: pink),
-              Text("La", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: pink)),
-            ],
-          ),
-        ),
+        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.l_solid, size: 15, color: pink)),
+        centerTitle: true,
         title: const Text("Seller Dashboard", style: TextStyle(color: white, fontSize: 16)),
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {},
+            child: Badge(
+              label: const Text("3"),
+              child: const Icon(FontAwesome.bell_solid, size: 15, color: white),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
