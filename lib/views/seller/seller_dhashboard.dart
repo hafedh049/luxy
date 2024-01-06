@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cool_dropdown/cool_dropdown.dart';
+import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -58,6 +59,14 @@ class _SellerDashboardState extends State<SellerDashboard> {
       "percentage": "-2%",
     },
   ];
+  final DropdownController _dropdownController = DropdownController();
+
+  @override
+  void dispose() {
+    _dropdownController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,10 +193,25 @@ class _SellerDashboardState extends State<SellerDashboard> {
             const SizedBox(height: 10),
             Row(
               children: <Widget>[
+                const Spacer(),
                 CoolDropdown<String>(
-                  dropdownList: dropdownList,
-                  controller: controller,
+                  dropdownList: <String>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+                      .map(
+                        (String month) => CoolDropdownItem(
+                          label: month,
+                          value: month,
+                        ),
+                      )
+                      .toList(),
+                  controller: _dropdownController,
                   onChange: (String month) {},
+                  resultOptions: ResultOptions(
+                    boxDecoration: BoxDecoration(color: black),
+                    height: 30,
+                    width: 100,
+                  ),
+                  //dropdownOptions: DropdownOptions(borderRadius: BorderRadius.circular(5), color: transparent, height: 40, width: 60),
+                  dropdownItemOptions: DropdownItemOptions(boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: transparent)),
                 ),
               ],
             ),
