@@ -292,7 +292,14 @@ class _SellerDashboardState extends State<SellerDashboard> {
                                 child: LineChart(
                                   LineChartData(
                                     gridData: const FlGridData(show: true),
-                                    titlesData: const FlTitlesData(show: false),
+                                    titlesData: FlTitlesData(
+                                      show: true,
+                                      leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, getTitlesWidget: (double value, meta) => Text(value.toStringAsFixed(0)))),
+                                      bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, getTitlesWidget: (double value, meta) => Container(margin: const EdgeInsets.only(bottom: 4), child: Text(value.toStringAsFixed(0))))),
+                                      rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                      topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                    ),
+                                    //lineTouchData: LineTouchData(),
                                     borderData: FlBorderData(show: false),
                                     minY: 0,
                                     lineBarsData: <LineChartBarData>[
