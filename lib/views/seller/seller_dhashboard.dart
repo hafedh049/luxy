@@ -61,22 +61,20 @@ class _SellerDashboardState extends State<SellerDashboard> {
   ];
   final DropdownController _dropdownController = DropdownController();
 
-  final List<Map<String, dynamic>> _months = <Map<String, dynamic>>[
-    <String, dynamic>{
-      "": "Jan",
-    },
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ];
+  final Map<String, int> _months = <String, int>{
+    "Jan": 31,
+    "Feb": 28,
+    "Mar": 31,
+    "Apr": 30,
+    "May": 31,
+    "Jun": 30,
+    "Jul": 31,
+    "Aug": 31,
+    "Sep": 30,
+    "Oct": 31,
+    "Nov": 30,
+    "Dec": 31,
+  };
 
   String _selectedMonth = "Jan";
 
@@ -218,7 +216,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
                     const Spacer(),
                     CoolDropdown<String>(
                       defaultItem: CoolDropdownItem(label: _selectedMonth, value: _selectedMonth),
-                      dropdownList: _months.map((String month) => CoolDropdownItem(label: month, value: month)).toList(),
+                      dropdownList: _months.map((Map<String, dynamic> month) => CoolDropdownItem(label: month["month"], value: month["month"])).toList(),
                       controller: _dropdownController,
                       onChange: (String month) {},
                       resultOptions: ResultOptions(
