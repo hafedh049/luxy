@@ -169,6 +169,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
                               width: 60,
                               child: LineChart(
                                 LineChartData(
+                                  clipData: const FlClipData.all(),
                                   gridData: const FlGridData(show: false),
                                   titlesData: const FlTitlesData(show: false),
                                   borderData: FlBorderData(show: false),
@@ -294,12 +295,22 @@ class _SellerDashboardState extends State<SellerDashboard> {
                                     gridData: const FlGridData(show: true),
                                     titlesData: FlTitlesData(
                                       show: true,
-                                      leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, getTitlesWidget: (double value, meta) => Text(value.toStringAsFixed(0)))),
-                                      bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, getTitlesWidget: (double value, meta) => Container(margin: const EdgeInsets.only(bottom: 4), child: Text(value.toStringAsFixed(0))))),
-                                      rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                                      topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                      leftTitles: AxisTitles(
+                                        sideTitles: SideTitles(
+                                          showTitles: true,
+                                          getTitlesWidget: (double value, TitleMeta meta) => Text(value.toStringAsFixed(0), style: TextStyle(fontSize: 14, color: white.withOpacity(.8), fontWeight: FontWeight.w500)),
+                                        ),
+                                      ),
+                                      bottomTitles: AxisTitles(
+                                        sideTitles: SideTitles(
+                                          showTitles: true,
+                                          getTitlesWidget: (double value, TitleMeta meta) => Text(value == 0.0 ? "" : value.toStringAsFixed(0), style: TextStyle(fontSize: 14, color: white.withOpacity(.8), fontWeight: FontWeight.w500)),
+                                        ),
+                                      ),
+                                      rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                      topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                                     ),
-                                    //lineTouchData: LineTouchData(),
+                                    clipData: const FlClipData.all(),
                                     borderData: FlBorderData(show: false),
                                     minY: 0,
                                     lineBarsData: <LineChartBarData>[
@@ -316,6 +327,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
                                   ),
                                 ),
                               ),
+                              const SizedBox(height: 10),
                             ],
                           ),
                         ),
