@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -26,10 +29,34 @@ class _SellerDashboardState extends State<SellerDashboard> {
     },
   ];
   final List<Map<String, dynamic>> _overview = <Map<String, dynamic>>[
-    <String, dynamic>{"title": "Total Sale", "subtitle": "1234K DT", "chart_color": Colors.green, "data": <double>[], "percentage": "+167%"},
-    <String, dynamic>{"title": "Total Profit", "subtitle": "564 DT", "chart_color": Colors.yellow, "data": <double>[], "percentage": "-156%"},
-    <String, dynamic>{"title": "Total Orders", "subtitle": "52", "chart_color": Colors.purple, "data": <double>[], "percentage": "+22%"},
-    <String, dynamic>{"title": "Likes", "subtitle": "153", "chart_color": Colors.blue, "data": <double>[], "percentage": "-2%"},
+    <String, dynamic>{
+      "title": "Total Sale",
+      "subtitle": "1234K DT",
+      "chart_color": Colors.green,
+      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]),
+      "percentage": "+167%",
+    },
+    <String, dynamic>{
+      "title": "Total Profit",
+      "subtitle": "564 DT",
+      "chart_color": Colors.yellow,
+      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]),
+      "percentage": "-156%",
+    },
+    <String, dynamic>{
+      "title": "Total Orders",
+      "subtitle": "52",
+      "chart_color": Colors.purple,
+      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]),
+      "percentage": "+22%",
+    },
+    <String, dynamic>{
+      "title": "Likes",
+      "subtitle": "153",
+      "chart_color": Colors.blue,
+      "data": List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]),
+      "percentage": "-2%",
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -133,7 +160,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
                                   borderData: FlBorderData(show: false),
                                   lineBarsData: <LineChartBarData>[
                                     LineChartBarData(
-                                      spots: item["data"].map((List<double> e) => FlSpot(e[0], e[1])).toList(),
+                                      spots: item["data"].map((List<double> e) => FlSpot(e[0], e[1])).toList().cast<FlSpot>(),
                                       isCurved: true,
                                       gradient: LinearGradient(colors: <Color>[item["chart_color"].withOpacity(.8), white.withOpacity(.2)]),
                                       barWidth: 1,
@@ -150,6 +177,18 @@ class _SellerDashboardState extends State<SellerDashboard> {
                       ],
                     ),
                   ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Text("Analytics", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+            const SizedBox(height: 10),
+            Row(
+              children: <Widget>[
+                CoolDropdown<String>(
+                  dropdownList: dropdownList,
+                  controller: controller,
+                  onChange: (String month) {},
+                ),
               ],
             ),
           ],
