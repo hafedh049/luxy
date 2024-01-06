@@ -61,22 +61,10 @@ class _SellerDashboardState extends State<SellerDashboard> {
   ];
   final DropdownController _dropdownController = DropdownController();
 
-  final Map<String, int> _months = <String, int>{
-    "Jan": 31,
-    "Feb": 28,
-    "Mar": 31,
-    "Apr": 30,
-    "May": 31,
-    "Jun": 30,
-    "Jul": 31,
-    "Aug": 31,
-    "Sep": 30,
-    "Oct": 31,
-    "Nov": 30,
-    "Dec": 31,
-  };
+  final Map<String, int> _months = <String, int>{"Jan": 31, "Feb": 28, "Mar": 31, "Apr": 30, "May": 31, "Jun": 30, "Jul": 31, "Aug": 31, "Sep": 30, "Oct": 31, "Nov": 30, "Dec": 31};
 
   String _selectedMonth = "Jan";
+  String _selectedChart = "Jan";
 
   @override
   void dispose() {
@@ -208,78 +196,132 @@ class _SellerDashboardState extends State<SellerDashboard> {
             const SizedBox(height: 10),
             const Text("Analytics", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
             const SizedBox(height: 10),
-            StatefulBuilder(
-              builder: (BuildContext context, void Function(void Function()) _) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Text("$_selectedMonth 1 - $_selectedMonth ${_months[_selectedMonth]}", style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
-                        const Spacer(),
-                        CoolDropdown<String>(
-                          defaultItem: CoolDropdownItem(label: _selectedMonth, value: _selectedMonth),
-                          dropdownList: _months.keys.map((String month) => CoolDropdownItem(label: month, value: month)).toList(),
-                          controller: _dropdownController,
-                          onChange: (String month) => _(() => _selectedMonth = month),
-                          resultOptions: ResultOptions(
-                            textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
-                            boxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: .5)),
-                            openBoxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: .5)),
-                            height: 30,
-                            width: 100,
-                          ),
-                          dropdownOptions: DropdownOptions(
-                            width: 250,
-                            height: 220,
-                            top: 0,
-                            left: 0,
-                            color: grey.withOpacity(.3),
-                            borderRadius: const BorderRadius.all(Radius.circular(10)),
-                            borderSide: BorderSide.none,
-                            shadows: const <BoxShadow>[],
-                            animationType: DropdownAnimationType.scale,
-                            align: DropdownAlign.center,
-                            selectedItemAlign: SelectedItemAlign.center,
-                            gap: DropdownGap.zero,
-                            padding: EdgeInsets.zero,
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                          ),
-                          dropdownItemOptions: DropdownItemOptions(
-                            textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
-                            boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: transparent),
-                            selectedBoxDecoration: BoxDecoration(color: pink.withOpacity(.2)),
-                            selectedTextStyle: const TextStyle(color: pink, fontSize: 14, fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Expanded(
-                      child: LineChart(
-                        LineChartData(
-                          gridData: const FlGridData(show: false),
-                          titlesData: const FlTitlesData(show: false),
-                          borderData: FlBorderData(show: false),
-                          lineBarsData: <LineChartBarData>[
-                            LineChartBarData(
-                              spots: item["data"].map((List<double> e) => FlSpot(e[0], e[1])).toList().cast<FlSpot>(),
-                              isCurved: true,
-                              gradient: LinearGradient(colors: <Color>[pink.withOpacity(.8), white.withOpacity(.2)]),
-                              barWidth: 1,
-                              isStrokeCapRound: true,
-                              dotData: const FlDotData(show: false),
-                              belowBarData: BarAreaData(show: true, gradient: LinearGradient(colors: <Color>[pink.withOpacity(.8), white.withOpacity(.2)])),
+            Expanded(
+              child: StatefulBuilder(
+                builder: (BuildContext context, void Function(void Function()) _) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text("$_selectedMonth 1 - $_selectedMonth ${_months[_selectedMonth]}", style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
+                          const Spacer(),
+                          CoolDropdown<String>(
+                            defaultItem: CoolDropdownItem(label: _selectedMonth, value: _selectedMonth),
+                            dropdownList: _months.keys.map((String month) => CoolDropdownItem(label: month, value: month)).toList(),
+                            controller: _dropdownController,
+                            onChange: (String month) => _(() => _selectedMonth = month),
+                            resultOptions: ResultOptions(
+                              textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                              boxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: .5)),
+                              openBoxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: .5)),
+                              height: 30,
+                              width: 100,
                             ),
-                          ],
+                            dropdownOptions: DropdownOptions(
+                              width: 250,
+                              height: 220,
+                              top: 0,
+                              left: 0,
+                              color: grey.withOpacity(.3),
+                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                              borderSide: BorderSide.none,
+                              shadows: const <BoxShadow>[],
+                              animationType: DropdownAnimationType.scale,
+                              align: DropdownAlign.center,
+                              selectedItemAlign: SelectedItemAlign.center,
+                              gap: DropdownGap.zero,
+                              padding: EdgeInsets.zero,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            ),
+                            dropdownItemOptions: DropdownItemOptions(
+                              textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                              boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: transparent),
+                              selectedBoxDecoration: BoxDecoration(color: pink.withOpacity(.2)),
+                              selectedTextStyle: const TextStyle(color: pink, fontSize: 14, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: grey.withOpacity(.3)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              CoolDropdown<String>(
+                                defaultItem: CoolDropdownItem(label: _selectedChart, value: _selectedChart),
+                                dropdownList: const <String>["Sales", "Orders"].map((String chart) => CoolDropdownItem(label: chart, value: chart)).toList(),
+                                controller: _dropdownController,
+                                onChange: (String chart) => _(() => _selectedChart = chart),
+                                resultOptions: ResultOptions(
+                                  textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                                  boxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: .5)),
+                                  openBoxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: .5)),
+                                  height: 30,
+                                  width: 100,
+                                ),
+                                dropdownOptions: DropdownOptions(
+                                  width: 250,
+                                  height: 220,
+                                  top: 0,
+                                  left: 0,
+                                  color: grey.withOpacity(.3),
+                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide.none,
+                                  shadows: const <BoxShadow>[],
+                                  animationType: DropdownAnimationType.scale,
+                                  align: DropdownAlign.center,
+                                  selectedItemAlign: SelectedItemAlign.center,
+                                  gap: DropdownGap.zero,
+                                  padding: EdgeInsets.zero,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                ),
+                                dropdownItemOptions: DropdownItemOptions(
+                                  textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                                  boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: transparent),
+                                  selectedBoxDecoration: BoxDecoration(color: pink.withOpacity(.2)),
+                                  selectedTextStyle: const TextStyle(color: pink, fontSize: 14, fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Expanded(
+                                child: LineChart(
+                                  LineChartData(
+                                    gridData: const FlGridData(show: false),
+                                    titlesData: const FlTitlesData(show: false),
+                                    borderData: FlBorderData(show: false),
+                                    lineBarsData: <LineChartBarData>[
+                                      LineChartBarData(
+                                        spots: List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * 20]).map((List<double> e) => FlSpot(e[0], e[1])).toList().cast<FlSpot>(),
+                                        isCurved: true,
+                                        gradient: LinearGradient(colors: <Color>[pink.withOpacity(.8), white.withOpacity(.2)]),
+                                        barWidth: 1,
+                                        isStrokeCapRound: true,
+                                        dotData: const FlDotData(show: false),
+                                        belowBarData: BarAreaData(show: true, gradient: LinearGradient(colors: <Color>[pink.withOpacity(.8), white.withOpacity(.2)])),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              },
+                    ],
+                  );
+                },
+              ),
             ),
+            const SizedBox(height: 10),
+            const Text("Last Live Performance", style: TextStyle(color: white, fontSize: 16, fontWeight: FontWeight.w500)),
+            const SizedBox(height: 10),
+            Divider(color: grey.withOpacity(.3), height: .4, thickness: .5),
           ],
         ),
       ),
