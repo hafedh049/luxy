@@ -79,17 +79,21 @@ class _SellerDashboardState extends State<SellerDashboard> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: transparent,
-        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.l_solid, size: 15, color: pink)),
+        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.l_solid, size: 20, color: pink)),
         centerTitle: true,
         title: const Text("Seller Dashboard", style: TextStyle(color: white, fontSize: 16)),
         actions: <Widget>[
           GestureDetector(
             onTap: () {},
             child: Badge(
-              label: const Text("3"),
-              child: const Icon(FontAwesome.bell_solid, size: 15, color: white),
+              label: Text((Random().nextInt(9) + 1).toString(), style: const TextStyle(fontSize: 10, color: white)),
+              backgroundColor: pink,
+              smallSize: 15,
+              padding: const EdgeInsets.all(1),
+              child: const Icon(FontAwesome.bell_solid, size: 20, color: white),
             ),
           ),
+          const SizedBox(width: 16),
         ],
       ),
       body: Padding(
@@ -108,10 +112,16 @@ class _SellerDashboardState extends State<SellerDashboard> {
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: grey.withOpacity(.1)),
                         child: Row(
                           children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: const BoxDecoration(shape: BoxShape.circle, color: white),
-                              child: Icon(item["icon"], size: 20, color: dark),
+                            Badge(
+                              label: Text((Random().nextInt(9) + 1).toString(), style: const TextStyle(fontSize: 10, color: white)),
+                              backgroundColor: pink,
+                              smallSize: 15,
+                              padding: const EdgeInsets.all(1),
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: const BoxDecoration(shape: BoxShape.circle, color: white),
+                                child: Icon(item["icon"], size: 20, color: dark),
+                              ),
                             ),
                             const SizedBox(width: 10),
                             Expanded(
