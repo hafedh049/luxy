@@ -9,6 +9,7 @@ import 'package:luxy/views/languages_list.dart';
 import 'package:luxy/views/notification.dart' as notification;
 import 'package:luxy/views/privacy_policy.dart';
 import 'package:luxy/views/security.dart';
+import 'package:luxy/views/seller/seller_dhashboard.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -48,7 +49,9 @@ class _ProfileState extends State<Profile> {
         const Divider(color: grey, height: .8, thickness: .8),
         const SizedBox(height: 10),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const SellerDashboard()));
+          },
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: pink.withOpacity(.6)),

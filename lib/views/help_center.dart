@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
-import 'package:luxy/views/customer_service.dart';
+//import 'package:luxy/views/customer_service.dart';
 import 'package:luxy/views/loading_screen.dart';
 import 'package:luxy/views/red_screen.dart';
 
@@ -24,7 +24,7 @@ class _HelpCenterState extends State<HelpCenter> with TickerProviderStateMixin {
       "icon": FontAwesome.headphones_solid,
       "title": "Customer Service",
       "callback": (BuildContext context) {
-        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const CustomerService()));
+        // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const CustomerService()));
       },
     },
     <String, dynamic>{"icon": Bootstrap.whatsapp, "title": "Whatsapp", "callback": (BuildContext context) {}},
