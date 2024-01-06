@@ -195,18 +195,14 @@ class _SellerDashboardState extends State<SellerDashboard> {
               children: <Widget>[
                 const Spacer(),
                 CoolDropdown<String>(
-                  dropdownList: <String>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-                      .map(
-                        (String month) => CoolDropdownItem(
-                          label: month,
-                          value: month,
-                        ),
-                      )
-                      .toList(),
+                  defaultItem: CoolDropdownItem(label: "Jan", value: "Jan"),
+                  dropdownList: <String>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((String month) => CoolDropdownItem(label: month, value: month)).toList(),
                   controller: _dropdownController,
                   onChange: (String month) {},
                   resultOptions: ResultOptions(
-                    boxDecoration: BoxDecoration(color: black),
+                    textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                    boxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white)),
+                    openBoxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white)),
                     height: 30,
                     width: 100,
                   ),
