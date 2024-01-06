@@ -29,6 +29,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
       "callback": (BuildContext context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Container())),
     },
   ];
+
   final List<Map<String, dynamic>> _overview = <Map<String, dynamic>>[
     <String, dynamic>{
       "title": "Total Sale",
@@ -60,11 +61,12 @@ class _SellerDashboardState extends State<SellerDashboard> {
     },
   ];
   final DropdownController _dropdownController = DropdownController();
+  final DropdownController _chartController = DropdownController();
 
   final Map<String, int> _months = <String, int>{"Jan": 31, "Feb": 28, "Mar": 31, "Apr": 30, "May": 31, "Jun": 30, "Jul": 31, "Aug": 31, "Sep": 30, "Oct": 31, "Nov": 30, "Dec": 31};
 
   String _selectedMonth = "Jan";
-  String _selectedChart = "Jan";
+  String _selectedChart = "Sales";
 
   @override
   void dispose() {
@@ -77,7 +79,17 @@ class _SellerDashboardState extends State<SellerDashboard> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: transparent,
-        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: white)),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Icon(FontAwesome.wifi_solid, size: 15, color: pink),
+              Text("La", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: pink)),
+            ],
+          ),
+        ),
         title: const Text("Seller Dashboard", style: TextStyle(color: white, fontSize: 16)),
       ),
       body: Padding(
@@ -256,7 +268,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
                               CoolDropdown<String>(
                                 defaultItem: CoolDropdownItem(label: _selectedChart, value: _selectedChart),
                                 dropdownList: const <String>["Sales", "Orders"].map((String chart) => CoolDropdownItem(label: chart, value: chart)).toList(),
-                                controller: _dropdownController,
+                                controller: _chartController,
                                 onChange: (String chart) => _(() => _selectedChart = chart),
                                 resultOptions: ResultOptions(
                                   textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
@@ -298,13 +310,13 @@ class _SellerDashboardState extends State<SellerDashboard> {
                                       leftTitles: AxisTitles(
                                         sideTitles: SideTitles(
                                           showTitles: true,
-                                          getTitlesWidget: (double value, TitleMeta meta) => Text(value.toStringAsFixed(0), style: TextStyle(fontSize: 14, color: white.withOpacity(.8), fontWeight: FontWeight.w500)),
+                                          getTitlesWidget: (double value, TitleMeta meta) => Text(value.toStringAsFixed(0), style: TextStyle(fontSize: 10, color: white.withOpacity(.8), fontWeight: FontWeight.w500)),
                                         ),
                                       ),
                                       bottomTitles: AxisTitles(
                                         sideTitles: SideTitles(
                                           showTitles: true,
-                                          getTitlesWidget: (double value, TitleMeta meta) => Text(value == 0.0 ? "" : value.toStringAsFixed(0), style: TextStyle(fontSize: 14, color: white.withOpacity(.8), fontWeight: FontWeight.w500)),
+                                          getTitlesWidget: (double value, TitleMeta meta) => Text(value == 0.0 || value > 25.0 ? "" : "${value.toStringAsFixed(0)} $_selectedMonth", style: TextStyle(fontSize: 10, color: white.withOpacity(.8), fontWeight: FontWeight.w500)),
                                         ),
                                       ),
                                       rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -315,7 +327,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
                                     minY: 0,
                                     lineBarsData: <LineChartBarData>[
                                       LineChartBarData(
-                                        spots: List<List<double>>.generate(10, (int index) => <double>[index.toDouble(), Random().nextDouble() * index]).map((List<double> e) => FlSpot(e[0], e[1])).toList().cast<FlSpot>(),
+                                        spots: List<List<double>>.generate(_months[_selectedMonth]!, (int index) => <double>[index.toDouble(), Random().nextDouble() * index]).map((List<double> e) => FlSpot(e[0], e[1])).toList().cast<FlSpot>(),
                                         isCurved: true,
                                         color: pink,
                                         barWidth: 1,
