@@ -6,6 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
+import 'package:luxy/views/seller/manage_orders.dart';
 
 class SellerDashboard extends StatefulWidget {
   const SellerDashboard({super.key});
@@ -20,7 +21,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
       "icon": FontAwesome.jedi_order_brand,
       "title": "Manage Orders",
       "subtitle": "24 Padding",
-      "callback": (BuildContext context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Container())),
+      "callback": (BuildContext context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const ManageOrders())),
     },
     <String, dynamic>{
       "icon": FontAwesome.cube_solid,

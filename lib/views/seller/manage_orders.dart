@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luxy/utils/globals.dart';
 
@@ -13,6 +14,8 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
   late final TabController _tabController;
 
   final List<String> _types = <String>["Padding", "Confirmed", "Ready to ship", "Shipped"];
+
+  String _selectedType = "Padding";
 
   @override
   void initState() {
@@ -63,17 +66,29 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(),
-                                ),
-                              ),
-                            ),
-                          ],
+                        StatefulBuilder(
+                          builder: (BuildContext context, void Function(void Function()) _) {
+                            return Row(
+                              children: <Widget>[
+                                for (final String type in _types)
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _(() => _selectedType = type);
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: 500.ms,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          color: _selectedType == type ? grey.withOpacity(.1) : transparent,
+                                          border: _selectedType == type ? Border.all(color: white) : null,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
                         ),
                       ],
                     ),
