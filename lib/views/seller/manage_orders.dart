@@ -1,3 +1,5 @@
+import 'package:cool_dropdown/cool_dropdown.dart';
+import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -16,6 +18,14 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
   final List<String> _types = <String>["Padding", "Confirmed", "Ready to ship", "Shipped"];
 
   String _selectedType = "Padding";
+
+  bool _selectByProducts = false;
+
+  final List<String> _sorts = <String>["Sort ↑", "Sort ↓"];
+
+  String _sortType = "Sort ↑";
+
+  final DropdownController _dropdownController = DropdownController();
 
   @override
   void initState() {
@@ -102,18 +112,64 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
                           children: <Widget>[
                             StatefulBuilder(
                               builder: (BuildContext context, void Function(void Function()) _) {
-                                return GestureDetector(
-                                  onTap: () {},
-                                  child: AnimatedContainer(
-                                    duration: 500.ms,
-                                    padding: const EdgeInsets.all(8),
-                                    margin: EdgeInsets.only(right: _types.lastOrNull == _selectedType ? 0 : 8),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: _selectedType == type ? grey.withOpacity(.1) : transparent,
-                                      border: _selectedType == type ? Border.all(color: white) : null,
+                                return Row(
+                                  children: <Widget>[
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: AnimatedContainer(
+                                        duration: 500.ms,
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          color: _selectByProducts ? grey.withOpacity(.1) : transparent,
+                                          border: Border.all(color: white, width: .3),
+                                        ),
+                                        child: const Text("Group by products", style: TextStyle(color: white, fontSize: 16)),
+                                      ),
                                     ),
-                                    child: Text(type, style: const TextStyle(color: white, fontSize: 16)),
+                                    const SizedBox(width: 10),
+                                    if (_selectByProducts) const Icon(FontAwesome.x_solid, size: 10, color: white),
+                                  ],
+                                );
+                              },
+                            ),
+                            const Spacer(),
+                            StatefulBuilder(
+                              builder: (BuildContext context, void Function(void Function()) _) {
+                                return CoolDropdown<String>(
+                                  defaultItem: CoolDropdownItem(label: _sorts.first, value: _sorts.first),
+                                  dropdownList: _sorts.map((String month) => CoolDropdownItem(label: month, value: month)).toList(),
+                                  controller: _dropdownController,
+                                  onChange: (String sortType) => _(() => _sortType = sortType),
+                                  resultOptions: ResultOptions(
+                                    textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                                    boxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: .5)),
+                                    openBoxDecoration: BoxDecoration(color: grey.withOpacity(.3), borderRadius: BorderRadius.circular(5), border: Border.all(color: white, width: .5)),
+                                    height: 30,
+                                    width: 100,
+                                  ),
+                                  dropdownOptions: DropdownOptions(
+                                    width: 250,
+                                    height: 220,
+                                    top: 0,
+                                    left: 0,
+                                    color: grey.withOpacity(.3),
+                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                    borderSide: BorderSide.none,
+                                    shadows: const <BoxShadow>[],
+                                    animationType: DropdownAnimationType.scale,
+                                    align: DropdownAlign.center,
+                                    selectedItemAlign: SelectedItemAlign.center,
+                                    gap: DropdownGap.zero,
+                                    padding: EdgeInsets.zero,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeInOut,
+                                  ),
+                                  dropdownItemOptions: DropdownItemOptions(
+                                    textStyle: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500),
+                                    boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: transparent),
+                                    selectedBoxDecoration: BoxDecoration(color: pink.withOpacity(.2)),
+                                    selectedTextStyle: const TextStyle(color: pink, fontSize: 14, fontWeight: FontWeight.w500),
                                   ),
                                 );
                               },
