@@ -50,7 +50,7 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
         actions: <Widget>[IconButton(onPressed: () {}, icon: const Icon(FontAwesome.magnifying_glass_solid, size: 20, color: white))],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -76,6 +76,7 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        const SizedBox(height: 10),
                         StatefulBuilder(
                           builder: (BuildContext context, void Function(void Function()) _) {
                             return Row(
@@ -88,14 +89,15 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
                                       },
                                       child: AnimatedContainer(
                                         duration: 500.ms,
-                                        padding: const EdgeInsets.all(8),
+                                        padding: const EdgeInsets.all(4),
                                         margin: EdgeInsets.only(right: _types.lastOrNull == _selectedType ? 0 : 8),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: _selectedType == type ? grey.withOpacity(.1) : transparent,
                                           border: _selectedType == type ? Border.all(color: white) : null,
                                         ),
-                                        child: Text(type, style: const TextStyle(color: white, fontSize: 16)),
+                                        alignment: AlignmentDirectional.center,
+                                        child: Text(type, style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
                                       ),
                                     ),
                                   ),
@@ -106,30 +108,35 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
                         const SizedBox(height: 10),
                         const Divider(thickness: .5, height: .5, color: grey),
                         const SizedBox(height: 10),
-                        const Text("View", style: TextStyle(color: white, fontSize: 16)),
+                        const Text("View", style: TextStyle(color: white, fontSize: 14)),
                         const SizedBox(height: 10),
                         Row(
                           children: <Widget>[
                             StatefulBuilder(
                               builder: (BuildContext context, void Function(void Function()) _) {
-                                return Row(
-                                  children: <Widget>[
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: AnimatedContainer(
-                                        duration: 500.ms,
-                                        padding: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5),
-                                          color: _selectByProducts ? grey.withOpacity(.1) : transparent,
-                                          border: Border.all(color: white, width: .3),
-                                        ),
-                                        child: const Text("Group by products", style: TextStyle(color: white, fontSize: 16)),
-                                      ),
+                                return GestureDetector(
+                                  onTap: () {
+                                    _(() => _selectByProducts = !_selectByProducts);
+                                  },
+                                  child: AnimatedContainer(
+                                    duration: 500.ms,
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: _selectByProducts ? grey.withOpacity(.1) : transparent,
+                                      border: Border.all(color: white, width: .3),
                                     ),
-                                    const SizedBox(width: 10),
-                                    if (_selectByProducts) const Icon(FontAwesome.x_solid, size: 10, color: white),
-                                  ],
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        const Text("Group by products", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
+                                        if (_selectByProducts) ...[
+                                          const SizedBox(width: 10),
+                                          const Icon(FontAwesome.x_solid, size: 10, color: white),
+                                        ],
+                                      ],
+                                    ),
+                                  ),
                                 );
                               },
                             ),
