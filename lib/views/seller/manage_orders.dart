@@ -78,17 +78,47 @@ class _ManageOrdersState extends State<ManageOrders> with TickerProviderStateMix
                                       },
                                       child: AnimatedContainer(
                                         duration: 500.ms,
+                                        padding: const EdgeInsets.all(8),
+                                        margin: EdgeInsets.only(right: _types.lastOrNull == _selectedType ? 0 : 8),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: _selectedType == type ? grey.withOpacity(.1) : transparent,
                                           border: _selectedType == type ? Border.all(color: white) : null,
                                         ),
+                                        child: Text(type, style: const TextStyle(color: white, fontSize: 16)),
                                       ),
                                     ),
                                   ),
                               ],
                             );
                           },
+                        ),
+                        const SizedBox(height: 10),
+                        const Divider(thickness: .5, height: .5, color: grey),
+                        const SizedBox(height: 10),
+                        const Text("View", style: TextStyle(color: white, fontSize: 16)),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: <Widget>[
+                            StatefulBuilder(
+                              builder: (BuildContext context, void Function(void Function()) _) {
+                                return GestureDetector(
+                                  onTap: () {},
+                                  child: AnimatedContainer(
+                                    duration: 500.ms,
+                                    padding: const EdgeInsets.all(8),
+                                    margin: EdgeInsets.only(right: _types.lastOrNull == _selectedType ? 0 : 8),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: _selectedType == type ? grey.withOpacity(.1) : transparent,
+                                      border: _selectedType == type ? Border.all(color: white) : null,
+                                    ),
+                                    child: Text(type, style: const TextStyle(color: white, fontSize: 16)),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
                         ),
                       ],
                     ),
